@@ -1,0 +1,36 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+\usepackage{comment}
+
+\titleformat
+{\chapter} % command
+[hang] % shape
+{\bfseries\Large} % format
+{\thechapter.} % label
+{1em} % sep
+{} % before-code
+
+\title{Comprehensive Exam Report (ENCS 8501)}
+\author{Mathieu Dugr\'e}
+\date{\today}  % TODO Change to the correct date for submission.
+
+\begin{document}
+\pagenumbering{roman}
+
+\begin{titlepage}
+	\maketitle 
+	\thispagestyle{empty}
+\end{titlepage}
+
+\tableofcontents
+
+\clearpage
+\pagenumbering{arabic}
+\input{chapters/introduction.tex}
+\input{chapters/reduced_precision.tex}
+\input{chapters/neuroimaging.tex}
+\input{chapters/implementation.tex}
+\input{chapters/conclusion.tex}
+
+\end{document}
