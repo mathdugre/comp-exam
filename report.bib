@@ -765,23 +765,46 @@
   arxivid       = {1511.05236}
 }
 
-% The entry below contains non-ASCII chars that could not be converted
-% to a LaTeX equivalent.
-@article{Lesser_2011,
+
+@article{Lesser2011-mn,
   title     = {{Effects of Reduced Precision on Floating-Point SVM
                Classification Accuracy}},
+  author    = {Lesser, Bernd and M{\"u}cke, Manfred and Gansterer, Wilfried N},
   abstract  = {There is growing interest in performing ever more complex
                classification tasks on mobile and embedded devices in
-               real-time, which results in the need …},
+               real-time, which results in the need for e\_cient
+               implementations of the respective algorithms. Support vector
+               machines (SVMs) represent a powerful class of nonlinear
+               classifiers, and reducing the working precision represents a
+               promising approach to achieving e\_cient implementations of the
+               SVM classification phase. However, the relationship between SVM
+               classification accuracy and the arithmetic precision used is not
+               yet su\_ciently understood. We investigate this relationship in
+               floating-point arithmetic and illustrate that often a large
+               reduction in the working precision of the classification process
+               is possible without loss in classification accuracy. Moreover,
+               we investigate the adaptation of bounds on allowable SVM
+               parameter perturbations in order to estimate the lowest possible
+               working precision in floating-point arithmetic. Among the three
+               representative data sets considered in this paper, none requires
+               a precision higher than 15 bit, which is a considerable
+               reduction from the 53 bit used in double precision
+               floating-point arithmetic. Furthermore, we demonstrate analytic
+               bounds on the working precision for SVMs with Gaussian kernel
+               providing good predictions of possible reductions in the working
+               precision without sacrificing classification accuracy.},
   journal   = {Procedia Comput. Sci.},
   publisher = {Elsevier},
   volume    = 4,
   pages     = {508--517},
   month     = jan,
   year      = 2011,
+  keywords  = {SVM; machine learning; reduced precision floating-point
+               arithmetic; perturbation analysis; quantization effects},
   issn      = {1877-0509},
   doi       = {10.1016/j.procs.2011.04.053}
 }
+
 
 @article{Higham2019-yd,
   title     = {{Simulating Low Precision Floating-Point Arithmetic}},

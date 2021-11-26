@@ -2,7 +2,7 @@
 \label{ch:reduced-precision}
 Traditionally, computing application are developed to give exact results.
 While this is necessary in certains fields (e.g. aerospace), results with a lower
-precision is acceptable for multiple type of data.
+precision is acceptable for multiple types of data.
 As~\cite{Cherubin2020-tt} depicts, numerous studies explored the use of lower 
 precision data type to perform computation.
 It is an interesting strategy as it has the joint potential to reduce hardware 
@@ -72,7 +72,7 @@ studied to reduce the precision of machine learning models.
 The work from~\cite{Johnson2018-up} evaluates a new \textit{posit tapered} data 
 format which combines idea from posit~\cite{Gustafson2017-wo} format and log number system.
 Various other studies use different custom floating point formats with reduced 
-exponent and mantissa size~\cite{Lesser_2011, Chen2018-an, Vicuna2021-mw, Wang2018-oo}.
+exponent and mantissa size~\cite{Lesser2011-mn, Chen2018-an, Vicuna2021-mw, Wang2018-oo}.
 The authors in~\cite{Carmichael2019-nu} design three FPGAs for low-precision fixed
 point, floating point, and posit.
 
@@ -121,14 +121,14 @@ In recent years, machine learning, and more specifically Deep Neural Networks (D
 have seen a rise in popularity due to their ability to solve challenging problems.
 However, the complexity of DNNs models come with high usage of computing resources.
 With the enormous dataset required to train these models, a usual bottleneck is with compute and data communication time.
-This motivated multiple studies \cite{Johnson2018-up,Wang2018-oo,Lesser_2011,Chen2018-an,Judd2015-kw,Vicuna2021-mw}
+This motivated multiple studies \cite{Johnson2018-up,Wang2018-oo,Lesser2011-mn,Chen2018-an,Judd2015-kw,Vicuna2021-mw}
 to explore the possibility of reducing the precision for the data format used to train those models.
 This section explores the quantization methods developed in the Deep Learning 
 domain to reduce the compute and data communication of models.
 
 The authors from multiple studies explored the effects of quatization for SVM classification
 and found that it is possible to use minimal precision without accuracy loss.
-In~\cite{Lesser_2011}, the authors investigate the impacts of reducing precision for SVM
+In~\cite{Lesser2011-mn}, the authors investigate the impacts of reducing precision for SVM
 classification and estimate the minimal precision required to achieve classification 
 without loss of accuracy. Three experiments are performed: 
 (1) adding noise to parameters,
