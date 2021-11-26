@@ -1,9 +1,11 @@
 \chapter{Floating-points}
+\label{ch:background}
 Among the different methods to represent the set of real numbers in computer,
 floating-points is a commonly adopted format.
-This chapter discuss some fundamental definitions and basic notions on
+This chapter discusses some fundamental definitions and basic notions on
 floating-points, briefly describe the \textit{IEEE~754} data format, and 
 explains the sources of errors in floating-point arithmethic and their consequences.
+The content in this chapter is based on~\cite{Muller2018-zm}.
 
 \section{Definitions and basic notions}
 A floating-point format is defined with four intergers:
@@ -27,7 +29,7 @@ The set of all such representation is called a \textit{cohort}.
 It is often desirable to have a unique representation; i.e. called \textit{normalized representation}.
 This simplifies the expression of error bounds and the implementation.
 It can be achieved, for example, by always representing numbers using the minimum exponent possible.
-Floating-point are often categorized into \textit{normal} and \textit{subnormal}.
+Floating-point are often categorized into \textit{normal} and \textit{subnormal} (also called \textit{denormal}).
 In radix 2, the first digits of a siginificand is 1 for normal number and 0 for subnormal.
 This allows the usage of encoding strategies such as \textit{hidden bit convention} to
 ignore the most significand bit without losing precision.
@@ -65,7 +67,7 @@ We limit our scope to the Binary data type since Decimal are mostly used for fin
 The IEEE~754 defines three basic format for Binary: 32, 64, and 128 bits.
 It also defined a suggested format for 16 bits.
 In all those formats, a set precision is defined as well as a range for the exponent values of $e_{min} = 1 - e_{max}$.
-Table \ref{table:IEEE754-binary-parameters} shows the precision and exponent parameters for each format. 
+Table~\ref{table:IEEE754-binary-parameters} shows the precision and exponent parameters for each format. 
 
 \begin{table}[h]
 	\centering
@@ -91,7 +93,7 @@ Table \ref{table:IEEE754-binary-parameters} shows the precision and exponent par
 
 For some applications, the defined formats might not offer enough precision.
 The IEEE~754 standard defines an extended precision format for width above 128 bits.
-Table \ref{table:IEEE754-extended-parameters} describes the parameters for the extended precision format.
+Table~\ref{table:IEEE754-extended-parameters} describes the parameters for the extended precision format.
 Where $t$ is the trailing significant, $w$ is the width of the exponent field, and $b$ is the exponent bias.
 \begin{table}[h]
 	\centering
@@ -111,17 +113,17 @@ Where $t$ is the trailing significant, $w$ is the width of the exponent field, a
 \end{table}
 
 The IEEE~754 binary formats is encoded using a sign, exponent, and trailing significand.
-Figure \ref{fig:IEEE754-binary-encoding} depicts the encoding scheme for the formats.
+Figure~\ref{fig:IEEE754-binary-encoding} depicts the encoding scheme for the formats.
 Where $S$ sign bit, $E$ are the bits for the exponent, and $T$ are the bits for the trailing significand.
 In radix 2, the leftmost bit for subnormal numbers is always 0 while normal numbers is 1.
 The IEEE~754 binary format uses this property by not storing the leftmost bit of the significand without lost of precision.
 This is done by using special encoding values in the exponent field.
 Similar strategies are employed to represent $\pm 0$, $\pm \inf$, and NaN values.
-Table \ref{table:IEEE754-binary-encoding} shows the different encoding used to represent those values.
+Table~\ref{table:IEEE754-binary-encoding} shows the different encoding used to represent those values.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=8cm]{ieee754_binary_encoding.png}
+	\includegraphics[width=\textwidth]{ieee754_binary_encoding.png}
 	\caption{Encoding for the IEEE~754 binary floating-point formats}
 	\label{fig:IEEE754-binary-encoding}
 \end{figure}
@@ -154,6 +156,7 @@ The IEEE~754 formats have specified standard regarding rounding of inexact float
 The following arithmetic functions are required to be correctly rounded: addition, subtraction, multiplication, division, and fused multiply-add (FMA).
 The square root function and conversion between supported formats also need to be correctly rounded.
 Additionally, the standard recommends a list of function to be correctly rounded. % TODO add reference to list of function (See page 79 of FP handbook)
+% TODO Be more specific that this is for IEEE~754 when talking about correctly rounded function. Otherwise it can be confusing. Remove passive voice
 There are three directed rounding attributes:
 \begin{itemize}
 	\item \textit{roundTowardPositive} $RD(x)$ rounds to the largest floating-point less than or equal to $x$.
@@ -172,6 +175,7 @@ For example, it was found that some convolution neural network (CNN) perform wel
 Moreover, while most GPUs support both binary32 and binary64, more recent GPU architectures also support the binary16 format.
 
 \section{Sources of error}
+% TODO
 % 1 page
 \begin{comment}
 - rounding
@@ -179,4 +183,7 @@ Moreover, while most GPUs support both binary32 and binary64, more recent GPU ar
 - cancellation
 - overflow & underflow
 - accumulation
+- swamping
+
+%  Ask Yohan for further references
 \end{comment}
