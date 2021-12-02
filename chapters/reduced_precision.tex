@@ -27,7 +27,7 @@ The logic complexity of floating points is approximately proportional to the squ
 Therefore, lowering the number of bit in a data format also reduce the dye size 
 of a chip and, by consequence, the energy cost and computation time for arithmetic operations.
 
-The work done in~\cite{Cherubin2020-tt} surveys a ragne of tools in the fields of reduced precision.
+The work done in~\cite{Cherubin2020-tt} surveys a range of tools in the fields of reduced precision.
 That same study define five challenges that remain to be addressed for reduced precision:
 \begin{itemize}
 	\item[1.] Identify the code sections where applying reduced precision is beneficial.
@@ -77,11 +77,6 @@ The authors in~\cite{Carmichael2019-nu} design three FPGAs for low-precision fix
 point, floating point, and posit.
 
 \section{Implementing reduced precision}
-% 1 pages
-\begin{comment}
-- Simulation
-- Software and arithmetic implementation
-\end{comment}
 To remain efficient, consumer hardwares only support a limited set of data formats; for exmaple IEEE~754.
 The use of custom data format often requires either: specialized hardware, software implementation, or simulation.
 
@@ -109,14 +104,7 @@ This is especially true when performing study that evaluate a range of different
 % Once simulation is done, there needs to be a way to implement it afterwards (either hardware or software).
 
 
-\section{Growth of quantization in Deep Learning}
-% 2 pages
-\begin{comment}
-- Specify what makes DL a good candidate for RP.
-- Describe the different examples in DL. methods, accuracy/performance tradeoff.
-- Mention what explain the success of RP in DL and transition to other fields.
-- Mention the adoption of RP in other domains.
-\end{comment}
+\section{Quantization in Deep Learning}
 In recent years, machine learning, and more specifically Deep Neural Networks (DNNs),
 have seen a rise in popularity due to their ability to solve challenging problems.
 However, the complexity of DNNs models come with high usage of computing resources.
@@ -144,12 +132,119 @@ Further understanding the bounds for reducing the precision would allow to autom
 adjust the precision for classification, which would be an effort towards addressing the third 
 challenge from Section~\ref{sc:rp-problem-definiton}.
 
-% \section{Current scope of application}
-% % 0.5 page
-% \begin{comment}
-% - Descirbe how it is currently used and the limitation in term of usability
-% - Within framework like PyTorch or Tensorflow, or in academic setting.
-% \end{comment}
+With DNNs becoming more complex it becomes difficult to train the models with using 
+techniques to improve performance such as data sampling or model parrallelism.
+It is also problematic to integrate those models on embedded systems due to resource limitations.
+While many study found that CNNs are resilient to accuracy loss when using reduced precision,
+few of them attempted to vary the precision used at each layer.
+The authors in~\cite{Judd2015-kw} show that the precision required in different layers and networks
+differs significantly.
+Moreover, they suggest a method to select the appropritae precision of each layer while 
+keeping accuracy within a determined boundary.
+Their model conver floating-points to the appropriate representation then back to single-precision after processing a layer.
+To evaluate their method, the authors benchmark their reduced precision model on 5 popular CNNs.
+Through their experiments they reduce the precision of both the weight of the model and the output of each layer.
+Their first experiment reduced the precision of all layer simultaneously in the range of 12 to 1 bits.
+The results show that only 21 bits would be required to store both the weight and output data of a layer.
+The authors proceed by reducing the precision of each layer one by one to obtain an idea of the importance of precision for all layers.
+From the results, we observe that the precision required by each layer varies significantly.
+The authors also calculate an estimate data communication for the networks.
+They also propose a method to find the minimal precision per layer while preserving accuracy:
+\begin{itemize}
+	\item[1.] Set the layers to an initial uniform precision with less than $0.1\%$ error.
+	\item[2.] Create a collection of deltas by reducing the precision of parameters and layer output by 1 bit for each layer.
+	\item[3.] Use the configuration giving teh best accuracy for the next iteration.
+\end{itemize}
+To find the \textit{best}, although potentially sub-optimal, the authors use a Pareto
+frontier between the amount of data transfer and the accuracy for different configuration of bit precision.
+Although sub-optimal, this heuristic resulted in a average decreas of $74\%$ of data traffic
+while preserving accuracy within $1\%$ of tolerance.
+This work show the potential of using various precision size for different layers of CNNs.
+It motivates further efforts to study strategies in further exploiting reduced precision
+to reduce memory usage and compute time. 
+
+Linear algebra operations are a critical components in most DNNs models such as 
+the multiply-accumulate (MAC) operation; e.g.~$\sum_{i}a_{i}b_{i}$.
+The authors in~\cite{Johnson2018-up} describe \textit{ELMA}, a new methods to compute MAC using a combination of logarithmic 
+number system~(LNS), \textit{Kulisch accumulator}~(EMA), and the posit data format~\cite{Gustafson2017-wo}.
+The authors evaluate the accuracy using an FPGA implementation of the ResNet-50~ImageNet model.
+Moreover, the new ELMA implementation is compared in term of area~($\SI{}{\micro\metre}^2$)
+and power~(\SI{}{\micro\watt}) using a \SI{28}{\milli\metre} ASIC library.
+The results show that the proposed ELMA operator reduces the power usage on 
+multiplications by \SI{90.9}{\micro\watt} but increase it for additions by \SI{68.3}{\micro\watt}.
+Overall, the net power usage is lower than previous methods.
+This suggest that further efforts to reduce floating-point efficiency could bring substantial benefits.
+
+Without doubt, DNNs emerged as a powerful tool to solve problems.
+However, to achieve high accuracy, DNNs require tremendous amount of resources;
+with models reaching 100s of \SI{}{\mega\byte}s and computation on large datasets can span multiple days/weeks.
+Moreover, data communication between learners is often another source of bottleneck during training.
+Traditionally, applications are developed to be exact although it is not necessary for most tupes of data.
+In~\cite{Chen2018-an}, the authors explore approximate computing to reduce both 
+computation and data communication, while preserving accurate results.
+The authors quantize the weight and activation of the model from 16 to 2 bits.
+To evalute the accuracy, the reduce precision model are bencmark on four popular DNNs: CIFAR10-CNN, AlexNet, ResNet18, and ResNet50.
+They find that at 4 bits the accuracy remains within $<1\%$ of the reference 
+full-precision model while improving performance by $4.5\times$.
+When reducing the precision of the models to 2 bits, the authors achieve a $14\times$
+improvement in normalized chip density; resulting in lower energy comsumption.
+Overall, the results from this paper show promising benefits to further study reduced 
+precision strategies as it jointly reduces harrdware and energy cost as well as compute and data communication time.
+
+Numerous approximate computing methods have been studied for the field of deep 
+learning to reduce computation and data communication time, and energy cost.
+With the energy efficientcy of hardware increasing quadratically witht the reduction in bit precision.
+With current hardware implementing 16 bit precision, we can see performance improvement of $\ge 4\times$ compared to 32 bits.
+Studies showed that the computation steps for DNNs inference can be reduced to as low as 2-4 bits
+while remaining accurate; and even precision of 1-2 bits for weights and activations.
+However, an empirical study found taht precision of 16 bits was required during 
+DNNs training to preserve accuracy.
+When trying to reduce the precision even more, DNNs ofen start to see significant 
+accuracy degradation, issues with convergence, and impac on overall accuracy.
+The authors in~\cite{Wang2018-oo} suggest using \textit{FP8} combined with 
+\textit{chunk-based computations} and \textit{stochastic rounding} to further reduce
+the bit precision compared to state-of-the-art methods while maintaining accuracy.
+They evaluate their methods on a collection of 6 NNs models accross multiple datasets.
+The results depict that their implementation using both FP8 and FP16 is equivalent
+in accuracy to using FP16 and FP32, while performing $2-4\times$ faster.
+Moreover, the authors found that keeping a higher accuracy (FP16) on the first layer~(input data)
+and the last layer was critical to successfully train their FP8 models.
+This work shows that effort in reducing floating-point precision in deep learning
+can increase performance significantly while keeping accuracy equivalent.
+
+While machine learning model are a great tool to solve problems, they can be challenging
+to implement on embedded systems due to their large memory requirement.
+Mondrian Forest, a common online classifying algorithm, is typically too memory intensive
+for embedded devices, therefore, using reduced precision could enable its use.
+The authors in~\cite{Vicuna2021-mw} explore reduced precision techniques on Mondrian Forests
+to reduce their memory usage.
+They study the model parameters, numerical precision, and memory consumption together
+due to their interdependence.
+Using VPREC, the authors simulated reduced the bit precision $p$ in the range from 52 to 1 bits.
+Moreover, the exponent range is varied from 11 to 2 bits.
+To simulate the different memory requirements at different precision.
+The model is instrumented both at a node level and for the whole model.
+To evaluate their method, they use two publicly available dataset: Recofit, and Banos et al.
+To quantify the performance of the model with different memory constraint, the authors allocate three
+different values memory limit for the model: \SI{0.6}{\mega\byte}, \SI{1.2}{\mega\byte}, and \SI{3}{\mega\byte}.
+Their results for node instrumentation show that for $p \ge 2$ the F1 scores remain with a standard deviation.
+For the whole instrumenation, the F1 scores are significant different when $p \le 6$.
+The observations on the F1 scores for $p > 2$ were not correlated to memory.
+This suggest that using reduced precision with different memory allocation would yield similar results.
+Given constant memory constraints, the authors found that using reduced precision allows the 
+trees to grow deeper; potentially improving the classification performance.
+Overall, the results show that Mondrian Forest can be implement with low-precision floating-points
+of only 8 bits without affecting the F1 scores significantly.
+This has the potential to reduce memory footprint by roughly $1.8\times$ compared to double precision.
+
+Although Section~\ref{sc:rp-data-format} discussed the use of reduced and mixed precision
+in popular deep learning framework like PyTorch and Tensorflow, the scope of ultra low 
+precision (i.e. $\le 8$ bits) is still a topic limited to academia.
+Further efforts is required to better understand the effects of reduced precision
+on different models and datasets; without which, it the reach of ultra-low floating-point
+will remain restrained.
+While the deep learning community as vastly explored reduced precision techniques,
+to the best of our knowledge, the topic remains unexplored in most other fields of application.
 
 
 \section{Tradeoff of using reduced precision}
@@ -166,4 +261,7 @@ challenge from Section~\ref{sc:rp-problem-definiton}.
 * overhead from casting can be greater than performance benefit
 * new data format often require new type of hardware
 \end{comment}
+			
+% TODO (Carmicheal, 2019)
 
+% TODO (Brun, 2021)
