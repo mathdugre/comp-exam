@@ -11,8 +11,7 @@ In this chapter, we explore (1) the problem definition of \textit{Reduced Precis
 (2) various data formats used to perform reduced precision,
 (3) methods to implement reduced precision,
 (4) the growth of quantization in Deep Learning,
-(5) the current usage of reduced precision within applications,
-and (6) tradeoffs from using reduced precision.
+and (5) discuss the benefits, limitation, and open questions of reduced precision.
 
 \section{Problem definition}
 \label{sc:rp-problem-definiton}
@@ -91,18 +90,49 @@ for frequent Deep Learning tasks (GEMMs), respectively with their recent GPU arc
 On the other hand, creating new hardware is costly both in time and material.
 This is especially true when performing study that evaluate a range of different data formats.
 
-% TODO
-% Software: Talk about the two papers that use a software implementation.
-% Software is not as efficient as hardware; incurs overhead.
-% It's also costly to implement and perform code conversion.
-% However, it is has the potential to be more portable from one architecture to another.
+Since hardware implementations can be challenging to implement, some research investigated
+software solution to implement reduced precision.
+In~\cite{Anderson2016-yn}, the authors proposed a new data format, \textit{flyte},
+with a mantissa that differs in 8-bits increment from the traditional IEEE~754 
+standard while keeping the exponent the same.
+This allows the use of native instruction to read data with power-of-two bit width.
+To prevent cache miss due to misaligment, the authors suggest a packing and shuffling
+method to reorganize the flyte in the vector registers.
+However, for some flyte format, there are still some issue with misaligment resulting
+in lower performance gain.
+Overall, their technique show significant reduction in cache miss for \textit{BLAS}
+Level 2 and 3; as many as $4.5\times$ less than with double.
+The authors in~\cite{Zucker1994-rg} propose an algebraic method to pack multiple
+low-precision operations into a single high-register operation.
+This method showed performance improvement of 8.7\%, 13.6\%, and 16.2\% when packing
+2, 4, and 8 number respectively.
+Unfortunately, this technique can only be applied to a few algebraic operations.
+On the one hand, software implementations are not as efficient as specialized hardware
+since they suffer from substantial overhead cost.
+Implementing software solution often requires high manual efforts whether to  perform
+code conversion or to design a new data format.
+On the other hand, software design have the potential to be more portable accross
+architecture compared to specialized hardware.
 
-% TODO
-% Simulation: Talk about QPyTorch and the other two papers.
-% Simulation is cheap and quick to implement.
-% However, it is mostly used to simulation accuracy; performance is hard to simulate.
-% Once simulation is done, there needs to be a way to implement it afterwards (either hardware or software).
-
+As an alternative to hardware or software implementation, a common approach to 
+prototype or do studies of new data format is through simulation.
+The authors in~\cite{Chatelain2019-fu} explore the use of reduced precision to 
+lower communication cost of iterative methods.
+They use the VPREC backend in verificarlo to simulate reduce precision combined
+with an heuristic to determine a minimum precision for the different iterations.
+Both temporal and spatial change in the precision of applications are considered.
+Other studies~\cite{Higham2019-yd,Zhang2019-xv} propose simulation methods for reduced
+precision on single operations and on kernels.
+\textit{Highman et al.} implemented a reduced precision library in MATLAB while 
+\textit{Zhang et al.} developed a high-level framework on top of PyTorch to use
+reduced precision techniques.
+The main benefits of simulating reduced precision is the low implementation cost 
+and new hardware does not need to be designed.
+This often allows to explore a large number of data format for a with less efforts.
+Unfortunately, while simulation is great for accuracy, it is still challenging to 
+simulate performance due to the complexity of modern system.
+Moreover, simulating reduced precision comes at a substantial overhead cost.
+Therefore, it is required to implement an hardware or software implementation later on to achieve performance.
 
 \section{Quantization in Deep Learning}
 In recent years, machine learning, and more specifically Deep Neural Networks (DNNs),
@@ -189,7 +219,7 @@ full-precision model while improving performance by $4.5\times$.
 When reducing the precision of the models to 2 bits, the authors achieve a $14\times$
 improvement in normalized chip density; resulting in lower energy comsumption.
 Overall, the results from this paper show promising benefits to further study reduced 
-precision strategies as it jointly reduces harrdware and energy cost as well as compute and data communication time.
+precision strategies as it jointly reduces hardware and energy cost as well as compute and data communication time.
 
 Numerous approximate computing methods have been studied for the field of deep 
 learning to reduce computation and data communication time, and energy cost.
@@ -246,22 +276,52 @@ will remain restrained.
 While the deep learning community as vastly explored reduced precision techniques,
 to the best of our knowledge, the topic remains unexplored in most other fields of application.
 
+\section{Discussion}
+In this chapter, multiple studies showed promising reduced precision approaches
+to improve the performance of applications while preserving accuracy.
+However, reduced precision comes with its own caveats.
+Throught this section, we will discuss the different benefits and limitations from
+using reduced precision.
+Moreover, we will discuss open problems in the field of reduced precision.
 
-\section{Tradeoff of using reduced precision}
-% 1 pages
-\begin{comment}
-- Pros
-* smaller chip size
-* energy saving
-* faster computation
-* lower storage space
-- Cons
-* Risk for lower accuracy
-* Often requires manual effort to implement/convert
-* overhead from casting can be greater than performance benefit
-* new data format often require new type of hardware
-\end{comment}
-			
-% TODO (Carmicheal, 2019)
+By reducing the number of bits used to represent numbers, the memory footprint
+of applications is directly reduced.
+This has two main benifits: applications require less resources to execute, and 
+it reduce the cache miss therefore increasing performance.
+Additionally, reducing the size of data format allows the use of specialized hardware
+or software techniques to pipeline operations together.
+With hardware complexity being approximately proportional to the square of the 
+number of bits~\cite{Chen2018-an}, reducing the data format can jointly increase
+performance and reduce energy cost.
+Fusing multiple low-precision data format operations in a single register operation 
+has the potential to lower computational cost substantially.
+Lastly, reducing the size of input and output data would let to lower storage space requirements.
 
-% TODO (Brun, 2021)
+To make use of reduced precision, substantial efforts is required in creating, 
+evaluating, and implementing new data formats.
+This is amplified by the current lack of understanding in the 
+behavior of different application using reduced precision.
+Even within a single application, varying the data can substantially modify the 
+precision required to preserve accurate results.
+Therefore, designing new hardware and software solutions incurs a high cost in manual effort.
+Moreover, while using a lower-precision data format on an application might yield 
+promising results, changing the data used could lead to unpredictable accuracy changes.
+Finally, the conversion between data formats comes with an overhead cost.
+Thus, attention needs to be paid to minimize the amount of data format conversions 
+within an application, when applying reduced precision.
+Otherwise, the performance benefits from using reduce precision might be overtaken
+by a high overhead cost in data conversion and result in an overall slowdown 
+the perfomance of an application.
+
+To have a broader adoption of reduced precision some critical limitations need to 
+be addressed, including but not limited to:
+\begin{itemize}
+	\item Determine the different sections of code that can take advantage of reduce precision 
+	      while considering both temporal and spatial variability of precision.
+	\item Improve the heuristics for finding the minimal precision required for each code section.
+	\item Estimate the perfomance gain from using reduce precision.
+	\item Understand the effects of reduce precision when varying the data in an application.
+	\item Automate the code conversion to simplify the usage of reduce precision.
+\end{itemize}
+To the best of our knowledge, these problem remains open challenges within the field of reduce precision.
+Furthers research will be needed to make progress on resolving these challenges.
