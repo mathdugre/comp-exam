@@ -1,6 +1,6 @@
 \chapter{Reduced precision}
 \label{ch:reduced-precision}
-Traditionally, computing application are developed to give exact results.
+Traditionally, computing application \tristan{there's a lot of singular/plural mistakes, you should check them all!} are developed to give exact results \tristan{not sure what this sentence means}.
 While this is necessary in certains fields (e.g. aerospace), results with a lower
 precision is acceptable for multiple types of data.
 As~\cite{Cherubin2020-tt} depicts, numerous studies explored the use of lower 
@@ -16,7 +16,7 @@ and (5) discuss the benefits, limitation, and open questions of reduced precisio
 \section{Problem definition}
 \label{sc:rp-problem-definiton}
 The IEEE~754 standard defines two main floating-point formats.
-Altough although offering enough precision for most applications, it can also be unecessary precision.
+Altough offering enough precision for most applications, it can also be unecessary precision.
 That is, multiple type of application do not benefit from that much precision.
 For this reason, a lot of efforts in creating new data formats with lower precision (discussed in~\ref{sc:rp-data-format}).
 The idea behind reduced precision is to represent numbers in a data format with 
@@ -134,7 +134,7 @@ simulate performance due to the complexity of modern system.
 Moreover, simulating reduced precision comes at a substantial overhead cost.
 Therefore, it is required to implement an hardware or software implementation later on to achieve performance.
 
-\section{Quantization in Deep Learning}
+\section{Quantization in Deep Learning \tristan{Should it be machine learning since you refer to SVMs and Mondrian Forests too?}}
 In recent years, machine learning, and more specifically Deep Neural Networks (DNNs),
 have seen a rise in popularity due to their ability to solve challenging problems.
 However, the complexity of DNNs models come with high usage of computing resources.
