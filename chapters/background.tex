@@ -141,11 +141,11 @@ Table~\ref{table:IEEE754-binary-encoding} shows the different encoding used to r
 	\end{tabular} &
 	% end 2nd col title
 	Value represented \\ \hline
-	$111\cdots1_{2}$                              & $\ne 000\cdots 0_{2}$                                    & NaN                                                          \\ \hline
-	$111\cdots1_{2}$                              & $000\cdots 0_{2}$                                        & $(-1)^{s}\times\inf$                                         \\ \hline
-	$000\cdots0_{2}$                              & $000\cdots 0_{2}$                                        & $(-1)^{s}\times 0$                                           \\ \hline
-	$000\cdots0_{2}$                              & $\ne 000\cdots 0_{2}$                                    & $(-1)^{s}\times 0.t_{1}t_{2}\cdots t_{p-1}\times2^{e_{min}}$ \\ \hline
-	$0<N_{e}<2^{W_{E}}-1$                         & any                                                      & $(-1)^{s}\times 0.t_{1}t_{2}\cdots t_{p-1}\times2^{N_{e}-b}$ \\ \hline
+	$111\cdots1_{2}$      & $\ne 000\cdots 0_{2}$    & NaN                                                          \\ \hline
+	$111\cdots1_{2}$      & $\quad 000\cdots 0_{2}$  & $(-1)^{s}\times\inf$                                         \\ \hline
+	$000\cdots0_{2}$      & $\quad 000\cdots 0_{2}$  & $(-1)^{s}\times 0$                                           \\ \hline
+	$000\cdots0_{2}$      & $\ne 000\cdots 0_{2}$    & $(-1)^{s}\times 0.t_{1}t_{2}\cdots t_{p-1}\times2^{e_{min}}$ \\ \hline
+	$0<N_{e}<2^{W_{E}}-1$ & any                      & $(-1)^{s}\times 0.t_{1}t_{2}\cdots t_{p-1}\times2^{N_{e}-b}$ \\ \hline
 	\end{tabular}
 	\caption{Encoding to represent special values in the binary formats defined by IEEE~754-2008}
 	\label{table:IEEE754-binary-encoding}

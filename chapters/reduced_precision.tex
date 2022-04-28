@@ -56,7 +56,7 @@ the same number of bit as the IEEE float32 for its exponent while having shorthe
 \begin{figure}[b]
 	\centering
 	\includegraphics[width=\textwidth]{bfloat16.png}
-	\caption{Representation of the bfloat16 floating point format (taken from~\cite{bfloat16}).}
+	\caption{Representation of the bfloat16 format. (Taken from~\cite{bfloat16})}
 	\label{fig:bfloat16}
 \end{figure}
 By using the exponent lenght the float32, the blfoat16 allows a quick conversion
@@ -287,7 +287,7 @@ Moreover, we will discuss open problems in the field of reduced precision.
 By reducing the number of bits used to represent numbers, the memory footprint
 of applications is directly reduced.
 This has two main benifits: applications require less resources to execute, and 
-it reduce the cache miss therefore increasing performance.
+it reduce the hardware cache miss therefore increasing performance.
 Additionally, reducing the size of data format allows the use of specialized hardware
 or software techniques to pipeline operations together.
 With hardware complexity being approximately proportional to the square of the 
@@ -299,6 +299,9 @@ Lastly, reducing the size of input and output data would let to lower storage sp
 
 To make use of reduced precision, substantial efforts is required in creating, 
 evaluating, and implementing new data formats.
+% TODO
+% Change sentence to reflect that its really for the interaction between precision and the application.
+% That is what precision is needed for a specific application.
 This is amplified by the current lack of understanding in the 
 behavior of different application using reduced precision.
 Even within a single application, varying the data can substantially modify the 
@@ -312,6 +315,8 @@ within an application, when applying reduced precision.
 Otherwise, the performance benefits from using reduce precision might be overtaken
 by a high overhead cost in data conversion and result in an overall slowdown 
 the perfomance of an application.
+% TODO
+% Discuss in brief the different type of implementation for reduced precision.
 
 To have a broader adoption of reduced precision some critical limitations need to 
 be addressed, including but not limited to:
