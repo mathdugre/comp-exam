@@ -1,4 +1,4 @@
-\chapter{Floating-points}
+\chapter{Floating-point representations}
 \label{ch:background}
 Among the different methods to represent the set of real numbers in computer,
 floating-points is a commonly adopted format.
@@ -21,7 +21,7 @@ A floating-point number in such a format is a number $x$ that can be represented
 \end{equation}
 where
 \begin{itemize}
-	\item $M$ is an integer such that $|M| \le B^{p}-1$. It is called the \textit{integral siginificand} of x.
+	\item $M$ is an integer such that $|M| \le B^{p}-1$. It is called the \textit{integral siginificand} of x \tristan{or the mantissa?}.
 	\item $e$ is an integer such that $e_{min} \le e \le e_{max}$. It is called the \textit{exponent} of x.
 \end{itemize}
 The representation of a number using a pair $(M, e)$ is not unique.
@@ -32,14 +32,14 @@ It can be achieved, for example, by always representing numbers using the minimu
 Floating-point are often categorized into \textit{normal} and \textit{subnormal} (also called \textit{denormal}).
 In radix 2, the first digits of a siginificand is 1 for normal number and 0 for subnormal.
 This allows the usage of encoding strategies such as \textit{hidden bit convention} to
-ignore the most significand bit without losing precision.
+ignore the most significand bit without losing precision. \tristan{Add a sentence to explain what it is.}
 Moreover, the availability of subnormal numbers allows \textit{gradual underflow},
-which helps to implement numerically stable softwares.
+which helps to implement numerically stable softwares. \tristan{Add a sentence to explain what it is.}
 
 A common way to define the error introduced by an floating-point arithmethic
 operation is using the \textit{unit in the last place (ulp)} definition.
 The $ulp(x)$ is defined as the distance between the two closest distinct
-floating-point numbers $a$ and $b$, such that $a < x < b$ and $a \neq b$.
+floating-point numbers $a$ and $b$, such that $a < x < b$ and $a \neq b$ \tristan{It's unclear what 0.5 ulp means from this definition}.
 %  TODO Add a figure that depicts the ulp definition.
 
 A function is \textit{correctly rounded} when its results are always rounded the 
@@ -49,17 +49,18 @@ When a function cannot guarantee correct rounding and always round a number $y$
 using one of \textit{round-up} or \textit{round-down} funciton, it is said to be \textit{faithful}.
 Correct rounding functions are always faithful.
 One must keep in mind that even if a function is correctly rounded, there is
-still loss of information is the number cannot be represented exactly in the
+still loss of information if the number cannot be represented exactly in the
 floating-poitn format.
 
 With floating-point arithmetic, some properties from real number arithmethic are lost while other remain.
 Any correctly rounded arithmetic operations remain commutative with addition and multiplication.
+\tristan{How about incorrectly rounded functions?}
 However, associativity and distributivity no longer apply.
-If not cautious about this, it can result in drastic errors.
+If not cautious about this, it can result in drastic errors. 
 
 
 \section{IEEE~754 Binary format}
-Since the beginning of computers, there have been multiple proposed solutions to represent floating-points.
+Since the beginning of computers, there have been multiple proposed solutions to represent floating-point numbers \tristan{I think ``floating-point numbers'' should be used instead of ``floating-points''}.
 In this section, we limit our focus to the IEEE~754-2008 format, shortened to IEEE~754 remaining of the text, as it is largely adopted in hardware.
 The IEEE~754 format describe a standard for radix 2 and 10, Binary and Decimal, respectively.
 We limit our scope to the Binary data type since Decimal are mostly used for financial which is outside the scope of our research.
@@ -93,7 +94,7 @@ Table~\ref{table:IEEE754-binary-parameters} shows the precision and exponent par
 
 For some applications, the defined formats might not offer enough precision.
 The IEEE~754 standard defines an extended precision format for width above 128 bits.
-Table~\ref{table:IEEE754-extended-parameters} describes the parameters for the extended precision format.
+Table~\ref{table:IEEE754-extended-parameters} describes the parameters for the extended precision format \tristan{context on extended precision is lacking, what are these parameters?}.
 Where $t$ is the trailing significant, $w$ is the width of the exponent field, and $b$ is the exponent bias.
 \begin{table}[h]
 	\centering
@@ -171,7 +172,7 @@ There are also two attributes for rounding to nearest, when a floating-point is 
 The standard for the binary formats requires the implementation of all three directed rounding and \textit{roundTiesToEven}.
 
 While not a basic format, binary16 is starting to receive more attention and support as it is increasingly being used for computing application.
-For example, it was found that some convolution neural network (CNN) perform well with binary16; and even with precision of only 8 bits.
+For example, it was found that some convolution neural network (CNN) perform well with binary16; and even with precision of only 8 bits \tristan{reference?}.
 Moreover, while most GPUs support both binary32 and binary64, more recent GPU architectures also support the binary16 format.
 
 \section{Sources of error}
