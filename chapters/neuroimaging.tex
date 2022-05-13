@@ -182,11 +182,106 @@ shows promising results for better understanding of the biological implications 
 brain activation, coducting study on larger datasets, and increase the 
 applicatibility where results are needed imminently.
 
+% TODO Rephrase the: to find about biological implication. More to understand feature importance ➝ explainable AI.
+% TODO Change the sentence on SVM. SVM are good when having small datasets. Not sure if they are strong for being explainable.
+% TODO Explain more on the features used for ML in neuro.
+
 \section{Reduced precision for neuroimaging} % 1-2
-% TODO
-% !! Mention of regularization methods and other smoothing techniques.
-% !! IMPORTANT describe the state of neuroimaging problems. That is, they don't have
-%  ground truth. So although two pipeline give different results, that does not
-%  mean that one has to be wrong. 
-% ? Mention the paper that reduce float64 to int32 for their experiments.
-% !! Reduce precision could have similar effect as regularization or other smoothing techniques.
+With the joint combination of complex pipelines and large datasets in the field 
+of neuroimaging, the question arise as wether or not reduced precision techniques
+could bring performance improvements to the field.
+In this section, we discuss the current reduced precision work for neuroimaging,
+the state of numerical stability in neuroimaging pipelines, and some commonly used
+techniques in neuroimaging pipelines that have similar effects as reduced precision.
+\MD{TODO: a bit repetitive, try to remove some of the neuroimaging terms.}
+	
+\subsection{Current work}
+To the best of our knowledge, only a few studies applied some form of reduced precision
+techniques in neuroimaging; we present these studies here after.
+Nguyen et al.~\cite{Nguyen2018-lo} present an empirical-Bayes false discovery rate
+control method, to reduce the false positive results from concurrent hypotheses 
+when only the p-values or test statistics are available; and those are stored at reduced precision.
+In their study, they consider integer compression for 8 and 16 bits.
+The results show that their method is on par with other state-of-the-art methods.
+	
+Performing whole brain segmentation is a challenging task, which usually requires
+some division-and-aggregate techniques~\cite{Li2021-rv}.
+By consequences, multiple passes need to be done and the results are estimated from
+sampled region, therefore affecting both performance and accuracy.
+The authors in~\cite{Li2021-rv} propose a whole brain segmentation techniques 
+using mixed-precision (16 and 32 bits) on GPUs.
+This allow both fast computing and the use of full volumes for training.
+Their results depicts that inference time, for the segmentation, is around 200 times faster
+than other methods (FCN~\cite{Long2015-qr}, U-Net~\cite{Ronneberger2015-wy}, and FastSurfer~\cite{Henschel2020-vq}).
+Moreover, the results suggest that training the model with higher resolution volumes
+improve the model generazability.
+	
+3D image registration is yet another fundamental and computationally expensive part
+of neuroimaging pipeline.
+Traditional methods take a few minutes to perform an image registration on CPU.
+For large studies with thousands of subjects, improving this process has the potential
+to lower computation time from weeks to days.
+Brunn et al.~\cite{Brunn2021-zj} introduce a new method to perform image registration
+using optimized mixed-precision code on GPUs and substituting 8th order finite difference
+derivatives in-place of FFT-based first order ones.
+Their results show a 30x performance and 6x mismatch improvement in comparison to 
+another state-of-the-art pipeline (CLAIRE~\cite{Mang2019-nu}).
+	
+In general, the studies in which reduced precision was applied to neuroimaging 
+do not have reduced precision has the main focus.
+They only use it in combination of a primary suggested method.
+Henceforth, there is currently a lack of understanding of the behavior and limitations
+that reduced precision has on the field of neuroimaging.
+
+\subsection{Challenges and Opportunities in Neuroimaging}
+While applying reduce precision techniques to neuroimaging pipelines seems to be a
+good idea, limited studies have done it thus far.
+Here below, we discuss the potential challenges and opportunities to implement
+reduced precision in the field of neuroimaging.
+
+Inherently, evaluating the correctness of neuroimaging pipelines is challenging due
+to the lack of ground truth from results of analysis.
+That is, different pipelines can produces different results yet all be valid.
+Neuroimaging applications often fit algorithm using low amounts of sample with variable
+signal-to-noise ratio, which can potentially lead to instability when minor pertubations are applied~\cite{Kiar2020-uv}.
+Li et al.~\cite{Li2021-om} studied the inter-pipeline variability while using the same data.
+They found that there was a lack of agreement between pipelines and the steps leading
+to those variability varied across pipelines.
+When using test-restest data, they found that varition within small datasets have 
+a larger impact on variability than inter-pipeline agreement.
+
+In neuroimaging, numerical stability can arise from different sources including
+acquisition noise, flexibility of the methods, and the pipelines used to process the data.
+Salari et et al.~\cite{Salari2021-kd} studied the impact of operating system update on
+the numerical stability of neuroimaging pipelines.
+Using \textit{fuzzy libmath}, an extension to Verificarlo, they varied the virtual
+precision of a preprocessing pipeline from 53 to 1 bits in increment of 2.
+Moreover, they evaluated the stability of the pipeline accross a range of different 
+operating system version; each using a different glibc (mathematical library) version.
+Figure~\ref{fig:salari2021_vprec} suggests that increasing the precision above 21 bits
+would not increase the numerical stability of the resutls from the pipeline.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{salari2021_vprec.png}
+	\caption{RMSE values between OS and fuzzy libmath at each virtual precision.}
+	\label{fig:salari2021_vprec}
+\end{figure}
+
+Image smooting is a commonly used method in neuroimaging pipelines.
+It reduce the resolution of the data by combining close by voxels together.
+Although in different ways, both image smoothing and reduced precision will affect
+the precision of the data processed.
+In a study by Molloy et al.~\cite{Molloy2014-oc}, the signal-to-noise ratio and the detection power
+of fMRI signal could be improve by image smoothing, which is consistent with the literature.
+Moreover, they found that applying spatial smoothing did not significal change the
+results for functional connectivity when finding ROIs.
+
+While image smoothing helps in correcting artifacts such as head motion, the smoothness
+might be varied across the brain volume.
+This can lead in confounds related to the smoothing of head motion.
+Scheinost et al.~\cite{Scheinost2014-ds} propose a uniform spatial smoothing method
+to reduce those confounds.
+The authors found that uniformly smoothed volumes results in significanlty lower
+correlation between regions and head motion.
+Similarly to other smoothing techniques, it was not able to remove all confounds, however,
+it remains promising.

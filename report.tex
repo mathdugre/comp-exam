@@ -12,9 +12,10 @@
     urlcolor=black
 }
 \usepackage{graphicx}
-\usepackage{color}
-\usepackage{xspace}
 \graphicspath{ {./figures/} }
+\usepackage{xspace}
+\usepackage{color, soul}
+\newcommand{\HL}[1]{\hl{#1}}
 
 \titleformat
 {\chapter} % command
@@ -25,10 +26,11 @@
 {} % before-code
 
 \newcommand{\tristan}[1]{\color{blue}\textbf{From Tristan:} #1\color{black}\xspace}
+\newcommand{\MD}[1]{\color{magenta}\textbf{From Mathieu:} #1\color{black}\xspace}
 
 \title{Report for Comprehensive Examination\\(ENCS 8501)}
 \author{Mathieu Dugr\'e}
-\date{\today}  % TODO Change to the correct date for submission.
+\date{May 16}  % TODO Change to the correct date for submission.
 
 \begin{document}
 \pagenumbering{roman}
@@ -43,13 +45,15 @@
 \clearpage
 \pagenumbering{arabic}
 \input{chapters/introduction.tex}
-\input{chapters/background.tex}
+\input{chapters/floating_point.tex}
 \input{chapters/reduced_precision.tex}
 \input{chapters/neuroimaging.tex}
 \input{chapters/conclusion.tex}
 
 
-\bibliographystyle{plain}
+\bibliographystyle{plain} % TODO Change after doing the slides references
+% \bibliographystyle{ieeetr}
 \bibliography{report}
 
 \end{document}
+% TODO Syntax & Grammer check

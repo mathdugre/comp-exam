@@ -965,7 +965,7 @@
 
 
 @misc{tpu,
-  title     = {Cloud Tensor Processing Units (TPUs)},
+  title     = {Cloud Tensor Processing Units ({TPUs})},
   url       = {https://cloud.google.com/tpu/docs/tpus},
   journal   = {Google},
   publisher = {Google},
@@ -1537,4 +1537,521 @@
   pmid     = {32526386},
   doi      = {10.1016/j.neuroimage.2020.117012},
   pmc      = {PMC7898243}
+}
+
+@article{Geissler2005-gi,
+  title    = {{Influence of fMRI smoothing procedures on replicability of fine
+              scale motor localization}},
+  author   = {Geissler, Alexander and Lanzenberger, Rupert and Barth, Markus
+              and Tahamtan, Amir Reza and Milakara, Denny and Gartus, Andreas
+              and Beisteiner, Roland},
+  abstract = {Recent publications analyzing the influence of spatial smoothing
+              on fMRI brain activation results demonstrated that smoothing may
+              artificially combine activations from adjacent though
+              functionally and anatomically distinct brain regions and that
+              activation from large draining vessels may be smoothed into
+              neighboring neuronal tissue. To investigate whether functional
+              localizations may be artificially shifted by the smoothing
+              procedure we performed replicability measurements. Localization
+              centers of motor hand activations achieved during different
+              conditions (isolated hand movements and simultaneous hand and
+              chin movements) were compared with respect to smoothing effects.
+              The voxel with the highest probability to represent a true
+              positive activation was localized with a non-smoothed and a
+              standard 4 x 4 x 6 mm smoothed correlational data analysis
+              technique. Results show an increase of motor center aberrations
+              between measurements by about 100\% due to data smoothing
+              indicating a statistically significant decrease in localization
+              replicability.},
+  journal  = {Neuroimage},
+  volume   = 24,
+  number   = 2,
+  pages    = {323--331},
+  month    = jan,
+  year     = 2005,
+  language = {en},
+  issn     = {1053-8119},
+  pmid     = {15627575},
+  doi      = {10.1016/j.neuroimage.2004.08.042}
+}
+
+@article{Molloy2014-oc,
+  title    = {{The influence of spatial resolution and smoothing on the
+              detectability of resting-state and task fMRI}},
+  author   = {Molloy, Erin K and Meyerand, Mary E and Birn, Rasmus M},
+  abstract = {Functional MRI blood oxygen level-dependent (BOLD) signal changes
+              can be subtle, motivating the use of imaging parameters and
+              processing strategies that maximize the temporal signal-to-noise
+              ratio (tSNR) and thus the detection power of neuronal
+              activity-induced fluctuations. Previous studies have shown that
+              acquiring data at higher spatial resolutions results in greater
+              percent BOLD signal changes, and furthermore that spatially
+              smoothing higher resolution fMRI data improves tSNR beyond that
+              of data originally acquired at a lower resolution. However,
+              higher resolution images come at the cost of increased
+              acquisition time, and the number of image volumes also influences
+              detectability. The goal of our study is to determine how the
+              detection power of neuronally induced BOLD fluctuations acquired
+              at higher spatial resolutions and then spatially smoothed
+              compares to data acquired at the lower resolutions with the same
+              imaging duration. The number of time points acquired during a
+              given amount of imaging time is a practical consideration given
+              the limited ability of certain populations to lie still in the
+              MRI scanner. We compare acquisitions at three different in-plane
+              spatial resolutions (3.50$\times$3.50mm(2),
+              2.33$\times$2.33mm(2), 1.75$\times$1.75mm(2)) in terms of their
+              tSNR, contrast-to-noise ratio, and the power to detect both
+              task-related activation and resting-state functional
+              connectivity. The impact of SENSE acceleration, which speeds up
+              acquisition time increasing the number of images collected, is
+              also evaluated. Our results show that after spatially smoothing
+              the data to the same intrinsic resolution, lower resolution
+              acquisitions have a slightly higher detection power of
+              task-activation in some, but not all, brain areas. There were no
+              significant differences in functional connectivity as a function
+              of resolution after smoothing. Similarly, the reduced tSNR of
+              fMRI data acquired with a SENSE factor of 2 is offset by the
+              greater number of images acquired, resulting in few significant
+              differences in detection power of either functional activation or
+              connectivity after spatial smoothing.},
+  journal  = {Neuroimage},
+  volume   = 86,
+  pages    = {221--230},
+  month    = feb,
+  year     = 2014,
+  keywords = {Detection power; Functional MRI; Functional connectivity;
+              Resolution; SENSE; Spatial smoothing},
+  language = {en},
+  issn     = {1053-8119, 1095-9572},
+  pmid     = {24021836},
+  doi      = {10.1016/j.neuroimage.2013.09.001},
+  pmc      = {PMC5736131}
+}
+
+@article{Scheinost2014-ds,
+  title    = {{The impact of image smoothness on intrinsic functional
+              connectivity and head motion confounds}},
+  author   = {Scheinost, Dustin and Papademetris, Xenophon and Constable, R
+              Todd},
+  abstract = {We present a novel method for controlling the effects of group
+              differences in motion on functional connectivity studies.
+              Resting-state functional magnetic resonance imaging (rs-fMRI) is
+              a powerful tool that allows for the assessment of whole-brain
+              functional organization across a wide range of clinical
+              populations. However, as highlighted by recent studies, many
+              measures commonly used in rs-fMRI are highly correlated with
+              subject head movement. A source of this problem is that motion
+              itself, and motion correction algorithms, lead to spatial
+              smoothing, which is then variable across the brain and across
+              subjects or groups dependent upon the amount of motion present
+              during scanning. Studies aimed at elucidating differences between
+              populations that have different head-motion characteristics
+              (e.g., patients often move more in the scanner than healthy
+              control subjects) are significantly confounded by these effects.
+              In this work, we propose a solution to this problem, uniform
+              smoothing, which ensures that all subject images in a study have
+              equal effective spatial resolution. We establish that differences
+              in the intrinsic smoothness of images across a group can confound
+              connectivity results and link these differences in smoothness to
+              motion. We demonstrate that eliminating these smoothness
+              differences via our uniform smoothing solution is successful in
+              reducing confounds related to the differences in head motion
+              between subjects.},
+  journal  = {Neuroimage},
+  volume   = 95,
+  pages    = {13--21},
+  month    = jul,
+  year     = 2014,
+  keywords = {Connectivity; Head movement; Image smoothness; Motion;
+              Resting-state fMRI},
+  language = {en},
+  issn     = {1053-8119, 1095-9572},
+  pmid     = {24657356},
+  doi      = {10.1016/j.neuroimage.2014.03.035},
+  pmc      = {PMC4076413}
+}
+
+@article{Li2021-rv,
+  title    = {{Whole brain segmentation with full volume neural network}},
+  author   = {Li, Yeshu and Cui, Jonathan and Sheng, Yilun and Liang, Xiao and
+              Wang, Jingdong and Chang, Eric I-Chao and Xu, Yan},
+  abstract = {Whole brain segmentation is an important neuroimaging task that
+              segments the whole brain volume into anatomically labeled
+              regions-of-interest. Convolutional neural networks have
+              demonstrated good performance in this task. Existing solutions,
+              usually segment the brain image by classifying the voxels, or
+              labeling the slices or the sub-volumes separately. Their
+              representation learning is based on parts of the whole volume
+              whereas their labeling result is produced by aggregation of
+              partial segmentation. Learning and inference with incomplete
+              information could lead to sub-optimal final segmentation result.
+              To address these issues, we propose to adopt a full volume
+              framework, which feeds the full volume brain image into the
+              segmentation network and directly outputs the segmentation result
+              for the whole brain volume. The framework makes use of complete
+              information in each volume and can be implemented easily. An
+              effective instance in this framework is given subsequently. We
+              adopt the 3D high-resolution network (HRNet) for learning
+              spatially fine-grained representations and the mixed precision
+              training scheme for memory-efficient training. Extensive
+              experiment results on a publicly available 3D MRI brain dataset
+              show that our proposed model advances the state-of-the-art
+              methods in terms of segmentation performance.},
+  journal  = {Comput. Med. Imaging Graph.},
+  volume   = 93,
+  pages    = {101991},
+  month    = oct,
+  year     = 2021,
+  keywords = {Brain; Deep learning; Neural networks; Segmentation},
+  language = {en},
+  issn     = {0895-6111, 1879-0771},
+  pmid     = {34634548},
+  doi      = {10.1016/j.compmedimag.2021.101991}
+}
+
+@article{Brunn2021-zj,
+  title    = {{Fast GPU 3D diffeomorphic image registration}},
+  author   = {Brunn, Malte and Himthani, Naveen and Biros, George and Mehl,
+              Miriam and Mang, Andreas},
+  abstract = {3D image registration is one of the most fundamental and
+              computationally expensive operations in medical image analysis.
+              Here, we present a mixed-precision, Gauss-Newton-Krylov solver
+              for diffeomorphic registration of two images. Our work extends
+              the publicly available CLAIRE library to GPU architectures.
+              Despite the importance of image registration, only a few
+              implementations of large deformation diffeomorphic registration
+              packages support GPUs. Our contributions are new algorithms to
+              significantly reduce the run time of the two main computational
+              kernels in CLAIRE: calculation of derivatives and scattered-data
+              interpolation. We deploy (i) highly-optimized, mixed-precision
+              GPU-kernels for the evaluation of scattered-data interpolation,
+              (ii) replace Fast-Fourier-Transform (FFT)-based first-order
+              derivatives with optimized 8th-order finite differences, and
+              (iii) compare with state-of-the-art CPU and GPU implementations.
+              As a highlight, we demonstrate that we can register 2563 clinical
+              images in less than 6 seconds on a single NVIDIA Tesla V100. This
+              amounts to over 20$\times$ speed-up over the current version of
+              CLAIRE and over 30$\times$ speed-up over existing GPU
+              implementations.},
+  journal  = {J. Parallel Distrib. Comput.},
+  volume   = 149,
+  pages    = {149--162},
+  month    = mar,
+  year     = 2021,
+  keywords = {Diffeomorphic Image Registration; GPU computing;
+              Gauss--Newton--Krylov Method; Mixed-Precision Solver; Parallel
+              Optimization},
+  language = {en},
+  issn     = {0743-7315},
+  pmid     = {33380769},
+  doi      = {10.1016/j.jpdc.2020.11.006},
+  pmc      = {PMC7769216}
+}
+
+@unpublished{Li2021-om,
+  title    = {{Moving Beyond Processing and Analysis-Related Variation in
+              Neuroscience}},
+  author   = {Li, Xinhui and Ai, Lei and Giavasis, Steve and Jin, Hecheng and
+              Feczko, Eric and Xu, Ting and Clucas, Jon and Franco, Alexandre
+              and Heinsfeld, Anibal S{\'o}lon and Adebimpe, Azeez and
+              Vogelstein, Joshua T and Yan, Chao-Gan and Esteban, Oscar and
+              Poldrack, Russell A and Craddock, Cameron and Fair, Damien and
+              Satterthwaite, Theodore and Kiar, Gregory and Milham, Michael P},
+  abstract = {When fields lack consensus standards and ground truths for their
+              analytic methods, reproducibility tends to be more of an ideal
+              than a reality. Such has been the case for functional
+              neuroimaging, where there exists a sprawling space of tools from
+              which scientists can construct processing pipelines and draw
+              interpretations. We provide a critical evaluation of the impact
+              of differences observed in results across five independently
+              developed functional MRI minimal preprocessing pipelines. We show
+              that even when handling the same exact data, inter-pipeline
+              agreement was only moderate, with the specific steps that
+              contribute to the lack of agreement varying across pipeline
+              comparisons. Using a densely sampled test-retest dataset, we show
+              that the limitations imposed by inter-pipeline agreement mainly
+              become appreciable when the reliability of the underlying data is
+              high. We highlight the importance of comparison among analytic
+              tools and parameters, as both widely debated (e.g., global signal
+              regression) and commonly overlooked (e.g., MNI template version)
+              decisions were each found to lead to marked variation. We provide
+              recommendations for incorporating tool-based variability in
+              functional neuroimaging analyses and a supporting infrastructure.
+              \#\#\# Competing Interest Statement The authors have declared no
+              competing interest.},
+  journal  = {bioRxiv},
+  pages    = {2021.12.01.470790},
+  month    = dec,
+  year     = 2021,
+  language = {en},
+  doi      = {10.1101/2021.12.01.470790}
+}
+
+@article{Kiar2020-uv,
+  title    = {{Comparing perturbation models for evaluating stability of
+              neuroimaging pipelines}},
+  author   = {Kiar, Gregory and de Oliveira Castro, Pablo and Rioux, Pierre and
+              Petit, Eric and Brown, Shawn T and Evans, Alan C and Glatard,
+              Tristan},
+  abstract = {With an increase in awareness regarding a troubling lack of
+              reproducibility in analytical software tools, the degree of
+              validity in scientific derivatives and their downstream results
+              has become unclear. The nature of reproducibility issues may vary
+              across domains, tools, data sets, and computational
+              infrastructures, but numerical instabilities are thought to be a
+              core contributor. In neuroimaging, unexpected deviations have
+              been observed when varying operating systems, software
+              implementations, or adding negligible quantities of noise. In the
+              field of numerical analysis, these issues have recently been
+              explored through Monte Carlo Arithmetic, a method involving the
+              instrumentation of floating-point operations with probabilistic
+              noise injections at a target precision. Exploring multiple
+              simulations in this context allows the characterization of the
+              result space for a given tool or operation. In this article, we
+              compare various perturbation models to introduce instabilities
+              within a typical neuroimaging pipeline, including (i) targeted
+              noise, (ii) Monte Carlo Arithmetic, and (iii) operating system
+              variation, to identify the significance and quality of their
+              impact on the resulting derivatives. We demonstrate that even
+              low-order models in neuroimaging such as the structural
+              connectome estimation pipeline evaluated here are sensitive to
+              numerical instabilities, suggesting that stability is a relevant
+              axis upon which tools are compared, alongside more traditional
+              criteria such as biological feasibility, computational
+              efficiency, or, when possible, accuracy. Heterogeneity was
+              observed across participants which clearly illustrates a strong
+              interaction between the tool and data set being processed,
+              requiring that the stability of a given tool be evaluated with
+              respect to a given cohort. We identify use cases for each
+              perturbation method tested, including quality assurance, pipeline
+              error detection, and local sensitivity analysis, and make
+              recommendations for the evaluation of stability in a practical
+              and analytically focused setting. Identifying how these
+              relationships and recommendations scale to higher order
+              computational tools, distinct data sets, and their implication on
+              biological feasibility remain exciting avenues for future work.},
+  journal  = {Int. J. High Perform. Comput. Appl.},
+  volume   = 34,
+  number   = 5,
+  pages    = {491--501},
+  month    = sep,
+  year     = 2020,
+  keywords = {Monte Carlo Arithmetic; Neuroimaging; diffusion MRI; stability},
+  language = {en},
+  issn     = {1094-3420},
+  pmid     = {32831546},
+  doi      = {10.1177/1094342020926237},
+  pmc      = {PMC7418878}
+}
+
+@unpublished{Kiar2021-uq,
+  title    = {{Numerical Uncertainty in Analytical Pipelines Lead to Impactful
+              Variability in Brain Networks}},
+  author   = {Kiar, Gregory and Chatelain, Yohan and De, Oliveira Castro Pablo
+              and Petit, Eric and Rokem, Ariel and Varoquaux, Ga{\"e}l and
+              Misic, Bratislav and Evans, Alan C and Glatard, Tristan},
+  abstract = {The analysis of brain-imaging data requires complex processing
+              pipelines to support findings on brain function or pathologies.
+              Recent work has shown that variability in analytical decisions,
+              small amounts of noise, or computational environments can lead to
+              substantial differences in the results, endangering the trust in
+              conclusions1-7. We explored the instability of results by
+              instrumenting a connectome estimation pipeline with Monte Carlo
+              Arithmetic8,9 to introduce random noise throughout. We evaluated
+              the reliability of the connectomes, their features10,11, and the
+              impact on analysis12,13. The stability of results was found to
+              range from perfectly stable to highly unstable. This paper
+              highlights the potential of leveraging induced variance in
+              estimates of brain connectivity to reduce the bias in networks
+              alongside increasing the robustness of their applications in the
+              classification of individual differences. We demonstrate that
+              stability evaluations are necessary for understanding error
+              inherent to brain imaging experiments, and how numerical analysis
+              can be applied to typical analytical workflows both in brain
+              imaging and other domains of computational science. Overall,
+              while the extreme variability in results due to analytical
+              instabilities could severely hamper our understanding of brain
+              organization, it also leads to an increase in the reliability of
+              datasets. \#\#\# Competing Interest Statement The authors have
+              declared no competing interest.},
+  journal  = {bioRxiv},
+  pages    = {2020.10.15.341495},
+  month    = mar,
+  year     = 2021,
+  language = {en},
+  doi      = {10.1101/2020.10.15.341495}
+}
+
+@unpublished{Kiar2021-cj,
+  title    = {{Data Augmentation Through Monte Carlo Arithmetic Leads to More
+              Generalizable Classification in Connectomics}},
+  author   = {Kiar, Gregory and Chatelain, Yohan and Salari, Ali and Evans,
+              Alan C and Glatard, Tristan},
+  abstract = {Machine learning models are commonly applied to human brain
+              imaging datasets in an effort to associate function or structure
+              with behaviour, health, or other individual phenotypes. Such
+              models often rely on low-dimensional maps generated by complex
+              processing pipelines. However, the numerical instabilities
+              inherent to pipelines limit the fidelity of these maps and
+              introduce computational bias. Monte Carlo Arithmetic, a technique
+              for introducing controlled amounts of numerical noise, was used
+              to perturb a structural connectome estimation pipeline,
+              ultimately producing a range of plausible networks for each
+              sample. The variability in the perturbed networks was captured in
+              an augmented dataset, which was then used for an age
+              classification task. We found that resampling brain networks
+              across a series of such numerically perturbed outcomes led to
+              improved performance in all tested classifiers, preprocessing
+              strategies, and dimensionality reduction techniques. Importantly,
+              we find that this benefit does not hinge on a large number of
+              perturbations, suggesting that even minimally perturbing a
+              dataset adds meaningful variance which can be captured in the
+              subsequently designed models. ![Figure][1] This paper
+              demonstrates how Monte Carlo Arithmetic, a dataagnostic
+              perturbation technique, can be used for dataset augmentation
+              during the generation of structural connectomes and improve
+              downstream phenotypic prediction. \#\#\# Competing Interest
+              Statement The authors have declared no competing interest. [1]:
+              pending:yes},
+  journal  = {bioRxiv},
+  pages    = {2020.12.16.423084},
+  month    = jul,
+  year     = 2021,
+  language = {en},
+  doi      = {10.1101/2020.12.16.423084}
+}
+
+@article{ieee754_2008-ev,
+  title    = {{IEEE Standard for Floating-Point Arithmetic}},
+  abstract = {This standard specifies interchange and arithmetic formats and
+              methods for binary and decimal floating-point arithmetic in
+              computer programming environments. This standard specifies
+              exception conditions and their default handling. An
+              implementation of a floating-point system conforming to this
+              standard may be realized entirely in software, entirely in
+              hardware, or in any combination of software and hardware. For
+              operations specified in the normative part of this standard,
+              numerical results and exceptions are uniquely determined by the
+              values of the input data, sequence of operations, and destination
+              formats, all under user control.},
+  journal  = {IEEE Std 754-2008},
+  pages    = {1--70},
+  month    = aug,
+  year     = 2008,
+  keywords = {IEEE Standards;Floating-point
+              arithmetic;Microprocessors;Software;Hardware;Trademarks;754-2008;arithmetic;binary;computer;decimal;exponent;floating-point;format;interchange;NaN;number;rounding;significand;subnormal},
+  doi      = {10.1109/IEEESTD.2008.4610935}
+}
+
+
+@inproceedings{Ronneberger2015-wy,
+  title     = {{U-Net: Convolutional Networks for Biomedical Image Segmentation}},
+  booktitle = {{Medical Image Computing and Computer-Assisted Intervention --
+               MICCAI 2015}},
+  author    = {Ronneberger, Olaf and Fischer, Philipp and Brox, Thomas},
+  abstract  = {There is large consent that successful training of deep networks
+               requires many thousand annotated training samples. In this
+               paper, we present a network and training strategy that relies on
+               the strong use of data augmentation to use the available
+               annotated samples more efficiently. The architecture consists of
+               a contracting path to capture context and a symmetric expanding
+               path that enables precise localization. We show that such a
+               network can be trained end-to-end from very few images and
+               outperforms the prior best method (a sliding-window
+               convolutional network) on the ISBI challenge for segmentation of
+               neuronal structures in electron microscopic stacks. Using the
+               same network trained on transmitted light microscopy images
+               (phase contrast and DIC) we won the ISBI cell tracking challenge
+               2015 in these categories by a large margin. Moreover, the
+               network is fast. Segmentation of a 512x512 image takes less than
+               a second on a recent GPU. The full implementation (based on
+               Caffe) and the trained networks are available at
+               http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net.},
+  publisher = {Springer International Publishing},
+  pages     = {234--241},
+  year      = 2015,
+  doi       = {10.1007/978-3-319-24574-4\_28}
+}
+
+@inproceedings{Long2015-qr,
+  title     = {{Fully convolutional networks for semantic segmentation}},
+  booktitle = {{2015 IEEE Conference on Computer Vision and Pattern Recognition
+               (CVPR)}},
+  author    = {Long, Jonathan and Shelhamer, Evan and Darrell, Trevor},
+  abstract  = {Convolutional networks are powerful visual models that yield
+               hierarchies of features. We show that convolutional networks by
+               themselves, trained end-to-end, pixels-to-pixels, exceed the
+               state-of-the-art in semantic segmentation. Our key insight is to
+               build ``fully convolutional'' networks that take input of
+               arbitrary size and produce correspondingly-sized output with
+               efficient inference and learning. We define and detail the space
+               of fully convolutional networks, explain their application to
+               spatially dense prediction tasks, and draw connections to prior
+               models. We adapt contemporary classification networks (AlexNet
+               [20], the VGG net [31], and GoogLeNet [32]) into fully
+               convolutional networks and transfer their learned
+               representations by fine-tuning [3] to the segmentation task. We
+               then define a skip architecture that combines semantic
+               information from a deep, coarse layer with appearance
+               information from a shallow, fine layer to produce accurate and
+               detailed segmentations. Our fully convolutional network achieves
+               state-of-the-art segmentation of PASCAL VOC (20\% relative
+               improvement to 62.2\% mean IU on 2012), NYUDv2, and SIFT Flow,
+               while inference takes less than one fifth of a second for a
+               typical image.},
+  pages     = {3431--3440},
+  month     = jun,
+  year      = 2015,
+  keywords  = {Semantics;Training;Convolution;Image segmentation;Computer
+               architecture;Deconvolution;Adaptation models},
+  issn      = {1063-6919},
+  doi       = {10.1109/CVPR.2015.7298965}
+}
+
+
+@article{Mang2019-nu,
+  title    = {{CLAIRE: A DISTRIBUTED-MEMORY SOLVER FOR CONSTRAINED LARGE
+              DEFORMATION DIFFEOMORPHIC IMAGE REGISTRATION}},
+  author   = {Mang, Andreas and Gholami, Amir and Davatzikos, Christos and
+              Biros, George},
+  abstract = {With this work we release CLAIRE, a distributed-memory
+              implementation of an effective solver for constrained large
+              deformation diifeomorphic image registration problems in three
+              dimensions. We consider an optimal control formulation. We invert
+              for a stationary velocity field that parameterizes the
+              deformation map. Our solver is based on a globalized,
+              preconditioned, inexact reduced space Gauss-Newton-Krylov scheme.
+              We exploit state-of-the-art techniques in scientific computing to
+              develop an eifective solver that scales to thousands of
+              distributed memory nodes on high-end clusters. We present the
+              formulation, discuss algorithmic features, describe the software
+              package, and introduce an improved preconditioner for the reduced
+              space Hessian to speed up the convergence of our solver. We test
+              registration performance on synthetic and real data. We
+              Demonstrate registration accuracy on several neuroimaging
+              datasets. We compare the performance of our scheme against
+              diiferent flavors of the Demons algorithm for diifeomorphic image
+              registration. We study convergence of our preconditioner and our
+              overall algorithm. We report scalability results on
+              state-of-the-art supercomputing platforms. We Demonstrate that we
+              can solve registration problems for clinically relevant data
+              sizes in two to four minutes on a standard compute node with 20
+              cores, attaining excellent data fidelity. With the present work
+              we achieve a speedup of (on average) 5$\times$ with a peak
+              performance of up to 17$\times$ compared to our former work.},
+  journal  = {SIAM J. Sci. Comput.},
+  volume   = 41,
+  number   = 5,
+  pages    = {C548--C584},
+  month    = oct,
+  year     = 2019,
+  keywords = {35Q93; 49J20; 65F08; 65K10; 68U10; 76D55; KKT preconditioner;
+              LDDMM; Newton--Krylov method; PDE-constrained optimization;
+              diifeomorphic image registration; distributed-memory algorithm;
+              optimal control},
+  language = {en},
+  issn     = {1064-8275},
+  pmid     = {34650324},
+  doi      = {10.1137/18m1207818},
+  pmc      = {PMC8513530}
 }

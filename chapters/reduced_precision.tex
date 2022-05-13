@@ -1,6 +1,6 @@
 \chapter{Reduced precision}
 \label{ch:reduced-precision}
-Traditionally, computing application \tristan{there's a lot of singular/plural mistakes, you should check them all!} are developed to give exact results \tristan{not sure what this sentence means}.
+\HL{Commonly, computing application are developed to use the maximum precision available (e.g. double precision).}
 While this is necessary in certains fields (e.g. aerospace), results with a lower
 precision is acceptable for multiple types of data.
 As~\cite{Cherubin2020-tt} depicts, numerous studies explored the use of lower 
@@ -15,15 +15,15 @@ and (5) discuss the benefits, limitation, and open questions of reduced precisio
 
 \section{Problem definition}
 \label{sc:rp-problem-definiton}
-The IEEE~754 standard defines two main floating-point formats.
+The IEEE~754 standard defines two main floating-point formats: FP32 and FP64.
 Altough offering enough precision for most applications, it can also be unecessary precision.
 That is, multiple type of application do not benefit from that much precision.
-For this reason, a lot of efforts in creating new data formats with lower precision (discussed in~\ref{sc:rp-data-format}).
+For this reason, a lot of efforts is put in creating new data formats with lower precision (discussed in~\ref{sc:rp-data-format}).
 The idea behind reduced precision is to represent numbers in a data format with 
 lower bit witdh; i.e. lower exponent or mantissa.
-Similar mixed-precision is a concept that use data formats of different precision within a program allowing better tunning of data format.
+Similarly, mixed-precision is a concept that use data formats of different precision within a program allowing better tunning.
 The logic complexity of floating points is approximately proportional to the square of the bit width~\cite{Chen2018-an}.
-Therefore, lowering the number of bit in a data format also reduce the dye size 
+Therefore, lowering the number of bit in a data format also reduce the die size 
 of a chip and, by consequence, the energy cost and computation time for arithmetic operations.
 
 The work done in~\cite{Cherubin2020-tt} surveys a range of tools in the fields of reduced precision.
@@ -64,7 +64,7 @@ data type conversion by dropping, or adding, the extra bits between float32 and 
 Moreover, with a smaller mantissa size, the hardware chips for the blfoat16 multiplier
 is about half the size as the ones for float16 and around 8 times smaller than for float32~\cite{bfloat16}.
 Moreover, since Neural Networks (NNs) are far more sensitive to the exponent range than the mantissa,
-the blfoat16 performs really as it keeps the exponent range from float32.
+the blfoat16 performs really well as it keeps the exponent range from float32.
 
 Outside of standard Deep Learning frameworks, a variety of different data type were
 studied to reduce the precision of machine learning models.
@@ -76,17 +76,17 @@ The authors in~\cite{Carmichael2019-nu} design three FPGAs for low-precision fix
 point, floating point, and posit.
 
 \section{Implementing reduced precision}
-To remain efficient, consumer hardwares only support a limited set of data formats; for exmaple IEEE~754.
+To remain efficient, consumer hardwares only support a limited set of data formats; for example IEEE~754.
 The use of custom data format often requires either: specialized hardware, software implementation, or simulation.
 
 With comodity hardware only supporting the most popular data formats, implementing a new format can be tricky.
 A straight forward way to achieve this is to design a custom specialized hardware capable of executing the new format.
 The authors in~\cite{Carmichael2019-nu} designed three different FPGAs to support low-precision floats, fixed points, and posits.
 Another study~\cite{Johnson2018-up} designed a \SI{28}{\nano\meter} ASIC implement an 8-bit Exact Multiply-Accumulator (EMAC).
-On the one hand, the key advantage of designing specilaized hardware is efficiency.
-Indeed FPGAs and ASICs, designed for a single tasks can be optimize muc more than a general purpose hardware.
+On the one hand, the key advantage of designing specialized hardware is efficiency.
+Indeed FPGAs and ASICs designed for a single tasks can be optimize much more than general purpose hardware.
 Major hardware manufacturers such as Nvidia and Google design specialized hardware
-for frequent Deep Learning tasks (GEMMs), respectively with their recent GPU architectures and TPUs~\cite{tpu}.
+for frequent Deep Learning tasks (GEMMs) with their recent GPU architectures and TPUs~\cite{tpu}, respectively.
 On the other hand, creating new hardware is costly both in time and material.
 This is especially true when performing study that evaluate a range of different data formats.
 
@@ -105,7 +105,7 @@ Level 2 and 3; as many as $4.5\times$ less than with double.
 The authors in~\cite{Zucker1994-rg} propose an algebraic method to pack multiple
 low-precision operations into a single high-register operation.
 This method showed performance improvement of 8.7\%, 13.6\%, and 16.2\% when packing
-2, 4, and 8 number respectively.
+2, 4, and 8 numbers respectively.
 Unfortunately, this technique can only be applied to a few algebraic operations.
 On the one hand, software implementations are not as efficient as specialized hardware
 since they suffer from substantial overhead cost.
@@ -134,7 +134,7 @@ simulate performance due to the complexity of modern system.
 Moreover, simulating reduced precision comes at a substantial overhead cost.
 Therefore, it is required to implement an hardware or software implementation later on to achieve performance.
 
-\section{Quantization in Deep Learning \tristan{Should it be machine learning since you refer to SVMs and Mondrian Forests too?}}
+\section{Quantization in Machine Learning}
 In recent years, machine learning, and more specifically Deep Neural Networks (DNNs),
 have seen a rise in popularity due to their ability to solve challenging problems.
 However, the complexity of DNNs models come with high usage of computing resources.
@@ -156,8 +156,8 @@ By comparing the effects of quantization with and without rounding, it is possib
 better isolate the impact of rounding due to reduced precision.
 The authors benchmark their experiments on three datasets: SONAR, IRIS, and MUSK.
 They use the double precision results as a reference for the classication error.
-The results show that lowering the precision up to 15 bits does not affect teh accuracy
-for classificatio; this is consistent with the literature.
+The results show that lowering the precision up to 15 bits does not affect the accuracy
+for classification; this is consistent with the literature.
 Further understanding the bounds for reducing the precision would allow to automatically
 adjust the precision for classification, which would be an effort towards addressing the third 
 challenge from Section~\ref{sc:rp-problem-definiton}.
@@ -169,9 +169,9 @@ While many study found that CNNs are resilient to accuracy loss when using reduc
 few of them attempted to vary the precision used at each layer.
 The authors in~\cite{Judd2015-kw} show that the precision required in different layers and networks
 differs significantly.
-Moreover, they suggest a method to select the appropritae precision of each layer while 
+Moreover, they suggest a method to select the appropriate precision of each layer while 
 keeping accuracy within a determined boundary.
-Their model conver floating-points to the appropriate representation then back to single-precision after processing a layer.
+Their model convert floating-points to the appropriate representation then back to single-precision after processing a layer.
 To evaluate their method, the authors benchmark their reduced precision model on 5 popular CNNs.
 Through their experiments they reduce the precision of both the weight of the model and the output of each layer.
 Their first experiment reduced the precision of all layer simultaneously in the range of 12 to 1 bits.
@@ -187,7 +187,7 @@ They also propose a method to find the minimal precision per layer while preserv
 \end{itemize}
 To find the \textit{best}, although potentially sub-optimal, the authors use a Pareto
 frontier between the amount of data transfer and the accuracy for different configuration of bit precision.
-Although sub-optimal, this heuristic resulted in a average decreas of $74\%$ of data traffic
+Although sub-optimal, this heuristic resulted in a average decrease of $74\%$ of data traffic
 while preserving accuracy within $1\%$ of tolerance.
 This work show the potential of using various precision size for different layers of CNNs.
 It motivates further efforts to study strategies in further exploiting reduced precision
@@ -209,9 +209,8 @@ Without doubt, DNNs emerged as a powerful tool to solve problems.
 However, to achieve high accuracy, DNNs require tremendous amount of resources;
 with models reaching 100s of \SI{}{\mega\byte}s and computation on large datasets can span multiple days/weeks.
 Moreover, data communication between learners is often another source of bottleneck during training.
-Traditionally, applications are developed to be exact although it is not necessary for most tupes of data.
 In~\cite{Chen2018-an}, the authors explore approximate computing to reduce both 
-computation and data communication, while preserving accurate results.
+computation and data communication of DNNs, while preserving accurate results.
 The authors quantize the weight and activation of the model from 16 to 2 bits.
 To evalute the accuracy, the reduce precision model are bencmark on four popular DNNs: CIFAR10-CNN, AlexNet, ResNet18, and ResNet50.
 They find that at 4 bits the accuracy remains within $<1\%$ of the reference 
@@ -252,19 +251,19 @@ They study the model parameters, numerical precision, and memory consumption tog
 due to their interdependence.
 Using VPREC, the authors simulated reduced the bit precision $p$ in the range from 52 to 1 bits.
 Moreover, the exponent range is varied from 11 to 2 bits.
-To simulate the different memory requirements at different precision.
+% To simulate the different memory requirements at different precision.
 The model is instrumented both at a node level and for the whole model.
 To evaluate their method, they use two publicly available dataset: Recofit, and Banos et al.
 To quantify the performance of the model with different memory constraint, the authors allocate three
 different values memory limit for the model: \SI{0.6}{\mega\byte}, \SI{1.2}{\mega\byte}, and \SI{3}{\mega\byte}.
 Their results for node instrumentation show that for $p \ge 2$ the F1 scores remain with a standard deviation.
-For the whole instrumenation, the F1 scores are significant different when $p \le 6$.
+For the whole instrumenation, the F1 scores are significantly different when $p \le 6$.
 The observations on the F1 scores for $p > 2$ were not correlated to memory.
 This suggest that using reduced precision with different memory allocation would yield similar results.
 Given constant memory constraints, the authors found that using reduced precision allows the 
 trees to grow deeper; potentially improving the classification performance.
-Overall, the results show that Mondrian Forest can be implement with low-precision floating-points
-of only 8 bits without affecting the F1 scores significantly.
+Overall, the results show that Mondrian Forest can be implement with an 8-bit floating-points
+format without affecting the F1 scores significantly.
 This has the potential to reduce memory footprint by roughly $1.8\times$ compared to double precision.
 
 Although Section~\ref{sc:rp-data-format} discussed the use of reduced and mixed precision
@@ -299,8 +298,7 @@ Lastly, reducing the size of input and output data would let to lower storage sp
 
 To make use of reduced precision, substantial efforts is required in creating, 
 evaluating, and implementing new data formats.
-% TODO
-% Change sentence to reflect that its really for the interaction between precision and the application.
+% TODO Change sentence to reflect that its really for the interaction between precision and the application.
 % That is what precision is needed for a specific application.
 This is amplified by the current lack of understanding in the 
 behavior of different application using reduced precision.
@@ -315,8 +313,7 @@ within an application, when applying reduced precision.
 Otherwise, the performance benefits from using reduce precision might be overtaken
 by a high overhead cost in data conversion and result in an overall slowdown 
 the perfomance of an application.
-% TODO
-% Discuss in brief the different type of implementation for reduced precision.
+% TODO Discuss in brief the different type of implementation for reduced precision.
 
 To have a broader adoption of reduced precision some critical limitations need to 
 be addressed, including but not limited to:

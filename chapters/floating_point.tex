@@ -3,7 +3,7 @@
 Among the different methods to represent the set of real numbers in computer,
 floating-points is a commonly adopted format.
 This chapter discusses some fundamental definitions and basic notions on
-floating-points, briefly describe the \textit{IEEE~754} data format, and 
+floating-points, briefly describe the IEEE~754~\cite{ieee754_2008-ev} data format, and 
 explains the sources of errors in floating-point arithmethic and their consequences.
 The content in this chapter is based on~\cite{Muller2018-zm}.
 
@@ -21,7 +21,7 @@ A floating-point number in such a format is a number $x$ that can be represented
 \end{equation}
 where
 \begin{itemize}
-	\item $M$ is an integer such that $|M| \le B^{p}-1$. It is called the \textit{integral siginificand} of x \tristan{or the mantissa?}.
+	\item $M$ is an integer such that $|M| \le B^{p}-1$. It is called the \textit{integral significand} of x\tristan{or the mantissa?}.\MD{The integral significand is different from the normal significand. i.e. it is not normalized using $m = |M| \cdot B^{1-p}$, where $m$ would be the mantissa.}
 	\item $e$ is an integer such that $e_{min} \le e \le e_{max}$. It is called the \textit{exponent} of x.
 \end{itemize}
 The representation of a number using a pair $(M, e)$ is not unique.
@@ -31,45 +31,46 @@ This simplifies the expression of error bounds and the implementation.
 It can be achieved, for example, by always representing numbers using the minimum exponent possible.
 Floating-point are often categorized into \textit{normal} and \textit{subnormal} (also called \textit{denormal}).
 In radix 2, the first digits of a siginificand is 1 for normal number and 0 for subnormal.
-This allows the usage of encoding strategies such as \textit{hidden bit convention} to
-ignore the most significand bit without losing precision. \tristan{Add a sentence to explain what it is.}
+\HL{This deterministic information let us exploit an encoding strategy known as \textit{hidden bit convention} (described in section~{\ref{sc:ieee754}}),
+which avoid storing the most significand bit while preserving the same precision.}
 Moreover, the availability of subnormal numbers allows \textit{gradual underflow},
 which helps to implement numerically stable softwares. \tristan{Add a sentence to explain what it is.}
-
+				
 A common way to define the error introduced by an floating-point arithmethic
 operation is using the \textit{unit in the last place (ulp)} definition.
-The $ulp(x)$ is defined as the distance between the two closest distinct
-floating-point numbers $a$ and $b$, such that $a < x < b$ and $a \neq b$ \tristan{It's unclear what 0.5 ulp means from this definition}.
-%  TODO Add a figure that depicts the ulp definition.
+\HL{Given a number x, represented as a floating-point,} $ulp(x)$ is defined as the distance between the two closest distinct
+floating-point numbers $a$ and $b$, such that \HL{$a \le x \le b$} and $a \neq b$.
+\HL{In other words, one ulp is equal to $B^{e-p+1}$.}
 
 A function is \textit{correctly rounded} when its results are always rounded the 
 same way as if it used infinite precision and range.
 In other word, a function is correctly rounded when its error is within $0.5$ ulp.
 When a function cannot guarantee correct rounding and always round a number $y$
-using one of \textit{round-up} or \textit{round-down} funciton, it is said to be \textit{faithful}.
+using one of \textit{round-up} or \textit{round-down} function, it is said to be \textit{faithful}.
 Correct rounding functions are always faithful.
 One must keep in mind that even if a function is correctly rounded, there is
 still loss of information if the number cannot be represented exactly in the
 floating-poitn format.
-
+				
 With floating-point arithmetic, some properties from real number arithmethic are lost while other remain.
 Any correctly rounded arithmetic operations remain commutative with addition and multiplication.
 \tristan{How about incorrectly rounded functions?}
 However, associativity and distributivity no longer apply.
 If not cautious about this, it can result in drastic errors. 
-
-
+				
+				
 \section{IEEE~754 Binary format}
-Since the beginning of computers, there have been multiple proposed solutions to represent floating-point numbers \tristan{I think ``floating-point numbers'' should be used instead of ``floating-points''}.
+\label{sc:ieee754}
+Since the beginning of computers, there have been multiple proposed solutions to represent floating-point numbers.
 In this section, we limit our focus to the IEEE~754-2008 format, shortened to IEEE~754 remaining of the text, as it is largely adopted in hardware.
 The IEEE~754 format describe a standard for radix 2 and 10, Binary and Decimal, respectively.
 We limit our scope to the Binary data type since Decimal are mostly used for financial which is outside the scope of our research.
-
+				
 The IEEE~754 defines three basic format for Binary: 32, 64, and 128 bits.
 It also defined a suggested format for 16 bits.
 In all those formats, a set precision is defined as well as a range for the exponent values of $e_{min} = 1 - e_{max}$.
 Table~\ref{table:IEEE754-binary-parameters} shows the precision and exponent parameters for each format. 
-
+				
 \begin{table}[h]
 	\centering
 	\begin{tabular}{|c|r|r|r|r|}
@@ -91,10 +92,11 @@ Table~\ref{table:IEEE754-binary-parameters} shows the precision and exponent par
 	\caption{Parameters for the binary formats defined by IEEE~754-2008}
 	\label{table:IEEE754-binary-parameters}
 \end{table}
-
+				
 For some applications, the defined formats might not offer enough precision.
 The IEEE~754 standard defines an extended precision format for width above 128 bits.
 Table~\ref{table:IEEE754-extended-parameters} describes the parameters for the extended precision format \tristan{context on extended precision is lacking, what are these parameters?}.
+% TODO decide if that should be kept. If so, add the description of the variables from the tables in the text.
 Where $t$ is the trailing significant, $w$ is the width of the exponent field, and $b$ is the exponent bias.
 \begin{table}[h]
 	\centering
@@ -112,23 +114,24 @@ Where $t$ is the trailing significant, $w$ is the width of the exponent field, a
 	\caption{Parameters for the extended precision binary formats defined by IEEE~754-2008}
 	\label{table:IEEE754-extended-parameters}
 \end{table}
-
+				
 The IEEE~754 binary formats is encoded using a sign, exponent, and trailing significand.
 Figure~\ref{fig:IEEE754-binary-encoding} depicts the encoding scheme for the formats.
 Where $S$ sign bit, $E$ are the bits for the exponent, and $T$ are the bits for the trailing significand.
 In radix 2, the leftmost bit for subnormal numbers is always 0 while normal numbers is 1.
 The IEEE~754 binary format uses this property by not storing the leftmost bit of the significand without lost of precision.
-This is done by using special encoding values in the exponent field.
+This is done by using special encoding values in the exponent field to distinguish the normal and subnormal numbers.
+\HL{This is known has the \textit{hidden bit convention}.}
 Similar strategies are employed to represent $\pm 0$, $\pm \inf$, and NaN values.
 Table~\ref{table:IEEE754-binary-encoding} shows the different encoding used to represent those values.
-
+				
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{ieee754_binary_encoding.png}
 	\caption{Encoding for the IEEE~754 binary floating-point formats}
 	\label{fig:IEEE754-binary-encoding}
 \end{figure}
-
+				
 \begin{table}[b]
 	\centering
 	\begin{tabular}{|l|c|c|}
@@ -146,12 +149,12 @@ Table~\ref{table:IEEE754-binary-encoding} shows the different encoding used to r
 	$111\cdots1_{2}$      & $\quad 000\cdots 0_{2}$  & $(-1)^{s}\times\inf$                                         \\ \hline
 	$000\cdots0_{2}$      & $\quad 000\cdots 0_{2}$  & $(-1)^{s}\times 0$                                           \\ \hline
 	$000\cdots0_{2}$      & $\ne 000\cdots 0_{2}$    & $(-1)^{s}\times 0.t_{1}t_{2}\cdots t_{p-1}\times2^{e_{min}}$ \\ \hline
-	$0<N_{e}<2^{W_{E}}-1$ & any                      & $(-1)^{s}\times 0.t_{1}t_{2}\cdots t_{p-1}\times2^{N_{e}-b}$ \\ \hline
+	$0<N_{e}<2^{W_{E}}-1$ & any                      & $(-1)^{s}\times 1.t_{1}t_{2}\cdots t_{p-1}\times2^{N_{e}-b}$ \\ \hline
 	\end{tabular}
 	\caption{Encoding to represent special values in the binary formats defined by IEEE~754-2008}
 	\label{table:IEEE754-binary-encoding}
 \end{table}
-
+				
 Representing the set of real number in a finite space is impossible; instead approximation is required.
 The IEEE~754 formats have specified standard regarding rounding of inexact floating-points.
 The following arithmetic functions are required to be correctly rounded: addition, subtraction, multiplication, division, and fused multiply-add (FMA).
@@ -170,17 +173,17 @@ There are also two attributes for rounding to nearest, when a floating-point is 
 	\item \textit{roundTiesToAway} $RN_{away}(x)$ rounds to the exact representation whose magnitude is the largest.
 \end{itemize}
 The standard for the binary formats requires the implementation of all three directed rounding and \textit{roundTiesToEven}.
-
+				
 While not a basic format, binary16 is starting to receive more attention and support as it is increasingly being used for computing application.
-For example, it was found that some convolution neural network (CNN) perform well with binary16; and even with precision of only 8 bits \tristan{reference?}.
+For example, it was found that some convolution neural network (CNN) perform well with binary16; and even with precision of only 8 bits \HL{{\cite{Muller2018-zm}}}.
 Moreover, while most GPUs support both binary32 and binary64, more recent GPU architectures also support the binary16 format.
-
+				
 \section{Sources of error}
 % TODO
+% Merge with the section: defintion & basic notions.
 % 1 page
 \begin{comment}
-- rounding
-- double rounding
+- rounding & double rounding
 - cancellation
 - overflow & underflow
 - accumulation
