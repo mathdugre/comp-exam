@@ -1,9 +1,9 @@
 \chapter{Floating-point representations}
 \label{ch:background}
-Among the different methods to represent the set of real numbers in computer,
-floating-points is a commonly adopted format.
+Among the different methods to represent the set of real numbers in computers,
+floating-points are a commonly adopted format.
 This chapter discusses some fundamental definitions and basic notions on
-floating-points, briefly describe the IEEE~754~\cite{ieee754_2008-ev} data format, and 
+floating-points, briefly describes the IEEE~754~\cite{ieee754_2008-ev} data format, and 
 explains the sources of errors in floating-point arithmethic and their consequences.
 The content in this chapter is based on~\cite{Muller2018-zm}.
 
@@ -26,48 +26,50 @@ where
 \end{itemize}
 The representation of a number using a pair $(M, e)$ is not unique.
 The set of all such representation is called a \textit{cohort}.
-It is often desirable to have a unique representation; i.e. called \textit{normalized representation}.
+It is often desirable to have a unique representation; i.e. \tristan{fix syntax} called \textit{normalized representation}.
 This simplifies the expression of error bounds and the implementation.
-It can be achieved, for example, by always representing numbers using the minimum exponent possible.
-Floating-point are often categorized into \textit{normal} and \textit{subnormal} (also called \textit{denormal}).
-In radix 2, the first digits of a siginificand is 1 for normal number and 0 for subnormal.
-\HL{This deterministic information let us exploit an encoding strategy known as \textit{hidden bit convention} (described in section~{\ref{sc:ieee754}}),
-which avoid storing the most significand bit while preserving the same precision.}
-Moreover, the availability of subnormal numbers allows \textit{gradual underflow},
-which helps to implement numerically stable softwares. \tristan{Add a sentence to explain what it is.}
+It can be achieved, for example, by always representing numbers using the minimum possible exponent.
+Floating-points are often categorized into \textit{normal} and \textit{subnormal} (also called \textit{denormal}) numbers.
+In radix 2, the first digits of a siginificand is 1 for normal numbers and 0 for subnormal ones.
+\HL{This deterministic information enables an encoding strategy known as \textit{hidden bit convention} (described in Section~{\ref{sc:ieee754}}),
+which avoids storing the most significant bit while preserving the same precision.}
+Moreover, the availability of subnormal numbers allows for \textit{gradual underflow},
+which helps implementing numerically stable code. \tristan{Add a sentence to explain what it is.}
 				
-A common way to define the error introduced by an floating-point arithmethic
-operation is using the \textit{unit in the last place (ulp)} definition.
+A common way to define the error introduced by a floating-point arithmetic
+operation is the \textit{unit in the last place (ulp)}.
 \HL{Given a number x, represented as a floating-point,} $ulp(x)$ is defined as the distance between the two closest distinct
 floating-point numbers $a$ and $b$, such that \HL{$a \le x \le b$} and $a \neq b$.
 \HL{In other words, one ulp is equal to $B^{e-p+1}$.}
 
 A function is \textit{correctly rounded} when its results are always rounded the 
 same way as if it used infinite precision and range.
-In other word, a function is correctly rounded when its error is within $0.5$ ulp.
-When a function cannot guarantee correct rounding and always round a number $y$
+In other words, a function is correctly rounded when its error is within $0.5$ ulp.
+When a function cannot guarantee correct rounding and always rounds a number $y$
 using one of \textit{round-up} or \textit{round-down} function, it is said to be \textit{faithful}.
-Correct rounding functions are always faithful.
+Correctly rounded functions are always faithful.
 One must keep in mind that even if a function is correctly rounded, there is
 still loss of information if the number cannot be represented exactly in the
-floating-poitn format.
+floating-point format.
 				
-With floating-point arithmetic, some properties from real number arithmethic are lost while other remain.
-Any correctly rounded arithmetic operations remain commutative with addition and multiplication.
+With floating-point arithmetic, some properties from real number arithmetic are lost while other ones remain.
+Correctly rounded arithmetic operations remain commutative with addition and multiplication.
 \tristan{How about incorrectly rounded functions?}
 However, associativity and distributivity no longer apply.
 If not cautious about this, it can result in drastic errors. 
+
+\tristan{content is great but you should really use a spellchecker!}
 				
 				
 \section{IEEE~754 Binary format}
 \label{sc:ieee754}
 Since the beginning of computers, there have been multiple proposed solutions to represent floating-point numbers.
-In this section, we limit our focus to the IEEE~754-2008 format, shortened to IEEE~754 remaining of the text, as it is largely adopted in hardware.
-The IEEE~754 format describe a standard for radix 2 and 10, Binary and Decimal, respectively.
-We limit our scope to the Binary data type since Decimal are mostly used for financial which is outside the scope of our research.
+In this section, we limit our focus to the IEEE~754-2008 format, shortened to IEEE~754, as it is largely adopted in hardware.
+The IEEE~754 format describes a standard for radix 2 and 10, Binary and Decimal, respectively.
+We limit our scope to the Binary data type since Decimal is mostly used in financial applications which are outside the scope of our research.
 				
-The IEEE~754 defines three basic format for Binary: 32, 64, and 128 bits.
-It also defined a suggested format for 16 bits.
+IEEE~754 defines three basic formats for Binary: 32, 64, and 128 bits.
+It also defines a suggested format for 16 bits.
 In all those formats, a set precision is defined as well as a range for the exponent values of $e_{min} = 1 - e_{max}$.
 Table~\ref{table:IEEE754-binary-parameters} shows the precision and exponent parameters for each format. 
 				
@@ -115,11 +117,11 @@ Where $t$ is the trailing significant, $w$ is the width of the exponent field, a
 	\label{table:IEEE754-extended-parameters}
 \end{table}
 				
-The IEEE~754 binary formats is encoded using a sign, exponent, and trailing significand.
-Figure~\ref{fig:IEEE754-binary-encoding} depicts the encoding scheme for the formats.
-Where $S$ sign bit, $E$ are the bits for the exponent, and $T$ are the bits for the trailing significand.
+The IEEE~754 binary format is encoded using a sign, exponent, and trailing significand.
+Figure~\ref{fig:IEEE754-binary-encoding} depicts the encoding scheme for the formats, 
+where $S$ is the sign bit, $E$ are the bits for the exponent, and $T$ are the bits for the trailing significand.
 In radix 2, the leftmost bit for subnormal numbers is always 0 while normal numbers is 1.
-The IEEE~754 binary format uses this property by not storing the leftmost bit of the significand without lost of precision.
+The IEEE~754 binary format uses this property by not storing the leftmost bit of the significand without loss of precision.
 This is done by using special encoding values in the exponent field to distinguish the normal and subnormal numbers.
 \HL{This is known has the \textit{hidden bit convention}.}
 Similar strategies are employed to represent $\pm 0$, $\pm \inf$, and NaN values.
@@ -155,11 +157,11 @@ Table~\ref{table:IEEE754-binary-encoding} shows the different encoding used to r
 	\label{table:IEEE754-binary-encoding}
 \end{table}
 				
-Representing the set of real number in a finite space is impossible; instead approximation is required.
-The IEEE~754 formats have specified standard regarding rounding of inexact floating-points.
+Representing the set of real numbers in a finite space is impossible; instead approximation is required.
+The IEEE~754 formats have specified standards regarding rounding of inexact floating-points.
 The following arithmetic functions are required to be correctly rounded: addition, subtraction, multiplication, division, and fused multiply-add (FMA).
 The square root function and conversion between supported formats also need to be correctly rounded.
-Additionally, the standard recommends a list of function to be correctly rounded. % TODO add reference to list of function (See page 79 of FP handbook)
+Additionally, the standard recommends a list of functions to be correctly rounded. % TODO add reference to list of function (See page 79 of FP handbook)
 % TODO Be more specific that this is for IEEE~754 when talking about correctly rounded function. Otherwise it can be confusing. Remove passive voice
 There are three directed rounding attributes:
 \begin{itemize}
@@ -175,8 +177,8 @@ There are also two attributes for rounding to nearest, when a floating-point is 
 The standard for the binary formats requires the implementation of all three directed rounding and \textit{roundTiesToEven}.
 				
 While not a basic format, binary16 is starting to receive more attention and support as it is increasingly being used for computing application.
-For example, it was found that some convolution neural network (CNN) perform well with binary16; and even with precision of only 8 bits \HL{{\cite{Muller2018-zm}}}.
-Moreover, while most GPUs support both binary32 and binary64, more recent GPU architectures also support the binary16 format.
+For example, it was found that some convolutional neural networks (CNN) perform well with binary16; and even with a  of only 8 bits \HL{{\cite{Muller2018-zm}}}.
+Moreover, while most GPUs support only binary32 and binary64, more recent GPU architectures also support the binary16 format.
 				
 \section{Sources of error}
 % TODO
