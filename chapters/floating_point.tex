@@ -2,16 +2,15 @@
 \label{ch:background}
 Among the different methods to represent the set of real numbers in computers,
 floating-points are a commonly adopted format.
-This chapter discusses some fundamental definitions and basic notions on
-floating-points, briefly describes the IEEE~754~\cite{ieee754_2008-ev} data format, and 
-explains the sources of errors in floating-point arithmethic and their consequences.
+This chapter discusses some fundamental definitions and basic notions on floating-point,
+and briefly describes the IEEE~754~\cite{ieee754_2008-ev} data format.
 The content in this chapter is based on~\cite{Muller2018-zm}.
 
 \section{Definitions and basic notions}
 A floating-point format is defined with four intergers:
 \begin{itemize}
-	\item A \textit{radix} (or \textit{Base}) $B \ge 2$.
-	\item A \textit{precision} $p \ge 2$ which approximately represents the number of significant digits for the format.
+	\item A \textit{radix} (or \textit{Base}) $B \ge 2$;
+	\item A \textit{precision} $p \ge 2$ which approximately represents the number of significant digits for the format;
 	\item Two exponent $e_{min}$ and $e_{max}$ that bound the range of value represent by the format. In practice, $e_{min} \le 0 \le e_{max}$.
 \end{itemize}
 
@@ -21,58 +20,92 @@ A floating-point number in such a format is a number $x$ that can be represented
 \end{equation}
 where
 \begin{itemize}
-	\item $M$ is an integer such that $|M| \le B^{p}-1$. It is called the \textit{integral significand} of x\tristan{or the mantissa?}.\MD{The integral significand is different from the normal significand. i.e. it is not normalized using $m = |M| \cdot B^{1-p}$, where $m$ would be the mantissa.}
+	\item $M$ is an integer such that $|M| \le B^{p}-1$. It is called the \textit{integral significand} of x;
 	\item $e$ is an integer such that $e_{min} \le e \le e_{max}$. It is called the \textit{exponent} of x.
 \end{itemize}
-The representation of a number using a pair $(M, e)$ is not unique.
+
+Another way to represent a number $x$ as a floating-point is with a triple $(s, m, e)$, such that
+\begin{equation}
+	x = (-1)^{s} \cdot m \cdot B^{e}
+\end{equation}
+where
+\begin{itemize}
+	\item $e$ is the same as before;
+	\item $m = |M| \cdot B^{1-p}$ is the normal significand, commonly called mantissa;
+	\item $s \in \{0, 1\}$ is the sign of $x$.
+\end{itemize}
+
+The representation of a number using a pair $(M, e)$, or $(s, m, e)$, is not unique.
 The set of all such representation is called a \textit{cohort}.
-It is often desirable to have a unique representation; i.e. \tristan{fix syntax} called \textit{normalized representation}.
-This simplifies the expression of error bounds and the implementation.
-It can be achieved, for example, by always representing numbers using the minimum possible exponent.
+\HL{
+	However, it is desirable to have a unique floating-point representation for 
+	each number as it simplifies the expression of error bounds and the implementation
+	of the data format.
+	It can be achieved, for example, by always representing numbers using the minimum possible exponent.
+	This is known as \textit{normalized representation}.
+}
+
 Floating-points are often categorized into \textit{normal} and \textit{subnormal} (also called \textit{denormal}) numbers.
-In radix 2, the first digits of a siginificand is 1 for normal numbers and 0 for subnormal ones.
-\HL{This deterministic information enables an encoding strategy known as \textit{hidden bit convention} (described in Section~{\ref{sc:ieee754}}),
-which avoids storing the most significant bit while preserving the same precision.}
-Moreover, the availability of subnormal numbers allows for \textit{gradual underflow},
-which helps implementing numerically stable code. \tristan{Add a sentence to explain what it is.}
-				
+In radix 2, the first digits of the siginificand is 1 for normal numbers and 0 for subnormal ones.
+\HL{
+	This deterministic information enables an encoding strategy known as \textit{hidden bit convention} (described in Section~{\ref{sc:ieee754}}),
+	which avoids storing the most significant bit while preserving the same precision.
+	A nubmer that is too large to be represented by a data format precision and exponent range is said to \textit{overflow}.
+	Similarly, when a number is too close to zero and cannot be represented, it \textit{underflow}.
+	The availability of subnormal numbers allows for \textit{gradual underflow},
+	which in case of undeflow would return an increasingly smaller subnormal value instead of zero.
+	Mitigating the precision loss from underflows helps in implementing numerically stable code.
+	Round-off error accumulation occurs when a series of arithmetic operation amplify
+	an initially small error into a much larger one; the algorithm is said to be \textit{unstable}.
+	Adding a large number and a small number requires shifting the mantissa bits 
+	of the smaller number to the right resulting in lost of precision for the 
+	smaller number; this is known as \textit{swamping}~{\cite{SwampCancel}}.
+	Performing a subtraction of two approximately equal, but distinct, numbers 
+	will cancel the significant bit that both numbers have in common and leave 
+	out the difference from their least significant bits; this is known as \textit{catastrophic cancellation}~{\cite{SwampCancel}}.
+	This issue can be problematic as the least significant bits of a number might
+	be affected by rounding errors, thus carrying more error into the subtraction.
+}
+
 A common way to define the error introduced by a floating-point arithmetic
 operation is the \textit{unit in the last place (ulp)}.
 \HL{Given a number x, represented as a floating-point,} $ulp(x)$ is defined as the distance between the two closest distinct
 floating-point numbers $a$ and $b$, such that \HL{$a \le x \le b$} and $a \neq b$.
-\HL{In other words, one ulp is equal to $B^{e-p+1}$.}
+\HL{In other words, one ulp is equal to $B^{e-p+1}$., the smallest unit representable at a given exponent}
 
+\HL{
+	When performing arithmetic computation in high-precision register, the 
+	intermediate result might be rounded to the precision of the cpu register 
+	and rounded again to the data format precision.
+	This is known as \textit{double rounding}.
+}
 A function is \textit{correctly rounded} when its results are always rounded the 
 same way as if it used infinite precision and range.
-In other words, a function is correctly rounded when its error is within $0.5$ ulp.
 When a function cannot guarantee correct rounding and always rounds a number $y$
 using one of \textit{round-up} or \textit{round-down} function, it is said to be \textit{faithful}.
 Correctly rounded functions are always faithful.
 One must keep in mind that even if a function is correctly rounded, there is
 still loss of information if the number cannot be represented exactly in the
 floating-point format.
-				
+
 With floating-point arithmetic, some properties from real number arithmetic are lost while other ones remain.
-Correctly rounded arithmetic operations remain commutative with addition and multiplication.
-\tristan{How about incorrectly rounded functions?}
+\HL{When correctly rounded, arithmetic operations remain commutative with addition and multiplication.}
 However, associativity and distributivity no longer apply.
 If not cautious about this, it can result in drastic errors. 
-
-\tristan{content is great but you should really use a spellchecker!}
-				
-				
+	
+						
 \section{IEEE~754 Binary format}
 \label{sc:ieee754}
 Since the beginning of computers, there have been multiple proposed solutions to represent floating-point numbers.
 In this section, we limit our focus to the IEEE~754-2008 format, shortened to IEEE~754, as it is largely adopted in hardware.
 The IEEE~754 format describes a standard for radix 2 and 10, Binary and Decimal, respectively.
 We limit our scope to the Binary data type since Decimal is mostly used in financial applications which are outside the scope of our research.
-				
+						
 IEEE~754 defines three basic formats for Binary: 32, 64, and 128 bits.
 It also defines a suggested format for 16 bits.
 In all those formats, a set precision is defined as well as a range for the exponent values of $e_{min} = 1 - e_{max}$.
 Table~\ref{table:IEEE754-binary-parameters} shows the precision and exponent parameters for each format. 
-				
+						
 \begin{table}[h]
 	\centering
 	\begin{tabular}{|c|r|r|r|r|}
@@ -94,29 +127,7 @@ Table~\ref{table:IEEE754-binary-parameters} shows the precision and exponent par
 	\caption{Parameters for the binary formats defined by IEEE~754-2008}
 	\label{table:IEEE754-binary-parameters}
 \end{table}
-				
-For some applications, the defined formats might not offer enough precision.
-The IEEE~754 standard defines an extended precision format for width above 128 bits.
-Table~\ref{table:IEEE754-extended-parameters} describes the parameters for the extended precision format \tristan{context on extended precision is lacking, what are these parameters?}.
-% TODO decide if that should be kept. If so, add the description of the variables from the tables in the text.
-Where $t$ is the trailing significant, $w$ is the width of the exponent field, and $b$ is the exponent bias.
-\begin{table}[h]
-	\centering
-	\begin{tabular}{|l|l|}
-		\hline
-		\multicolumn{1}{|c|}{Parameter} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Binary$k$ format \\ ($k$ is a multiple of 32)\end{tabular}} \\ \hline
-		$k$                             & $\ge 128$                                                       \\ \hline
-		$p$                             & $k-\lfloor4\log_2(k)\rceil+13$                                  \\ \hline
-		$t$                             & $p-1$                                                           \\ \hline
-		$w$                             & $k-t-1$                                                         \\ \hline
-		$e_{max}$                       & $2^{w-1}-1$                                                     \\ \hline
-		$e_{min}$                       & $1 - e_{max}$                                                   \\ \hline
-		$b$                             & $e_{max}$                                                       \\ \hline
-	\end{tabular}
-	\caption{Parameters for the extended precision binary formats defined by IEEE~754-2008}
-	\label{table:IEEE754-extended-parameters}
-\end{table}
-				
+		
 The IEEE~754 binary format is encoded using a sign, exponent, and trailing significand.
 Figure~\ref{fig:IEEE754-binary-encoding} depicts the encoding scheme for the formats, 
 where $S$ is the sign bit, $E$ are the bits for the exponent, and $T$ are the bits for the trailing significand.
@@ -126,14 +137,14 @@ This is done by using special encoding values in the exponent field to distingui
 \HL{This is known has the \textit{hidden bit convention}.}
 Similar strategies are employed to represent $\pm 0$, $\pm \inf$, and NaN values.
 Table~\ref{table:IEEE754-binary-encoding} shows the different encoding used to represent those values.
-				
-\begin{figure}[h]
+						
+\begin{figure}[b]
 	\centering
 	\includegraphics[width=\textwidth]{ieee754_binary_encoding.png}
 	\caption{Encoding for the IEEE~754 binary floating-point formats}
 	\label{fig:IEEE754-binary-encoding}
 \end{figure}
-				
+						
 \begin{table}[b]
 	\centering
 	\begin{tabular}{|l|c|c|}
@@ -156,13 +167,14 @@ Table~\ref{table:IEEE754-binary-encoding} shows the different encoding used to r
 	\caption{Encoding to represent special values in the binary formats defined by IEEE~754-2008}
 	\label{table:IEEE754-binary-encoding}
 \end{table}
-				
+						
 Representing the set of real numbers in a finite space is impossible; instead approximation is required.
-The IEEE~754 formats have specified standards regarding rounding of inexact floating-points.
-The following arithmetic functions are required to be correctly rounded: addition, subtraction, multiplication, division, and fused multiply-add (FMA).
-The square root function and conversion between supported formats also need to be correctly rounded.
-Additionally, the standard recommends a list of functions to be correctly rounded. % TODO add reference to list of function (See page 79 of FP handbook)
-% TODO Be more specific that this is for IEEE~754 when talking about correctly rounded function. Otherwise it can be confusing. Remove passive voice
+\HL{
+	The IEEE~754 format requires the following arithmetic functions are required to 
+	be correctly rounded: addition, subtraction, multiplication, division, and fused multiply-add (FMA).
+	Moreover, the square root function and conversion between supported formats also need to be correctly rounded.
+}
+Additionally, the standard recommends a list of functions to be correctly rounded~\cite{ieee754_2008-ev}.
 There are three directed rounding attributes:
 \begin{itemize}
 	\item \textit{roundTowardPositive} $RD(x)$ rounds to the largest floating-point less than or equal to $x$.
@@ -174,22 +186,8 @@ There are also two attributes for rounding to nearest, when a floating-point is 
 	\item \textit{roundTiesToEven} $RN_{even}(x)$ rounds to the exact representation whose least significant bit is even.
 	\item \textit{roundTiesToAway} $RN_{away}(x)$ rounds to the exact representation whose magnitude is the largest.
 \end{itemize}
-The standard for the binary formats requires the implementation of all three directed rounding and \textit{roundTiesToEven}.
-				
+The IEEE~74 standard for the binary formats requires the implementation of all three directed rounding and \textit{roundTiesToEven}.
+						
 While not a basic format, binary16 is starting to receive more attention and support as it is increasingly being used for computing application.
 For example, it was found that some convolutional neural networks (CNN) perform well with binary16; and even with a  of only 8 bits \HL{{\cite{Muller2018-zm}}}.
 Moreover, while most GPUs support only binary32 and binary64, more recent GPU architectures also support the binary16 format.
-				
-\section{Sources of error}
-% TODO
-% Merge with the section: defintion & basic notions.
-% 1 page
-\begin{comment}
-- rounding & double rounding
-- cancellation
-- overflow & underflow
-- accumulation
-- swamping
-
-%  Ask Yohan for further references
-\end{comment}

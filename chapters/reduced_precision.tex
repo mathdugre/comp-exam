@@ -68,7 +68,7 @@ the blfoat16 performs really well as it keeps the exponent range from float32.
 Outside of standard Deep Learning frameworks, a variety of different data types were
 studied to reduce the precision of machine learning models.
 The work from~\cite{Johnson2018-up} evaluates a new \textit{posit tapered} data 
-format which combines ideas from the posit~\cite{Gustafson2017-wo} format and from the log number system \tristan{reference?}.
+format which combines ideas from the posit~\cite{Gustafson2017-wo} format and from the log number system~\cite{Kingsbury1971-kx}.
 Various other studies use different custom floating point formats with reduced 
 exponent and mantissa size~\cite{Lesser2011-mn, Chen2018-an, Vicuna2021-mw, Wang2018-oo}.
 The authors in~\cite{Carmichael2019-nu} designed three FPGAs for low-precision fixed
@@ -84,8 +84,8 @@ The authors in~\cite{Carmichael2019-nu} designed three different FPGAs to suppor
 Another study~\cite{Johnson2018-up} designed a \SI{28}{\nano\meter} ASIC to implement an 8-bit Exact Multiply-Accumulator (EMAC).
 On the one hand, the key advantage of designing specialized hardware is efficiency.
 Indeed FPGAs and ASICs designed for a single tasks can be optimized much more than general-purpose hardware.
-Major hardware manufacturers such as Nvidia and Google design specialized hardware
-for frequent Deep Learning tasks (GEMMs) with their recent GPU architectures and TPUs~\cite{tpu}, respectively.
+Major hardware manufacturers such as Nvidia, Google, and Intel design specialized hardware
+for frequent Deep Learning tasks (GEMMs) with their recent GPU architectures and TPUs~\cite{tpu,intel-BF16-2018}.
 On the other hand, creating new hardware is costly both in time and material.
 This is especially true when performing study that evaluate a range of different data formats.
 
@@ -137,7 +137,7 @@ Therefore, it is required to implement a hardware or software implementation lat
 In recent years, machine learning, and more specifically Deep Neural Networks (DNNs),
 have seen a rise in popularity due to their ability to solve challenging problems.
 However, the complexity of DNNs models comes with high usage of computing resources.
-With the enormous datasets required to train these models, a usual bottleneck is with compute and data communication times.
+With the enormous datasets required to train these models, compute and data communication time is usually a bottleneck.
 This motivated multiple studies \cite{Johnson2018-up,Wang2018-oo,Lesser2011-mn,Chen2018-an,Judd2015-kw,Vicuna2021-mw}
 to explore the possibility of reducing the precision for the data format used to train those models.
 This section explores the quantization methods developed in the Deep Learning 
@@ -156,7 +156,7 @@ better isolate the impact of rounding due to reduced precision.
 The authors benchmark their experiments on three datasets: SONAR, IRIS, and MUSK.
 They use the double precision results as a reference for the classication error.
 The results show that lowering the precision up to 15 bits does not affect the accuracy
-for classification; this is consistent with the literature \tristan{which one? add ref}.
+for classification.
 Further understanding the bounds for reducing the precision would allow to automatically
 adjust the precision for classification, which would be an effort towards addressing the third 
 challenge from Section~\ref{sc:rp-problem-definiton}.
@@ -184,7 +184,7 @@ They also propose a method to find the minimal precision per layer while preserv
 	\item[2.] Create a collection of deltas by reducing the precision of parameters and layer output by 1 bit for each layer.
 	\item[3.] Use the configuration giving the best accuracy for the next iteration.
 \end{itemize}
-To find the \textit{best} \tristan{what?}, although potentially sub-optimal, the authors use a Pareto
+To find the best mixed-precision, although potentially sub-optimal, the authors use a Pareto
 frontier between the amount of data transfer and the accuracy for different configurations of bit precision.
 Although sub-optimal, this heuristic resulted in a average decrease of $74\%$ of data traffic
 while preserving accuracy within $1\%$ of tolerance.
@@ -207,11 +207,10 @@ This suggest that further efforts to reduce floating-point efficiency could brin
 Without doubt, DNNs emerged as a powerful tool to solve problems.
 However, to achieve high accuracy, DNNs require tremendous amount of resources;
 with models reaching 100s of \SI{}{\mega\byte}s and computation on large datasets can span multiple days/weeks.
-Moreover, data communication between learners is often another source of bottleneck during training. \tristan{I'd remove the previous sentences, this is intro and you said it already.}
 In~\cite{Chen2018-an}, the authors explore approximate computing to reduce both 
 computation and data communication of DNNs, while preserving accurate results.
 The authors quantize the weight and activation of the model from 16 to 2 bits.
-To evalute the accuracy, the reduced precision model are benchmarked \tristan{from here I stopped fixing spelling and basic grammar mistakes \ldots} on four popular DNNs: CIFAR10-CNN, AlexNet, ResNet18, and ResNet50.
+To evalute the accuracy, the reduced precision model are benchmarked on four popular DNNs: CIFAR10-CNN, AlexNet, ResNet18, and ResNet50.
 They find that at 4 bits the accuracy remains within $<1\%$ of the reference 
 full-precision model while improving performance by $4.5\times$.
 When reducing the precision of the models to 2 bits, the authors achieve a $14\times$
@@ -221,7 +220,7 @@ precision strategies as it jointly reduces hardware and energy cost as well as c
 
 Numerous approximate computing methods have been studied for the field of deep 
 learning to reduce computation and data communication time, and energy cost.
-With the energy efficientcy of hardware increasing quadratically witht the reduction in bit precision \tristan{incomplete sentence}.
+The energy efficiency of hardware approximately increase quadratically with the reduction in bit precision~\cite{Wang2018-oo}.
 With current hardware implementing 16 bits of precision, we can see performance improvements of $\ge 4\times$ compared to 32 bits.
 Studies showed that the computation steps for DNNs inference can be reduced to as low as 2-4 bits
 while remaining accurate; and even precision of 1-2 bits for weights and activations.
@@ -275,6 +274,7 @@ While the deep learning community as vastly explored reduced precision technique
 to the best of our knowledge, the topic remains unexplored in most other fields of application.
 
 \section{Discussion}
+\label{sc:reduced_precision_discussion}
 In this chapter, multiple studies showed promising reduced precision approaches
 to improve the performance of applications while preserving accuracy.
 However, reduced precision comes with its own caveats.
@@ -297,22 +297,26 @@ Lastly, reducing the size of input and output data would let to lower storage sp
 
 To make use of reduced precision, substantial efforts is required in creating, 
 evaluating, and implementing new data formats.
-% TODO Change sentence to reflect that its really for the interaction between precision and the application.
-% That is what precision is needed for a specific application.
-This is amplified by the current lack of understanding in the 
-behavior of different application using reduced precision.
+\HL{This is amplified by the current lack of understanding of the effects from applying
+reduced precision to a range of different applications and, in general, the precision required for a specific application.}
 Even within a single application, varying the data can substantially modify the 
 precision required to preserve accurate results.
-Therefore, designing new hardware and software solutions incurs a high cost in manual effort.
-Moreover, while using a lower-precision data format on an application might yield 
-promising results, changing the data used could lead to unpredictable accuracy changes.
+% Moreover, while using a lower-precision data format on an application might yield 
+% promising results, changing the data used could lead to unpredictable accuracy changes.
 Finally, the conversion between data formats comes with an overhead cost.
 Thus, attention needs to be paid to minimize the amount of data format conversions 
 within an application, when applying reduced precision.
 Otherwise, the performance benefits from using reduce precision might be overtaken
 by a high overhead cost in data conversion and result in an overall slowdown 
 the perfomance of an application.
-% TODO Discuss in brief the different type of implementation for reduced precision.
+\HL{
+	While hardware is an efficient way to implement reduced precision, it is also costly
+	in time and material.
+	At the opposite, software implementation is less efficient but tend to be more portable.
+	Lastly, simulating reduced precision has a low implementation cost and does not 
+	require specialized hardware, however it is limited to prototyping new data format and requires 
+	either a software or hardware implementation to obtain performance improvements.
+}
 
 To have a broader adoption of reduced precision some critical limitations need to 
 be addressed, including but not limited to:
