@@ -1,10 +1,40 @@
 \chapter{Introduction}
 \label{ch:introduction}
-\begin{comment}
-Explain why always doulbe precision is not ideal.
-Discuss the benefits from using reduced precision in an easy fashion.
-Related work and limitations of their methods in short.
-Lack of research on reduced precision in the field of neuroimaging.
-\end{comment}
 
+Representing the set of real numbers is a challenge that arises from the beginning of computing.
+As a result, multiple data formats have been proposed, including floating-point, fixed-point, 
+logarithmic number systems~\cite{Kingsbury1971-kx}, tapered floating-point~\cite{Morris1971-qg}, 
+computer algebra systems, and posits~\cite{Gustafson2017-wo}.
+Although multiple formats are still in use today, the floating-point number 
+representation, IEEE~754~\cite{ieee754_2008-ev} in particular, has emerged as 
+the de-facto format many chip manufacturers use.
+The IEEE~754 standard presents three different Binary formats with 32, 64, and 128 bits.
+However, some applications might require much less than a 32-bits data format while
+remaining accurate.
 
+There has been a surge of interest in reducing the required precision in applications in recent years.
+On the one hand, larger data formats offer more precision.
+On the other hand, smaller ones tend to reduce memory footprint and energy cost
+and perform faster arithmetic operations.
+Multiple studies in machine learning showed significant performance improvement when reducing
+the precision of models while keeping accuracy within bounds~\cite{Johnson2018-up,Wang2018-oo,Lesser2011-mn,Chen2018-an,Judd2015-kw,Vicuna2021-mw}.
+Moreover, the bfloat16~\cite{bfloat16} reduced precision format is now part of the
+popular deep learning frameworks Tensorflow~\cite{tensorflow2015-whitepaper} and PyTorch~\cite{PyTorch_2019}.
+However, while reduced precision techniques were explored for machine learning,
+several challenges remain to be solved for broader adoption.
+
+In this review, we focus on neuroimaging applications for processing MRI data.
+The complex pipelines and large amounts of data to process suggest that these
+applications could benefit from reduced precision techniques.
+However, with limited literature on combining reduced precision with neuroimaging
+applications, future work is needed to understand their interaction better.
+Furthermore, a particular aspect of neuroimaging is that most problems have no
+ground truth,  such that the results from different pipelines can vary yet all be valid.
+To our knowledge, quantifying the error bound when applying reduced precision to
+this family of problems is an open question.
+
+The remaining of this review discusses (1) the background on floating-point numbers
+and the IEEE~754 standard, (2) the reduced precision literature outlining its
+problem definition, implementation, and usage in machine learning, and (3) the
+characteristics of neuroimaging problems, commonly used pipelines and analysis,
+and the current work in neuroimaging using reduced precision.

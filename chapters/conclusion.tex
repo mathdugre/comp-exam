@@ -1,56 +1,46 @@
 \chapter{Conclusion}
 \label{ch:conclusion}
-With the increase interest of reduced precision in machine learning, we are interested
-to explore if its applicability could benefit other fields; in particular, neuroimaging.
-Firstly, we presented the fundamental notions about floating-points, defining the representation
-of numbers as floating-point and the hidden bit convention that exploit some characteristic
+With the increased interest in reduced precision in machine learning, we are interested
+in exploring if its applicability could benefit other fields, particularly neuroimaging.
+Firstly, we presented the fundamental notions about floating-point, defining the representation
+of numbers as floating-point and the hidden bit convention that exploits some characteristics
 of floating-point numbers.
 Moreover, we explained the various sources of errors that are introduced when performing
 floating-point arithmetics.
-Following, we describe the IEEE~754 standard for the Binary format, with its 
-precision and exponent range for the different basic formats, its requirements
+We describe the IEEE~754 standard for the Binary format, its precision and
+exponent range for the different basic formats, its requirements
 for rounding functions, and the encoding for special values.
 
 Secondly, we discuss the problem definition for reduced precision, some core benefits,
 and the current challenges that limit its broader adoption.
-We present different data formats which were investigated for reduced precision, 
-with a focus on the bfloat16 due to its popular adoption in the machine learning field.
-Next, we discuss the advantages and disavantages from implementing reduced precision 
-using either hardware, software, or with simulation.
-We proceed with a survey of reduced precision techniques used in the field of 
-machine learning, due to its increasing usage and promising methods.
-On the one hand, the current work on reduced precision depicts substantial 
-performance improvements and lower energy cost.
-On the other hand, these techniques are expensive to implement and a better 
-understanding on the interaction between reduced precision, the application, and
-the data is required for a broader adoption of reduced precision.
+We present different data formats investigated for reduced precision, focusing on
+the bfloat16 due to its widespread adoption in the machine learning field.
+Next, we discuss the advantages and disadvantages of implementing reduced precision
+using hardware, software, or simulation. 
+Finally, we proceed with a survey of reduced precision techniques used in machine
+learning due to its increasing usage and promising methods.
+On the one hand, the current work on reduced precision depicts substantial
+performance improvements and lower energy costs. 
+On the other hand, these techniques are expensive to implement.
+A better understanding of the interaction between reduced precision, the
+application, and the data is required for the broader adoption of reduced precision.
 
-Lastly, we dive into the field of neuroimaging and the potential use of reduced 
-precision for neuroimaging pipelines.
-We first describe the three MRI modalities, some of their common correction techniques
-required before analysis, and commonly used pipelines to perform both preprocessing and
-statistical analysis steps.
-We then discuss the various machine learning applications in the field of neuroimaging,
-which motivated the development of Nilearn, a machine learning specific to neuroimaging.
-Moreover, efforts were made in developing deep learning techniques to speed up 
-the preprocessing of MRI data, which traditionally is compute intensive.
-At last, we discuss the current work in neuroimaging that uses reduced precision.
-To  the best of our knowledge, this area of the literature is limited and only recently
-started to see an increase in interest.
+Lastly, we dive into neuroimaging and the potential use of reduced precision for neuroimaging pipelines. We first describe the three MRI modalities, standard correction techniques required before analysis, and commonly used pipelines to perform preprocessing and statistical analysis steps. We then discuss the various machine learning applications in neuroimaging, which motivated the development of Nilearn, a machine learning specific to neuroimaging. Moreover, efforts were made to develop deep learning techniques to speed up the preprocessing of MRI data, which traditionally is compute-intensive. At last, we discuss the current work in neuroimaging that uses reduced precision. To the best of our knowledge, this area of the literature is limited and only recently started to see an increase in interest.
 
 Overall, reduced precision techniques have the theoretical potential to speed up
 some pipelines considerably.
-However, several limitations, as discussed in Section~\ref{sc:rp-problem-definiton}~\&~\ref{sc:reduced_precision_discussion},
-remains to be tackled before a common adoption of these techniques.
-While the machine learning domain saw a surge in popularity in the usage of 
-reduced precision and promising results, this is not the case for every domains.
-We explored the field of neuroimaging since it has computationally expensive data preprocessing pipelines,
-but the literature on reduced precision techniques applied to neuroimaging is limited.
-We outline here some interesting future work that remain to explore:
+However, as discussed in Sections~\ref{sc:rp-problem-definiton}~\&~\ref{sc:reduced_precision_discussion},
+several limitations remain to be tackled before a joint adoption of these techniques.
+While the machine learning domain saw a surge in popularity in the usage of reduced
+precision and promising results, this is not the case for every domain.
+We explored the field of neuroimaging since it has computationally expensive
+data preprocessing pipelines, but the literature on reduced precision techniques
+applied to neuroimaging is limited.
+We outline here some interesting future work that remains to explore:
 \begin{itemize}
 	\item Determining the code section that can benefit from reduced precision;
 	\item Estimate the performance gain and overhead cost from applying reduced precision;
-	\item Quantify the error from reduced precision for domain where problems have no ground truth;
+	\item Quantify the error from reduced precision for domains where problems have no ground truth;
 	\item Understanding the impact of varying data input when reduced precision is applied to a pipeline;
-	\item Develop tools to transparently and automatically perform reduce precision on a given application.
+	\item Develop tools to transparently and automatically perform reduced precision on a given application.
 \end{itemize}
