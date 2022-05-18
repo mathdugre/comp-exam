@@ -201,7 +201,7 @@ of neuroimaging pipeline.
 Traditional methods take a few minutes to perform image registration on the CPU.
 However, for large studies with thousands of subjects, improving this process can lower computation time from weeks to days.
 Brunn et al.~\cite{Brunn2021-zj} introduce a new method to perform image registration
-using optimized mixed-precision code on GPUs and substitute eigth-order
+using optimized mixed-precision code on GPUs and substitute eighth-order
 finite-difference derivatives instead of FFT-based first-order ones.
 Their results show a 30x performance and 6x mismatch improvement compared to
 another state-of-the-art pipeline (CLAIRE~\cite{Mang2019-nu}).
@@ -238,10 +238,10 @@ would not increase the numerical stability of the results from the pipeline.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{salari2021_vprec.png}
-	\caption{RMSE values between OS and fuzzy libmath at each virtual precision (extracted from~\cite{Salari2021-kd}).}
+	\caption{RMSE values between OS and fuzzy libmath at each virtual precision (Taken from~\cite{Salari2021-kd}).}
 	\label{fig:salari2021_vprec}
 \end{figure}
-	
+
 Image smoothing is a commonly used method in neuroimaging pipelines.
 It reduces the resolution of the data by combining close-by voxels.
 Although in different ways, both image smoothing and reduced precision will affect

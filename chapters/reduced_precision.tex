@@ -44,7 +44,7 @@ architectures is an open issue~\cite{Cherubin2020-tt}.
 
 \section{Data formats for reduced precision}
 \label{sc:rp-data-format}
-Although Chapter~\ref{ch:background} focused primarily on the IEEE~754 Binary data format, many other data formats exist.
+Although Chapter~\ref{ch:background} focused primarily on the IEEE~754 binary data format, many other data formats exist.
 This section introduces other data types used in reduced precision studies.
 
 Common Deep Learning frameworks such as Tensorflow~\cite{tensorflow2015-whitepaper} and Pytorch~\cite{PyTorch_2019} support mixed-precision through their API.
@@ -91,7 +91,7 @@ This is especially true when performing a study that evaluates a range of differ
 Since hardware implementations can be challenging, some research investigated
 software solutions to implement reduced precision.
 In~\cite{Anderson2016-yn}, the authors proposed a new data format, \textit{flyte},
-with a mantissa that differs in 8-bits increment from the traditional IEEE~754
+with a mantissa that differs in 8-bit increment from the traditional IEEE~754
 standard while keeping the exponent the same.
 This allows native instructions to read data with power-of-two bit width.
 The authors suggest a packing and shuffling method to prevent cache miss due to misalignment by reorganizing the flyte in the vector registers.
