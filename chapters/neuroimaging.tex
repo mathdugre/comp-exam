@@ -181,7 +181,7 @@ techniques in neuroimaging pipelines that have similar effects as reduced precis
 		
 \subsection{Current work}
 Only a few studies applied reduced precision techniques in neuroimaging; we present these studies hereafter.
-Nguyen et al.~\cite{Nguyen2018-lo} present an empirical-Bayes false discovery rate
+\cite{Nguyen2018-lo} present an empirical-Bayes false discovery rate
 control method to reduce the false-positive results from concurrent hypotheses when
 only the p-values or test statistics are available, and those are stored at a reduced precision. 
 In their study, they consider integer compression for 8 and 16 bits.
@@ -200,11 +200,11 @@ Moreover, the results suggest that training the model with higher resolution vol
 of neuroimaging pipeline.
 Traditional methods take a few minutes to perform image registration on the CPU.
 However, for large studies with thousands of subjects, improving this process can lower computation time from weeks to days.
-Brunn et al.~\cite{Brunn2021-zj} introduce a new method to perform image registration
+\cite{Brunn2021-zj} introduce a new method to perform image registration
 using optimized mixed-precision code on GPUs and substitute eighth-order
 finite-difference derivatives instead of FFT-based first-order ones.
 Their results show a 30x performance and 6x mismatch improvement compared to
-another state-of-the-art pipeline (CLAIRE~\cite{Mang2019-nu}).
+another state-of-the-art pipeline (CLAIRE~\cite{doi:10.1137/18M1207818}).
 		
 In general, the studies in which reduced precision was applied to neuroimaging do not have reduced precision as the primary focus.
 Instead, they only use it in combination with the primary methods suggested.
@@ -220,14 +220,14 @@ Inherently, evaluating the correctness of neuroimaging pipelines is challenging 
 That is, different pipelines can produce different results yet all be valid.
 Neuroimaging applications often fit algorithms using low amounts of samples with variable
 signal-to-noise ratios, potentially leading to instability when minor perturbations are applied~\cite{Kiar2020-uv}.
-Li et al.~\cite{Li2021-om} studied the inter-pipeline variability while using the same data.
+\cite{Li2021.12.01.470790} studied the inter-pipeline variability while using the same data.
 They found a lack of agreement between pipelines, and the steps leading to those variability varied across pipelines.
 In addition, they found that variation within small datasets had a more significant impact
 on variability than inter-pipeline agreement when using test-retest data. 
 	
 In neuroimaging, numerical stability can arise from different sources, including
 acquisition noise, the flexibility of the methods, and the pipelines used to process the data.
-Salari et al.~\cite{Salari2021-kd} studied the impact of operating system updates on
+\cite{Salari2021-kd} studied the impact of operating system updates on
 the numerical stability of neuroimaging pipelines.
 Using \textit{fuzzy libmath}, an extension to Verificarlo, they varied the virtual
 precision of a pre-processing pipeline from 53 to 1 bit in increment of 2.
@@ -246,14 +246,14 @@ Image smoothing is a commonly used method in neuroimaging pipelines.
 It reduces the resolution of the data by combining close-by voxels.
 Although in different ways, both image smoothing and reduced precision will affect
 the precision of the data processed.
-In a study by Molloy et al.~\cite{Molloy2014-oc}, the signal-to-noise ratio and
+In a study by \cite{Molloy2014-oc}, the signal-to-noise ratio and
 the fMRI signal's detection power could be improved by image smoothing. 
 Moreover, they found that applying spatial smoothing did not significantly change the
 results for functional connectivity when finding ROIs.
 	
 While image smoothing helps correct artifacts such as head motion, the smoothness might vary across the brain volume.
 This can lead to confounds related to the smoothing of head motion.
-Scheinost et al.~\cite{Scheinost2014-ds} propose a uniform spatial smoothing method
+\cite{Scheinost2014-ds} propose a uniform spatial smoothing method
 to reduce those confounds.
 The authors found that uniformly smoothed volumes result in a significantly lower
 correlation between regions and head motion.

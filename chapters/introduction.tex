@@ -6,7 +6,7 @@ As a result, multiple data formats have been proposed, including floating-point,
 logarithmic number systems~\cite{Kingsbury1971-kx}, tapered floating-point~\cite{Morris1971-qg}, 
 computer algebra systems, and posits~\cite{Gustafson2017-wo}.
 Although multiple formats are still in use today, the floating-point number 
-representation, IEEE~754~\cite{ieee754_2008-ev} in particular, has emerged as 
+representation, IEEE~754~\cite{4610935} in particular, has emerged as 
 the de-facto format used by many chip manufacturers.
 The IEEE~754 standard presents three different binary formats with 32, 64, and 128 bits.
 However, some applications might require much less than a 32-bit data format to
@@ -17,9 +17,9 @@ On the one hand, larger data formats offer more precision.
 On the other hand, smaller ones tend to reduce memory footprint and energy cost
 and perform faster arithmetic operations.
 Multiple studies in machine learning showed significant performance improvement when reducing
-the precision of models while keeping accuracy within bounds~\cite{Johnson2018-up,Wang2018-oo,Lesser2011-mn,Chen2018-an,Judd2015-kw,Vicuna2021-mw}.
+the precision of models while keeping accuracy within bounds~\cite{Johnson2018-up, Wang2018-oo, Lesser2011-mn, Chen2018-an, Judd2015-kw, Vicuna2021-mw}.
 Moreover, the bfloat16~\cite{bfloat16} reduced precision format is now part of the
-popular deep learning frameworks Tensorflow~\cite{tensorflow2015-whitepaper} and PyTorch~\cite{PyTorch_2019}.
+popular deep learning frameworks Tensorflow~\cite{tensorflow2015-whitepaper} and PyTorch~\cite{Paszke2019-sm}.
 However, while reduced precision techniques were explored for machine learning,
 several challenges remain to be solved for broader adoption.
 

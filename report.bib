@@ -1,4 +1,15 @@
 
+@article{4610935,
+  author  = {IEEE},
+  journal = {IEEE Std 754-2008},
+  title   = {{IEEE Standard for Floating-Point Arithmetic}},
+  year    = {2008},
+  volume  = {},
+  number  = {},
+  pages   = {1-70},
+  doi     = {10.1109/IEEESTD.2008.4610935}
+}
+
 @article{Abraham2014-zv,
   title    = {{Machine learning for neuroimaging with scikit-learn}},
   author   = {Abraham, Alexandre and Pedregosa, Fabian and Eickenberg, Michael
@@ -58,68 +69,62 @@
 }
 
 @misc{bfloat16,
-  title     = {{The BFLOAT16 Numerical Format}},
-  url       = {https://cloud.google.com/tpu/docs/bfloat16},
-  journal   = {Google},
-  publisher = {Google},
-  author    = {Google},
-  year      = {2021},
-  month     = {Nov}
+  title        = {{BFloat16: The secret to high performance on Cloud TPUs}},
+  url          = {https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus},
+  howpublished = {\url{https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus}},
+  journal      = {Google},
+  publisher    = {Google},
+  author       = {Google},
+  year         = {2019},
+  month        = {August}
 }
 
-@article{Brun2021-rs,
-  title    = {{A Study of the Effects and Benefits of Custom-Precision
-              Mathematical Libraries for HPC Codes}},
-  author   = {Brun, Emeric and Defour, David and de Oliveira Castro, Pablo and
-              I{\c s}toan, Matei and Mancusi, Davide and Petit, Eric and
-              Vaquet, Alan},
-  abstract = {Mathematical libraries are typically developed for use with the
-              fixed-width data-paths on processors and target common
-              floating-point formats such as IEEE binary32 and binary64. To
-              address the increasing energy consumption and throughput
-              requirements of HPC, scientific computing and AI applications,
-              libraries and hardware implementations now provide new
-              floating-point formats, allowing mathematical function
-              evaluations with different performance and accuracy trade-offs.
-              In this article we present a methodology and its associated
-              proof-of-concept tool to evaluate the benefits of custom accuracy
-              of mathematical library calls in HPC and scientific computations.
-              First, our tool collects for each call-site of a mathematical
-              function the input- and output-data profile. Then, using a
-              heuristic exploration algorithm, we estimate the minimal required
-              accuracy by rounding the result to lower precisions. The data
-              profile and accuracy measurement per call-site is used to
-              speculatively select the mathematical function implementation
-              with the most appropriate accuracy for a given scenario. We have
-              tested the methodology with the Intel MKL Vector Math (VM)
-              library, leveraging the predefined accuracy levels. We
-              demonstrate the benefits of our approach on two real-world
-              applications: SGP4, a satellite tracking application, and PATMOS,
-              a Monte Carlo neutron transport code. The robustness of the
-              methodology is estimated by measuring the numerical accuracy of
-              the resulting optimized code, against user-defined criteria. We
-              experiment and discuss generalization across data-sets and
-              finally propose a speculative runtime implementation for PATMOS.
-              The experiment provides an insight into the performance
-              improvements achievable by leveraging the control of per-function
-              call-site accuracy-mode execution of the Intel compiler SVML
-              library. We show benefits from 13 to 55 percent in time reduction
-              for the PATMOS use case.},
-  journal  = {IEEE Transactions on Emerging Topics in Computing},
-  volume   = 9,
-  number   = 3,
-  pages    = {1467--1478},
-  month    = jul,
+@misc{bfloat16-png,
+  title        = {{bfloat16 representation compared to IEEE binary16 and binary32}},
+  url          = {https://cloud.google.com/tpu/docs/images/bfloat16.png},
+  howpublished = {\url{https://cloud.google.com/tpu/docs/images/bfloat16.png}},
+  author       = {Google},
+  year         = {2022},
+  note         = {Accessed: 2022-05-26}
+}
+
+@article{Brunn2021-zj,
+  title    = {{Fast GPU 3D diffeomorphic image registration}},
+  author   = {Brunn, Malte and Himthani, Naveen and Biros, George and Mehl,
+              Miriam and Mang, Andreas},
+  abstract = {3D image registration is one of the most fundamental and
+              computationally expensive operations in medical image analysis.
+              Here, we present a mixed-precision, Gauss-Newton-Krylov solver
+              for diffeomorphic registration of two images. Our work extends
+              the publicly available CLAIRE library to GPU architectures.
+              Despite the importance of image registration, only a few
+              implementations of large deformation diffeomorphic registration
+              packages support GPUs. Our contributions are new algorithms to
+              significantly reduce the run time of the two main computational
+              kernels in CLAIRE: calculation of derivatives and scattered-data
+              interpolation. We deploy (i) highly-optimized, mixed-precision
+              GPU-kernels for the evaluation of scattered-data interpolation,
+              (ii) replace Fast-Fourier-Transform (FFT)-based first-order
+              derivatives with optimized 8th-order finite differences, and
+              (iii) compare with state-of-the-art CPU and GPU implementations.
+              As a highlight, we demonstrate that we can register 2563 clinical
+              images in less than 6 seconds on a single NVIDIA Tesla V100. This
+              amounts to over 20$\times$ speed-up over the current version of
+              CLAIRE and over 30$\times$ speed-up over existing GPU
+              implementations.},
+  journal  = {J. Parallel Distrib. Comput.},
+  volume   = 149,
+  pages    = {149--162},
+  month    = mar,
   year     = 2021,
-  keywords = {
-              Libraries;Tools;Hardware;Optimization;Satellites;Instruments;Heuristic
-              algorithms;Floating-point;computer arithmetic;mathematical
-              library;libm;custom precision;variable
-              precision;mixed-precision;high-performance
-              computing;HPC;scientific computing;optimization;profile-guided
-              optimization;PGO},
-  issn     = {2168-6750},
-  doi      = {10.1109/TETC.2021.3070422}
+  keywords = {Diffeomorphic Image Registration; GPU computing;
+              Gauss--Newton--Krylov Method; Mixed-Precision Solver; Parallel
+              Optimization},
+  language = {en},
+  issn     = {0743-7315},
+  pmid     = {33380769},
+  doi      = {10.1016/j.jpdc.2020.11.006},
+  pmc      = {PMC7769216}
 }
 
 @inproceedings{Carmichael2019-nu,
@@ -263,66 +268,6 @@
   doi       = {10.1145/3381039}
 }
 
-@article{Chougar2021-fk,
-  title    = {{Automated Categorization of Parkinsonian Syndromes Using Magnetic
-              Resonance Imaging in a Clinical Setting}},
-  author   = {Chougar, Lydia and Faouzi, Johann and Pyatigorskaya, Nadya and
-              Yahia-Cherif, Lydia and Gaurav, Rahul and Biondetti, Emma and
-              Villotte, Marie and Valabr{\`e}gue, Romain and Corvol,
-              Jean-Christophe and Brice, Alexis and Mariani, Louise-Laure and
-              Cormier, Florence and Vidailhet, Marie and Dupont, Gwendoline and
-              Piot, Ines and Grabli, David and Payan, Christine and Colliot,
-              Olivier and Degos, Bertrand and Leh{\'e}ricy, St{\'e}phane},
-  abstract = {BACKGROUND: Machine learning algorithms using magnetic resonance
-              imaging (MRI) data can accurately discriminate parkinsonian
-              syndromes. Validation in patients recruited in routine clinical
-              practice is missing. OBJECTIVE: The aim of this study was to
-              assess the accuracy of a machine learning algorithm trained on a
-              research cohort and tested on an independent clinical replication
-              cohort for the categorization of parkinsonian syndromes. METHODS:
-              Three hundred twenty-two subjects, including 94 healthy control
-              subjects, 119 patients with Parkinson's disease (PD), 51 patients
-              with progressive supranuclear palsy (PSP) with Richardson's
-              syndrome, 35 with multiple system atrophy (MSA) of the
-              parkinsonian variant (MSA-P), and 23 with MSA of the cerebellar
-              variant (MSA-C), were recruited. They were divided into a
-              training cohort (n = 179) scanned in a research environment and a
-              replication cohort (n = 143) examined in clinical practice on
-              different MRI systems. Volumes and diffusion tensor imaging (DTI)
-              metrics in 13 brain regions were used as input for a supervised
-              machine learning algorithm. To harmonize data across scanners and
-              reduce scanner-dependent effects, we tested two types of
-              normalizations using patient data or healthy control data.
-              RESULTS: In the replication cohort, high accuracies were achieved
-              using volumetry in the classification of PD-PSP, PD-MSA-C,
-              PSP-MSA-C, and PD-atypical parkinsonism (balanced accuracies:
-              0.840-0.983, area under the receiver operating characteristic
-              curves: 0.907-0.995). Performances were lower for the
-              classification of PD-MSA-P, MSA-C-MSA-P (balanced accuracies:
-              0.765-0.784, area under the receiver operating characteristic
-              curve: 0.839-0.871) and PD-PSP-MSA (balanced accuracies: 0.773).
-              Performance using DTI was improved when normalizing by controls,
-              but remained lower than that using volumetry alone or combined
-              with DTI. CONCLUSIONS: A machine learning approach based on
-              volumetry enabled accurate classification of subjects with
-              early-stage parkinsonism, examined on different MRI systems, as
-              part of their clinical assessment. \copyright{} 2020
-              International Parkinson and Movement Disorder Society.},
-  journal  = {Mov. Disord.},
-  volume   = 36,
-  number   = 2,
-  pages    = {460--470},
-  month    = feb,
-  year     = 2021,
-  keywords = {Parkinson's disease; machine learning algorithm; multimodal
-              magnetic resonance imaging; multiple system atrophy; progressive
-              supranuclear palsy},
-  language = {en},
-  issn     = {0885-3185, 1531-8257},
-  pmid     = {33137232},
-  doi      = {10.1002/mds.28348}
-}
-
 @article{Davatzikos2019-dc,
   title    = {{Machine learning in neuroimaging: Progress and challenges}},
   author   = {Davatzikos, Christos},
@@ -336,37 +281,6 @@
   pmid     = {30296563},
   doi      = {10.1016/j.neuroimage.2018.10.003},
   pmc      = {PMC6499712}
-}
-
-@article{Denis2015-yb,
-  title         = {{Verificarlo: checking floating point accuracy through Monte
-                   Carlo Arithmetic}},
-  author        = {Denis, Christophe and De Oliveira Castro, Pablo and Petit,
-                   Eric},
-  abstract      = {Numerical accuracy of floating point computation is a well
-                   studied topic which has not made its way to the end-user in
-                   scientific computing. Yet, it has become a critical issue
-                   with the recent requirements for code modernization to
-                   harness new highly parallel hardware and perform higher
-                   resolution computation. To democratize numerical accuracy
-                   analysis, it is important to propose tools and methodologies
-                   to study large use cases in a reliable and automatic way. In
-                   this paper, we propose verificarlo, an extension to the LLVM
-                   compiler to automatically use Monte Carlo Arithmetic in a
-                   transparent way for the end-user. It supports all the major
-                   languages including C, C++, and Fortran. Unlike
-                   source-to-source approaches, our implementation captures the
-                   influence of compiler optimizations on the numerical
-                   accuracy. We illustrate how Monte Carlo Arithmetic using the
-                   verificarlo tool outperforms the existing approaches on
-                   various use cases and is a step toward automatic numerical
-                   analysis.},
-  month         = sep,
-  year          = 2015,
-  archiveprefix = {arXiv},
-  eprint        = {1509.01347},
-  primaryclass  = {cs.MS},
-  arxivid       = {1509.01347}
 }
 
 @inproceedings{Denis2016-ws,
@@ -401,773 +315,25 @@
   doi       = {10.1109/ARITH.2016.31}
 }
 
-@article{Goldberg1991-nv,
-  title     = {{What every computer scientist should know about floating-point
-               arithmetic}},
-  author    = {Goldberg, David},
-  abstract  = {Floating-point arithmetic is considered as esoteric subject by
-               many people. This is rather surprising, because floating-point
-               is ubiquitous in computer systems: Almost every language has a
-               floating-point datatype; computers from PCs to supercomputers
-               have floating-point accelerators; most compilers will be called
-               upon to compile floating-point algorithms from time to time; and
-               virtually every operating system must respond to floating-point
-               exceptions such as overflow. This paper presents a tutorial on
-               the aspects of floating-point that have a direct impact on
-               designers of computer systems. It begins with background on
-               floating-point representation and rounding error, continues with
-               a discussion of the IEEE floating point standard, and concludes
-               with examples of how computer system builders can better support
-               floating point.},
-  journal   = {ACM Comput. Surv.},
-  publisher = {Association for Computing Machinery},
-  volume    = 23,
-  number    = 1,
-  pages     = {5--48},
-  month     = mar,
-  year      = 1991,
-  address   = {New York, NY, USA},
-  keywords  = {relative error, NaN, underflow, floating-point, ulp, gradual
-               underflow, rounding error, denormalized number, floating-point
-               standard, exception, guard digit, rounding mode, overflow},
-  issn      = {0360-0300},
-  doi       = {10.1145/103162.103163}
+@article{doi:10.1137/18M1207818,
+  author   = {Mang, Andreas and Gholami, Amir and Davatzikos, Christos and Biros, George},
+  title    = {{CLAIRE: A Distributed-Memory Solver for Constrained Large Deformation Diffeomorphic Image Registration}},
+  journal  = {SIAM Journal on Scientific Computing},
+  volume   = {41},
+  number   = {5},
+  pages    = {C548-C584},
+  year     = {2019},
+  doi      = {10.1137/18M1207818},
+  url      = { 
+              https://doi.org/10.1137/18M1207818
+              
+              },
+  eprint   = { 
+              https://doi.org/10.1137/18M1207818
+              
+              },
+  abstract = { With this work we release CLAIRE, a distributed-memory implementation of an effective solver for constrained large deformation diffeomorphic image registration problems in three dimensions. We consider an optimal control formulation. We invert for a stationary velocity field that parameterizes the deformation map. Our solver is based on a globalized, preconditioned, inexact reduced space Gauss--Newton--Krylov scheme. We exploit state-of-the-art techniques in scientific computing to develop an effective solver that scales to thousands of distributed memory nodes on high-end clusters. We present the formulation, discuss algorithmic features, describe the software package, and introduce an improved preconditioner for the reduced space Hessian to speed up the convergence of our solver. We test registration performance on synthetic and real data. We demonstrate registration accuracy on several neuroimaging datasets. We compare the performance of our scheme against different flavors of the Demons algorithm for diffeomorphic image registration. We study convergence of our preconditioner and our overall algorithm. We report scalability results on state-of-the-art supercomputing platforms. We demonstrate that we can solve registration problems for clinically relevant data sizes in two to four minutes on a standard compute node with 20 cores, attaining excellent data fidelity. With the present work we achieve a speedup of (on average) 5\$\times\$ with a peak performance of up to 17\$\times\$ compared to our former work. }
 }
-
-@article{Gustafson2017-wo,
-  title     = {{Beating Floating Point at its Own Game: Posit Arithmetic}},
-  author    = {{Gustafson} and {Yonemoto}},
-  abstract  = {A new data type called a posit is designed as a direct drop-in
-               replacement for IEEE Standard 754 floating-point numbers floats.
-               Unlike earlier forms of universal number unum arithmetic, posits
-               do not require interval arithmetic or variable size operands;
-               like floats, they round if an answer is inexact. However, they
-               provide compelling advantages over floats, including larger
-               dynamic range, higher accuracy, better closure, bitwise
-               identical results across systems, simpler hardware, and simpler
-               exception handling. Posits never overflow to infinity or
-               underflow to zero, and ``Nota-Number'' NaN indicates an action
-               instead of a bit pattern. A posit processing unit takes less
-               circuitry than an IEEE float FPU. With lower power use and
-               smaller silicon footprint, the posit operations per second POPS
-               supported by a chip can be significantly higher than the FLOPS
-               using similar hardware resources. GPU accelerators and Deep
-               Learning processors, in particular, can do more per watt and per
-               dollar with posits, yet deliver superior answer quality. A
-               comprehensive series of benchmarks compares floats and posits
-               for decimals of accuracy produced for a set precision. Low
-               precision posits provide a better solution than ``approximate
-               computing'' methods that try to tolerate decreased answer
-               quality. High precision posits provide more correct decimals
-               than floats of the same size; in some cases, a 32-bit posit may
-               safely replace a 64-bit float. In other words, posits beat
-               floats at their own game.},
-  journal   = {Supercomput. Front. Innov.: Int. J.},
-  publisher = {South Ural State University},
-  volume    = 4,
-  number    = 2,
-  pages     = {71--86},
-  month     = jun,
-  year      = 2017,
-  address   = {Chelyabinsk, RUS},
-  keywords  = {unum computing, posits, neural networks, linear algebra,
-               LINPACK, floating point, energy-efficient computing, computer
-               arithmetic, valid arithmetic},
-  issn      = {2409-6008},
-  doi       = {10.14529/jsfi170206}
-}
-
-@article{Higham2019-yd,
-  title     = {{Simulating Low Precision Floating-Point Arithmetic}},
-  author    = {Higham, Nicholas J and Pranesh, Srikara},
-  abstract  = {The half-precision (fp16) floating-point format, defined in the
-               2008 revision of the IEEE standard for floating-point
-               arithmetic, and a more recently proposed half-precision format
-               bfloat16, are increasingly available in GPUs and other
-               accelerators. While the support for low precision arithmetic is
-               mainly motivated by machine learning applications, general
-               purpose numerical algorithms can benefit from it, too, gaining
-               in speed, energy usage, and reduced communication costs. Since
-               the appropriate hardware is not always available, and one may
-               wish to experiment with new arithmetics not yet implemented in
-               hardware, software simulations of low precision arithmetic are
-               needed. We discuss how to simulate low precision arithmetic
-               using arithmetic of higher precision. We examine the correctness
-               of such simulations and explain via rounding error analysis why
-               a natural method of simulation can provide results that are more
-               accurate than actual computations at low precision. We provide a
-               MATLAB function, chop, that can be used to efficiently simulate
-               fp16, bfloat16, and other low precision arithmetics, with or
-               without the representation of subnormal numbers and with the
-               options of round to nearest, directed rounding, stochastic
-               rounding, and random bit flips in the significand. We
-               demonstrate the advantages of this approach over defining a new
-               MATLAB class and overloading operators.},
-  journal   = {SIAM J. Sci. Comput.},
-  publisher = {Society for Industrial and Applied Mathematics},
-  volume    = 41,
-  number    = 5,
-  pages     = {C585--C602},
-  month     = jan,
-  year      = 2019,
-  issn      = {1064-8275},
-  doi       = {10.1137/19M1251308}
-}
-
-@article{Johnson2018-up,
-  title         = {{Rethinking floating point for deep learning}},
-  author        = {Johnson, Jeff},
-  abstract      = {Reducing hardware overhead of neural networks for faster or
-                   lower power inference and training is an active area of
-                   research. Uniform quantization using integer multiply-add
-                   has been thoroughly investigated, which requires learning
-                   many quantization parameters, fine-tuning training or other
-                   prerequisites. Little effort is made to improve floating
-                   point relative to this baseline; it remains energy
-                   inefficient, and word size reduction yields drastic loss in
-                   needed dynamic range. We improve floating point to be more
-                   energy efficient than equivalent bit width integer hardware
-                   on a 28 nm ASIC process while retaining accuracy in 8 bits
-                   with a novel hybrid log multiply/linear add, Kulisch
-                   accumulation and tapered encodings from Gustafson's posit
-                   format. With no network retraining, and drop-in replacement
-                   of all math and float32 parameters via round-to-nearest-even
-                   only, this open-sourced 8-bit log float is within 0.9\%
-                   top-1 and 0.2\% top-5 accuracy of the original float32
-                   ResNet-50 CNN model on ImageNet. Unlike int8 quantization,
-                   it is still a general purpose floating point arithmetic,
-                   interpretable out-of-the-box. Our 8/38-bit log float
-                   multiply-add is synthesized and power profiled at 28 nm at
-                   0.96x the power and 1.12x the area of 8/32-bit integer
-                   multiply-add. In 16 bits, our log float multiply-add is
-                   0.59x the power and 0.68x the area of IEEE 754 float16 fused
-                   multiply-add, maintaining the same signficand precision and
-                   dynamic range, proving useful for training ASICs as well.},
-  month         = nov,
-  year          = 2018,
-  archiveprefix = {arXiv},
-  eprint        = {1811.01721},
-  primaryclass  = {cs.NA},
-  arxivid       = {1811.01721}
-}
-
-@article{Jollans2019-nc,
-  title    = {{Quantifying performance of machine learning methods for
-              neuroimaging data}},
-  author   = {Jollans, Lee and Boyle, Rory and Artiges, Eric and Banaschewski,
-              Tobias and Desrivi{\`e}res, Sylvane and Grigis, Antoine and
-              Martinot, Jean-Luc and Paus, Tom{\'a}{\v s} and Smolka, Michael N
-              and Walter, Henrik and Schumann, Gunter and Garavan, Hugh and
-              Whelan, Robert},
-  abstract = {Machine learning is increasingly being applied to neuroimaging
-              data. However, most machine learning algorithms have not been
-              designed to accommodate neuroimaging data, which typically has
-              many more data points than subjects, in addition to
-              multicollinearity and low signal-to-noise. Consequently, the
-              relative efficacy of different machine learning regression
-              algorithms for different types of neuroimaging data are not
-              known. Here, we sought to quantify the performance of a variety
-              of machine learning algorithms for use with neuroimaging data
-              with various sample sizes, feature set sizes, and predictor
-              effect sizes. The contribution of additional machine learning
-              techniques - embedded feature selection and bootstrap aggregation
-              (bagging) - to model performance was also quantified. Five
-              machine learning regression methods - Gaussian Process
-              Regression, Multiple Kernel Learning, Kernel Ridge Regression,
-              the Elastic Net and Random Forest, were examined with both real
-              and simulated MRI data, and in comparison to standard multiple
-              regression. The different machine learning regression algorithms
-              produced varying results, which depended on sample size, feature
-              set size, and predictor effect size. When the effect size was
-              large, the Elastic Net, Kernel Ridge Regression and Gaussian
-              Process Regression performed well at most sample sizes and
-              feature set sizes. However, when the effect size was small, only
-              the Elastic Net made accurate predictions, but this was limited
-              to analyses with sample sizes greater than 400. Random Forest
-              also produced a moderate performance for small effect sizes, but
-              could do so across all sample sizes. Machine learning techniques
-              also improved prediction accuracy for multiple regression. These
-              data provide empirical evidence for the differential performance
-              of various machines on neuroimaging data, which are dependent on
-              number of sample size, features and effect size.},
-  journal  = {Neuroimage},
-  volume   = 199,
-  pages    = {351--365},
-  month    = oct,
-  year     = 2019,
-  keywords = {Machine learning; Neuroimaging; Regression algorithms;
-              Reproducibility},
-  language = {en},
-  issn     = {1053-8119, 1095-9572},
-  pmid     = {31173905},
-  doi      = {10.1016/j.neuroimage.2019.05.082},
-  pmc      = {PMC6688909}
-}
-
-@article{Judd2015-kw,
-  title         = {{Reduced-Precision Strategies for Bounded Memory in Deep
-                   Neural Nets}},
-  author        = {Judd, Patrick and Albericio, Jorge and Hetherington, Tayler
-                   and Aamodt, Tor and Jerger, Natalie Enright and Urtasun,
-                   Raquel and Moshovos, Andreas},
-  abstract      = {This work investigates how using reduced precision data in
-                   Convolutional Neural Networks (CNNs) affects network
-                   accuracy during classification. More specifically, this
-                   study considers networks where each layer may use different
-                   precision data. Our key result is the observation that the
-                   tolerance of CNNs to reduced precision data not only varies
-                   across networks, a well established observation, but also
-                   within networks. Tuning precision per layer is appealing as
-                   it could enable energy and performance improvements. In this
-                   paper we study how error tolerance across layers varies and
-                   propose a method for finding a low precision configuration
-                   for a network while maintaining high accuracy. A diverse set
-                   of CNNs is analyzed showing that compared to a conventional
-                   implementation using a 32-bit floating-point representation
-                   for all layers, and with less than 1\% loss in relative
-                   accuracy, the data footprint required by these networks can
-                   be reduced by an average of 74\% and up to 92\%.},
-  month         = nov,
-  year          = 2015,
-  archiveprefix = {arXiv},
-  eprint        = {1511.05236},
-  primaryclass  = {cs.LG},
-  arxivid       = {1511.05236}
-}
-
-@article{Kohoutova2020-le,
-  title    = {{Toward a unified framework for interpreting machine-learning
-              models in neuroimaging}},
-  author   = {Kohoutov{\'a}, Lada and Heo, Juyeon and Cha, Sungmin and Lee,
-              Sungwoo and Moon, Taesup and Wager, Tor D and Woo, Choong-Wan},
-  abstract = {Machine learning is a powerful tool for creating computational
-              models relating brain function to behavior, and its use is
-              becoming widespread in neuroscience. However, these models are
-              complex and often hard to interpret, making it difficult to
-              evaluate their neuroscientific validity and contribution to
-              understanding the brain. For neuroimaging-based machine-learning
-              models to be interpretable, they should (i) be comprehensible to
-              humans, (ii) provide useful information about what mental or
-              behavioral constructs are represented in particular brain
-              pathways or regions, and (iii) demonstrate that they are based on
-              relevant neurobiological signal, not artifacts or confounds. In
-              this protocol, we introduce a unified framework that consists of
-              model-, feature- and biology-level assessments to provide
-              complementary results that support the understanding of how and
-              why a model works. Although the framework can be applied to
-              different types of models and data, this protocol provides
-              practical tools and examples of selected analysis methods for a
-              functional MRI dataset and multivariate pattern-based predictive
-              models. A user of the protocol should be familiar with basic
-              programming in MATLAB or Python. This protocol will help build
-              more interpretable neuroimaging-based machine-learning models,
-              contributing to the cumulative understanding of brain mechanisms
-              and brain health. Although the analyses provided here constitute
-              a limited set of tests and take a few hours to days to complete,
-              depending on the size of data and available computational
-              resources, we envision the process of annotating and interpreting
-              models as an open-ended process, involving collaborative efforts
-              across multiple studies and laboratories.},
-  journal  = {Nat. Protoc.},
-  volume   = 15,
-  number   = 4,
-  pages    = {1399--1435},
-  month    = apr,
-  year     = 2020,
-  language = {en},
-  issn     = {1754-2189, 1750-2799},
-  pmid     = {32203486},
-  doi      = {10.1038/s41596-019-0289-5}
-}
-
-@article{Lesser2011-mn,
-  title     = {{Effects of Reduced Precision on Floating-Point SVM
-               Classification Accuracy}},
-  author    = {Lesser, Bernd and M{\"u}cke, Manfred and Gansterer, Wilfried N},
-  abstract  = {There is growing interest in performing ever more complex
-               classification tasks on mobile and embedded devices in
-               real-time, which results in the need for e\_cient
-               implementations of the respective algorithms. Support vector
-               machines (SVMs) represent a powerful class of nonlinear
-               classifiers, and reducing the working precision represents a
-               promising approach to achieving e\_cient implementations of the
-               SVM classification phase. However, the relationship between SVM
-               classification accuracy and the arithmetic precision used is not
-               yet su\_ciently understood. We investigate this relationship in
-               floating-point arithmetic and illustrate that often a large
-               reduction in the working precision of the classification process
-               is possible without loss in classification accuracy. Moreover,
-               we investigate the adaptation of bounds on allowable SVM
-               parameter perturbations in order to estimate the lowest possible
-               working precision in floating-point arithmetic. Among the three
-               representative data sets considered in this paper, none requires
-               a precision higher than 15 bit, which is a considerable
-               reduction from the 53 bit used in double precision
-               floating-point arithmetic. Furthermore, we demonstrate analytic
-               bounds on the working precision for SVMs with Gaussian kernel
-               providing good predictions of possible reductions in the working
-               precision without sacrificing classification accuracy.},
-  journal   = {Procedia Comput. Sci.},
-  publisher = {Elsevier},
-  volume    = 4,
-  pages     = {508--517},
-  month     = jan,
-  year      = 2011,
-  keywords  = {SVM; machine learning; reduced precision floating-point
-               arithmetic; perturbation analysis; quantization effects},
-  issn      = {1877-0509},
-  doi       = {10.1016/j.procs.2011.04.053}
-}
-
-@article{Mateos-Perez2018-wx,
-  title    = {{Structural neuroimaging as clinical predictor: A review of
-              machine learning applications}},
-  author   = {Mateos-P{\'e}rez, Jos{\'e} Mar{\'\i}a and Dadar, Mahsa and
-              Lacalle-Aurioles, Mar{\'\i}a and Iturria-Medina, Yasser and
-              Zeighami, Yashar and Evans, Alan C},
-  abstract = {In this paper, we provide an extensive overview of machine
-              learning techniques applied to structural magnetic resonance
-              imaging (MRI) data to obtain clinical classifiers. We
-              specifically address practical problems commonly encountered in
-              the literature, with the aim of helping researchers improve the
-              application of these techniques in future works. Additionally, we
-              survey how these algorithms are applied to a wide range of
-              diseases and disorders (e.g. Alzheimer's disease (AD),
-              Parkinson's disease (PD), autism, multiple sclerosis, traumatic
-              brain injury, etc.) in order to provide a comprehensive view of
-              the state of the art in different fields.},
-  journal  = {Neuroimage Clin},
-  volume   = 20,
-  pages    = {506--522},
-  month    = aug,
-  year     = 2018,
-  keywords = {Alzheimer; Autism; Cross-validation; Ensembling; Machine
-              learning; Multiple sclerosis; Neuroimaging; Parkinson; Predictive
-              modeling; SVMs; Structural magnetic resonance imaging},
-  language = {en},
-  issn     = {2213-1582},
-  pmid     = {30167371},
-  doi      = {10.1016/j.nicl.2018.08.019},
-  pmc      = {PMC6108077}
-}
-
-
-@book{Muller2018-zm,
-  title     = {{Handbook of Floating-Point Arithmetic}},
-  author    = {Muller, Jean-Michel and Brunie, Nicolas and de Dinechin, Florent
-               and Jeannerod, Claude-Pierre and Joldes, Mioara and Lef{\`e}vre,
-               Vincent and Melquiond, Guillaume and Revol, Nathalie and Torres,
-               Serge},
-  publisher = {Birkh{\"a}user, Cham},
-  year      = 2018,
-  isbn      = {9783319765259, 9783319765266},
-  doi       = {10.1007/978-3-319-76526-6}
-}
-
-
-@article{Nguyen2018-lo,
-  title         = {{False discovery rate control under reduced precision
-                   computation for analysis of neuroimaging data}},
-  author        = {Nguyen, Hien D and Yee, Yohan and McLachlan, Geoffrey J and
-                   Lerch, Jason P},
-  abstract      = {The mitigation of false positives is an important issue when
-                   conducting multiple hypothesis testing. The most popular
-                   paradigm for false positives mitigation in high-dimensional
-                   applications is via the control of the false discovery rate
-                   (FDR). Multiple testing data from neuroimaging experiments
-                   can be very large, and reduced precision storage of such
-                   data is often required. Reduced precision computation is
-                   often a problem in the analysis of legacy data and data
-                   arising from legacy pipelines. We present a method for FDR
-                   control that is applicable in cases where only
-                   p\textbackslashtext\{-values\} or test statistics (with
-                   common and known null distribution) are available, and when
-                   those p\textbackslashtext\{-values\} or test statistics are
-                   encoded in a reduced precision format. Our method is based
-                   on an empirical-Bayes paradigm where the probit
-                   transformation of the p\textbackslashtext\{-values\} (called
-                   the z\textbackslashtext\{-scores\}) are modeled as a
-                   two-component mixture of normal distributions. Due to the
-                   reduced precision of the p\textbackslashtext\{-values\} or
-                   test statistics, the usual approach for fitting mixture
-                   models may not be feasible. We instead use a binned-data
-                   technique, which can be proved to consistently estimate the
-                   z\textbackslashtext\{-score\} distribution parameters under
-                   mild correlation assumptions, as is often the case in
-                   neuroimaging data. A simulation study shows that our
-                   methodology is competitive when compared with popular
-                   alternatives, especially with data in the presence of
-                   misspecification. We demonstrate the applicability of our
-                   methodology in practice via a brain imaging study of mice.},
-  month         = may,
-  year          = 2018,
-  archiveprefix = {arXiv},
-  eprint        = {1805.04394},
-  primaryclass  = {stat.ME},
-  arxivid       = {1805.04394}
-}
-
-@article{Nielsen2020-wu,
-  title    = {{Machine Learning With Neuroimaging: Evaluating Its Applications
-              in Psychiatry}},
-  author   = {Nielsen, Ashley N and Barch, Deanna M and Petersen, Steven E and
-              Schlaggar, Bradley L and Greene, Deanna J},
-  abstract = {Psychiatric disorders are complex, involving heterogeneous
-              symptomatology and neurobiology that rarely involves the
-              disruption of single, isolated brain structures. In an attempt to
-              better describe and understand the complexities of psychiatric
-              disorders, investigators have increasingly applied multivariate
-              pattern classification approaches to neuroimaging data and in
-              particular supervised machine learning methods. However,
-              supervised machine learning approaches also come with unique
-              challenges and trade-offs, requiring additional study design and
-              interpretation considerations. The goal of this review is to
-              provide a set of best practices for evaluating machine learning
-              applications to psychiatric disorders. We discuss how to evaluate
-              two common efforts: 1) making predictions that have the potential
-              to aid in diagnosis, prognosis, and treatment and 2)
-              interrogating the complex neurophysiological mechanisms
-              underlying psychopathology. We focus here on machine learning as
-              applied to functional connectivity with magnetic resonance
-              imaging, as an example to ground discussion. We argue that for
-              machine learning classification to have translational utility for
-              individual-level predictions, investigators must ensure that the
-              classification is clinically informative, independent of
-              confounding variables, and appropriately assessed for both
-              performance and generalizability. We contend that shedding light
-              on the complex mechanisms underlying psychiatric disorders will
-              require consideration of the unique utility, interpretability,
-              and reliability of the neuroimaging features (e.g., regions,
-              networks, connections) identified from machine learning
-              approaches. Finally, we discuss how the rise of large, multisite,
-              publicly available datasets may contribute to the utility of
-              machine learning approaches in psychiatry.},
-  journal  = {Biol Psychiatry Cogn Neurosci Neuroimaging},
-  volume   = 5,
-  number   = 8,
-  pages    = {791--798},
-  month    = aug,
-  year     = 2020,
-  keywords = {Computational psychiatry; Feature selection; Functional
-              connectivity; Machine learning; Neurophysiological mechanisms;
-              Prediction},
-  language = {en},
-  issn     = {2451-9030, 2451-9022},
-  pmid     = {31982357},
-  doi      = {10.1016/j.bpsc.2019.11.007}
-}
-
-@article{noauthor_undated-rg,
-  title = {{REUSE OF HIGH PRECISION ARITHMETIC HARDWARE TO PERFORM MULTIPLE
-           CONCURRENT LOW PRECISION CALCULATIONS}}
-}
-
-@article{PyTorch_2019,
-  title     = {PyTorch: An Imperative Style, High-Performance Deep Learning Library},
-  author    = {Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga, Luca and Desmaison, Alban and Kopf, Andreas and Yang, Edward and DeVito, Zachary and Raison, Martin and Tejani, Alykhan and Chilamkurthy, Sasank and Steiner, Benoit and Fang, Lu and Bai, Junjie and Chintala, Soumith},
-  booktitle = {Advances in Neural Information Processing Systems 32},
-  editor    = {H. Wallach and H. Larochelle and A. Beygelzimer and F. d\textquotesingle Alch\'{e}-Buc and E. Fox and R. Garnett},
-  pages     = {8024--8035},
-  year      = {2019},
-  publisher = {Curran Associates, Inc.},
-  url       = {http://papers.neurips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library.pdf}
-}
-
-@article{Salari2021-kd,
-  title         = {{Accurate simulation of operating system updates in
-                   neuroimaging using Monte-Carlo arithmetic}},
-  author        = {Salari, Ali and Chatelain, Yohan and Kiar, Gregory and
-                   Glatard, Tristan},
-  abstract      = {Operating system (OS) updates introduce numerical
-                   perturbations that impact the reproducibility of
-                   computational pipelines. In neuroimaging, this has important
-                   practical implications on the validity of computational
-                   results, particularly when obtained in systems such as
-                   high-performance computing clusters where the experimenter
-                   does not control software updates. We present a framework to
-                   reproduce the variability induced by OS updates in
-                   controlled conditions. We hypothesize that OS updates impact
-                   computational pipelines mainly through numerical
-                   perturbations originating in mathematical libraries, which
-                   we simulate using Monte-Carlo arithmetic in a framework
-                   called ``fuzzy libmath'' (FL). We applied this methodology
-                   to pre-processing pipelines of the Human Connectome Project,
-                   a flagship open-data project in neuroimaging. We found that
-                   FL-perturbed pipelines accurately reproduce the variability
-                   induced by OS updates and that this similarity is only
-                   mildly dependent on simulation parameters. Importantly, we
-                   also found between-subject differences were preserved in
-                   both cases, though the between-run variability was of
-                   comparable magnitude for both FL and OS perturbations. We
-                   found the numerical precision in the HCP pre-processed
-                   images to be relatively low, with less than 8 significant
-                   bits among the 24 available, which motivates further
-                   investigation of the numerical stability of components in
-                   the tested pipeline. Overall, our results establish that FL
-                   accurately simulates results variability due to OS updates,
-                   and is a practical framework to quantify numerical
-                   uncertainty in neuroimaging.},
-  month         = aug,
-  year          = 2021,
-  archiveprefix = {arXiv},
-  eprint        = {2108.03129},
-  primaryclass  = {q-bio.NC},
-  arxivid       = {2108.03129}
-}
-
-@misc{tensorflow2015-whitepaper,
-  title  = {{TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems}},
-  url    = {http://tensorflow.org/},
-  note   = {Software available from tensorflow.org},
-  author = {
-            Mart\'{\i}n~Abadi and
-            Ashish~Agarwal and
-            Paul~Barham and
-            Eugene~Brevdo and
-            Zhifeng~Chen and
-            Craig~Citro and
-            Greg~S.~Corrado and
-            Andy~Davis and
-            Jeffrey~Dean and
-            Matthieu~Devin and
-            Sanjay~Ghemawat and
-            Ian~Goodfellow and
-            Andrew~Harp and
-            Geoffrey~Irving and
-            Michael~Isard and
-            Yangqing Jia and
-            Rafal~Jozefowicz and
-            Lukasz~Kaiser and
-            Manjunath~Kudlur and
-            Josh~Levenberg and
-            Dan~Man\'{e} and
-            Rajat~Monga and
-            Sherry~Moore and
-            Derek~Murray and
-            Chris~Olah and
-            Mike~Schuster and
-            Jonathon~Shlens and
-            Benoit~Steiner and
-            Ilya~Sutskever and
-            Kunal~Talwar and
-            Paul~Tucker and
-            Vincent~Vanhoucke and
-            Vijay~Vasudevan and
-            Fernanda~Vi\'{e}gas and
-            Oriol~Vinyals and
-            Pete~Warden and
-            Martin~Wattenberg and
-            Martin~Wicke and
-            Yuan~Yu and
-            Xiaoqiang~Zheng},
-  year   = {2015}
-}
-
-
-@misc{tpu,
-  title     = {{Cloud Tensor Processing Units (TPUs)}},
-  url       = {https://cloud.google.com/tpu/docs/tpus},
-  journal   = {Google},
-  publisher = {Google},
-  author    = {Google},
-  year      = {2021},
-  month     = {Nov}
-}
-
-@misc{intel-BF16-2018,
-  title     = {{BFLOAT16 - Hardware Numerics Definition}},
-  url       = {https://www.intel.com/content/dam/develop/external/us/en/documents/bf16-hardware-numerics-definition-white-paper.pdf},
-  journal   = {Intel},
-  publisher = {Intel},
-  author    = {Intel},
-  year      = {2018},
-  month     = {Nov}
-}
-
-@article{Varoquaux2014-bq,
-  title    = {{How machine learning is shaping cognitive neuroimaging}},
-  author   = {Varoquaux, Gael and Thirion, Bertrand},
-  abstract = {Functional brain images are rich and noisy data that can capture
-              indirect signatures of neural activity underlying cognition in a
-              given experimental setting. Can data mining leverage them to
-              build models of cognition? Only if it is applied to well-posed
-              questions, crafted to reveal cognitive mechanisms. Here we review
-              how predictive models have been used on neuroimaging data to ask
-              new questions, i.e., to uncover new aspects of cognitive
-              organization. We also give a statistical learning perspective on
-              these progresses and on the remaining gaping holes.},
-  journal  = {Gigascience},
-  volume   = 3,
-  pages    = {28},
-  month    = nov,
-  year     = 2014,
-  keywords = {Cognition; Decoding; Encoding; Machine learning; Neuroimaging;
-              fMRI},
-  language = {en},
-  issn     = {2047-217X},
-  pmid     = {25405022},
-  doi      = {10.1186/2047-217X-3-28},
-  pmc      = {PMC4234525}
-}
-
-@article{Vicuna2021-mw,
-  title         = {{Reducing numerical precision preserves classification
-                   accuracy in Mondrian Forests}},
-  author        = {Vicuna, Marc and Khannouz, Martin and Kiar, Gregory and
-                   Chatelain, Yohan and Glatard, Tristan},
-  abstract      = {Mondrian Forests are a powerful data stream classification
-                   method, but their large memory footprint makes them
-                   ill-suited for low-resource platforms such as connected
-                   objects. We explored using reduced-precision floating-point
-                   representations to lower memory consumption and evaluated
-                   its effect on classification performance. We applied the
-                   Mondrian Forest implementation provided by OrpailleCC, a C++
-                   collection of data stream algorithms, to two canonical
-                   datasets in human activity recognition: Recofit and Banos
-                   \textbackslashemph\{et al\}. Results show that the precision
-                   of floating-point values used by tree nodes can be reduced
-                   from 64 bits to 8 bits with no significant difference in F1
-                   score. In some cases, reduced precision was shown to improve
-                   classification performance, presumably due to its
-                   regularization effect. We conclude that numerical precision
-                   is a relevant hyperparameter in the Mondrian Forest, and
-                   that commonly-used double precision values may not be
-                   necessary for optimal performance. Future work will evaluate
-                   the generalizability of these findings to other data stream
-                   classifiers.},
-  month         = jun,
-  year          = 2021,
-  archiveprefix = {arXiv},
-  eprint        = {2106.14340},
-  primaryclass  = {cs.LG},
-  arxivid       = {2106.14340}
-}
-
-@article{Wang2018-oo,
-  title         = {{Training Deep Neural Networks with 8-bit floating point
-                   numbers}},
-  author        = {Wang, Naigang and Choi, Jungwook and Brand, Daniel and Chen,
-                   Chia-Yu and Gopalakrishnan, Kailash},
-  abstract      = {The state-of-the-art hardware platforms for training Deep
-                   Neural Networks (DNNs) are moving from traditional single
-                   precision (32-bit) computations towards 16 bits of precision
-                   -- in large part due to the high energy efficiency and
-                   smaller bit storage associated with using reduced-precision
-                   representations. However, unlike inference, training with
-                   numbers represented with less than 16 bits has been
-                   challenging due to the need to maintain fidelity of the
-                   gradient computations during back-propagation. Here we
-                   demonstrate, for the first time, the successful training of
-                   DNNs using 8-bit floating point numbers while fully
-                   maintaining the accuracy on a spectrum of Deep Learning
-                   models and datasets. In addition to reducing the data and
-                   computation precision to 8 bits, we also successfully reduce
-                   the arithmetic precision for additions (used in partial
-                   product accumulation and weight updates) from 32 bits to 16
-                   bits through the introduction of a number of key ideas
-                   including chunk-based accumulation and floating point
-                   stochastic rounding. The use of these novel techniques lays
-                   the foundation for a new generation of hardware training
-                   platforms with the potential for 2-4x improved throughput
-                   over today's systems.},
-  month         = dec,
-  year          = 2018,
-  copyright     = {http://arxiv.org/licenses/nonexclusive-distrib/1.0/},
-  archiveprefix = {arXiv},
-  eprint        = {1812.08011},
-  primaryclass  = {cs.LG},
-  arxivid       = {1812.08011}
-} 
-
-@article{Zhang2019-xv,
-  title         = {{QPyTorch: A Low-Precision Arithmetic Simulation Framework}},
-  author        = {Zhang, Tianyi and Lin, Zhiqiu and Yang, Guandao and De Sa,
-                   Christopher},
-  abstract      = {Low-precision training reduces computational cost and
-                   produces efficient models. Recent research in developing new
-                   low-precision training algorithms often relies on simulation
-                   to empirically evaluate the statistical effects of
-                   quantization while avoiding the substantial overhead of
-                   building specific hardware. To support this empirical
-                   research, we introduce QPyTorch, a low-precision arithmetic
-                   simulation framework. Built natively in PyTorch, QPyTorch
-                   provides a convenient interface that minimizes the efforts
-                   needed to reliably convert existing codes to study
-                   low-precision training. QPyTorch is general, and supports a
-                   variety of combinations of precisions, number formats, and
-                   rounding options. Additionally, it leverages an efficient
-                   fused-kernel approach to reduce simulator overhead, which
-                   enables simulation of large-scale, realistic problems.
-                   QPyTorch is publicly available at
-                   https://github.com/Tiiiger/QPyTorch.},
-  month         = oct,
-  year          = 2019,
-  archiveprefix = {arXiv},
-  eprint        = {1910.04540},
-  primaryclass  = {cs.LG},
-  arxivid       = {1910.04540}
-} 
-
-@book{Zucker1994-rg,
-  title     = {{Reuse of high precision arithmetic hardware to perform multiple
-               concurrent low precision calculations}},
-  author    = {Zucker, Daniel F and Lee, Ruby B},
-  publisher = {Computer Systems Laboratory, Stanford University},
-  year      = 1994
-}
-
-
-@article{Symms2004-xj,
-  title    = {{A review of structural magnetic resonance neuroimaging}},
-  author   = {Symms, M and J{\"a}ger, H R and Schmierer, K and Yousry, T A},
-  abstract = {Magnetic resonance imaging (MRI) is often divided into structural
-              MRI and functional MRI (fMRI). The former is a widely used
-              imaging technique in research as well as in clinical practice.
-              This review describes the more important developments in
-              structural MRI in recent years, including high resolution
-              imaging, T2 relaxation measurement, T2*-weighted imaging, T1
-              relaxation measurement, magnetisation transfer imaging, and
-              diffusion imaging. The principles underlying these techniques, as
-              well as their use in research and in clinical practice, will be
-              discussed.},
-  journal  = {J. Neurol. Neurosurg. Psychiatry},
-  volume   = 75,
-  number   = 9,
-  pages    = {1235--1244},
-  month    = sep,
-  year     = 2004,
-  language = {en},
-  issn     = {0022-3050},
-  pmid     = {15314108},
-  doi      = {10.1136/jnnp.2003.032714},
-  pmc      = {PMC1739217}
-}
-
-@article{Fischl2012-bp,
-  title    = {{FreeSurfer}},
-  author   = {Fischl, Bruce},
-  abstract = {FreeSurfer is a suite of tools for the analysis of neuroimaging
-              data that provides an array of algorithms to quantify the
-              functional, connectional and structural properties of the human
-              brain. It has evolved from a package primarily aimed at
-              generating surface representations of the cerebral cortex into
-              one that automatically creates models of most macroscopically
-              visible structures in the human brain given any reasonable
-              T1-weighted input image. It is freely available, runs on a wide
-              variety of hardware and software platforms, and is open source.},
-  journal  = {Neuroimage},
-  volume   = 62,
-  number   = 2,
-  pages    = {774--781},
-  month    = aug,
-  year     = 2012,
-  language = {en},
-  issn     = {1053-8119, 1095-9572},
-  pmid     = {22248573},
-  doi      = {10.1016/j.neuroimage.2012.01.021},
-  pmc      = {PMC3685476}
-}
-
 
 @article{Esteban2019-og,
   title    = {{fMRIPrep: a robust preprocessing pipeline for functional MRI}},
@@ -1209,103 +375,29 @@
   pmc      = {PMC6319393}
 }
 
-
-@article{Soares2016-tz,
-  title    = {{A Hitchhiker's Guide to Functional Magnetic Resonance Imaging}},
-  author   = {Soares, Jos{\'e} M and Magalh{\~a}es, Ricardo and Moreira, Pedro
-              S and Sousa, Alexandre and Ganz, Edward and Sampaio, Adriana and
-              Alves, Victor and Marques, Paulo and Sousa, Nuno},
-  abstract = {Functional Magnetic Resonance Imaging (fMRI) studies have become
-              increasingly popular both with clinicians and researchers as they
-              are capable of providing unique insights into brain functions.
-              However, multiple technical considerations (ranging from
-              specifics of paradigm design to imaging artifacts, complex
-              protocol definition, and multitude of processing and methods of
-              analysis, as well as intrinsic methodological limitations) must
-              be considered and addressed in order to optimize fMRI analysis
-              and to arrive at the most accurate and grounded interpretation of
-              the data. In practice, the researcher/clinician must choose, from
-              many available options, the most suitable software tool for each
-              stage of the fMRI analysis pipeline. Herein we provide a
-              straightforward guide designed to address, for each of the major
-              stages, the techniques, and tools involved in the process. We
-              have developed this guide both to help those new to the technique
-              to overcome the most critical difficulties in its use, as well as
-              to serve as a resource for the neuroimaging community.},
-  journal  = {Front. Neurosci.},
-  volume   = 10,
-  pages    = {515},
-  month    = nov,
-  year     = 2016,
-  keywords = {acquisition; analysis; fMRI; hitchhiker's guide; preprocessing},
+@article{Fischl2012-bp,
+  title    = {{FreeSurfer}},
+  author   = {Fischl, Bruce},
+  abstract = {FreeSurfer is a suite of tools for the analysis of neuroimaging
+              data that provides an array of algorithms to quantify the
+              functional, connectional and structural properties of the human
+              brain. It has evolved from a package primarily aimed at
+              generating surface representations of the cerebral cortex into
+              one that automatically creates models of most macroscopically
+              visible structures in the human brain given any reasonable
+              T1-weighted input image. It is freely available, runs on a wide
+              variety of hardware and software platforms, and is open source.},
+  journal  = {Neuroimage},
+  volume   = 62,
+  number   = 2,
+  pages    = {774--781},
+  month    = aug,
+  year     = 2012,
   language = {en},
-  issn     = {1662-4548, 1662-453X},
-  pmid     = {27891073},
-  doi      = {10.3389/fnins.2016.00515},
-  pmc      = {PMC5102908}
-}
-
-@article{Soares2013-hw,
-  title     = {{A hitchhiker's guide to diffusion tensor imaging}},
-  author    = {Soares, Jos{\'e} M and Marques, Paulo and Alves, Victor and
-               Sousa, Nuno},
-  abstract  = {Diffusion Tensor Imaging (DTI) studies are increasingly popular
-               among clinicians and researchers as they provide unique insights
-               into brain network connectivity. However, in order to optimize
-               the use of DTI, several technical and methodological aspects
-               must be factored in. These include decisions on: acquisition
-               protocol, artifact handling, data quality control,
-               reconstruction algorithm, and visualization approaches, and
-               quantitative analysis methodology. Furthermore, the researcher
-               and/or clinician also needs to take into account and decide on
-               the most suited software tool(s) for each stage of the DTI
-               analysis pipeline. Herein, we provide a straightforward
-               hitchhiker's guide, covering all of the workflow's major stages.
-               Ultimately, this guide will help newcomers navigate the most
-               critical roadblocks in the analysis and further encourage the
-               use of DTI.},
-  journal   = {Front. Neurosci.},
-  publisher = {frontiersin.org},
-  volume    = 7,
-  pages     = {31},
-  month     = mar,
-  year      = 2013,
-  keywords  = {acquisition; analysis; diffusion tensor imaging; hitchhiker's
-               guide; processing},
-  language  = {en},
-  issn      = {1662-4548, 1662-453X},
-  pmid      = {23486659},
-  doi       = {10.3389/fnins.2013.00031},
-  pmc       = {PMC3594764}
-}
-
-@article{Le_Bihan2015-vp,
-  title    = {{Diffusion Magnetic Resonance Imaging: What Water Tells Us about
-              Biological Tissues}},
-  author   = {Le Bihan, Denis and Iima, Mami},
-  abstract = {Since its introduction in the mid-1980s, diffusion magnetic
-              resonance imaging (MRI), which measures the random motion of
-              water molecules in tissues, revealing their microarchitecture,
-              has become a pillar of modern neuroimaging. Its main clinical
-              domain has been the diagnosis of acute brain stroke and
-              neurogical disorders, but it is also used in the body for the
-              detection and management of cancer lesions. It can also produce
-              stunning maps of white matter tracks in the brain, with the
-              potential to aid in the understanding of some psychiatric
-              disorders. However, in order to exploit fully the potential of
-              this method, a deeper understanding of the mechanisms that govern
-              the diffusion of water in tissues is needed.},
-  journal  = {PLoS Biol.},
-  volume   = 13,
-  number   = 7,
-  pages    = {e1002203},
-  month    = jul,
-  year     = 2015,
-  language = {en},
-  issn     = {1544-9173, 1545-7885},
-  pmid     = {26204162},
-  doi      = {10.1371/journal.pbio.1002203},
-  pmc      = {PMC4512706}
+  issn     = {1053-8119, 1095-9572},
+  pmid     = {22248573},
+  doi      = {10.1016/j.neuroimage.2012.01.021},
+  pmc      = {PMC3685476}
 }
 
 @article{Garyfallidis2014-ve,
@@ -1358,152 +450,50 @@
   pmc      = {PMC3931231}
 }
 
-@article{Wen2018-to,
-  title    = {{Deep Learning Methods to Process fMRI Data and Their Application
-              in the Diagnosis of Cognitive Impairment: A Brief Overview and
-              Our Opinion}},
-  author   = {Wen, Dong and Wei, Zhenhao and Zhou, Yanhong and Li, Guolin and
-              Zhang, Xu and Han, Wei},
-  journal  = {Front. Neuroinform.},
-  volume   = 12,
-  pages    = {23},
-  month    = apr,
-  year     = 2018,
-  keywords = {cognitive impairment; convolutional neural network; deep
-              learning; deep neural network; fMRI; radial basis function
-              network},
-  language = {en},
-  issn     = {1662-5196},
-  pmid     = {29755334},
-  doi      = {10.3389/fninf.2018.00023},
-  pmc      = {PMC5932168}
+@article{Gustafson2017-wo,
+  title     = {{Beating Floating Point at its Own Game: Posit Arithmetic}},
+  author    = {{Gustafson} and {Yonemoto}},
+  abstract  = {A new data type called a posit is designed as a direct drop-in
+               replacement for IEEE Standard 754 floating-point numbers floats.
+               Unlike earlier forms of universal number unum arithmetic, posits
+               do not require interval arithmetic or variable size operands;
+               like floats, they round if an answer is inexact. However, they
+               provide compelling advantages over floats, including larger
+               dynamic range, higher accuracy, better closure, bitwise
+               identical results across systems, simpler hardware, and simpler
+               exception handling. Posits never overflow to infinity or
+               underflow to zero, and ``Nota-Number'' NaN indicates an action
+               instead of a bit pattern. A posit processing unit takes less
+               circuitry than an IEEE float FPU. With lower power use and
+               smaller silicon footprint, the posit operations per second POPS
+               supported by a chip can be significantly higher than the FLOPS
+               using similar hardware resources. GPU accelerators and Deep
+               Learning processors, in particular, can do more per watt and per
+               dollar with posits, yet deliver superior answer quality. A
+               comprehensive series of benchmarks compares floats and posits
+               for decimals of accuracy produced for a set precision. Low
+               precision posits provide a better solution than ``approximate
+               computing'' methods that try to tolerate decreased answer
+               quality. High precision posits provide more correct decimals
+               than floats of the same size; in some cases, a 32-bit posit may
+               safely replace a 64-bit float. In other words, posits beat
+               floats at their own game.},
+  journal   = {Supercomput. Front. Innov.: Int. J.},
+  publisher = {South Ural State University},
+  volume    = 4,
+  number    = 2,
+  pages     = {71--86},
+  month     = jun,
+  year      = 2017,
+  address   = {Chelyabinsk, RUS},
+  keywords  = {unum computing, posits, neural networks, linear algebra,
+               LINPACK, floating point, energy-efficient computing, computer
+               arithmetic, valid arithmetic},
+  issn      = {2409-6008},
+  doi       = {10.14529/jsfi170206}
 }
 
-@inproceedings{Nie2016-sw,
-  title     = {{3D Deep Learning for Multi-modal Imaging-Guided Survival Time
-               Prediction of Brain Tumor Patients}},
-  booktitle = {{Medical Image Computing and Computer-Assisted Intervention --
-               MICCAI 2016}},
-  author    = {Nie, Dong and Zhang, Han and Adeli, Ehsan and Liu, Luyan and
-               Shen, Dinggang},
-  abstract  = {High-grade glioma is the most aggressive and severe brain tumor
-               that leads to death of almost 50 \% patients in 1--2 years.
-               Thus, accurate prognosis for glioma patients would provide
-               essential guidelines for their treatment planning. Conventional
-               survival prediction generally utilizes clinical information and
-               limited handcrafted features from magnetic resonance images
-               (MRI), which is often time consuming, laborious and subjective.
-               In this paper, we propose using deep learning frameworks to
-               automatically extract features from multi-modal preoperative
-               brain images (i.e., T1 MRI, fMRI and DTI) of high-grade glioma
-               patients. Specifically, we adopt 3D convolutional neural
-               networks (CNNs) and also propose a new network architecture for
-               using multi-channel data and learning supervised features. Along
-               with the pivotal clinical features, we finally train a support
-               vector machine to predict if the patient has a long or short
-               overall survival (OS) time. Experimental results demonstrate
-               that our methods can achieve an accuracy as high as 89.9 \% We
-               also find that the learned features from fMRI and DTI play more
-               important roles in accurately predicting the OS time, which
-               provides valuable insights into functional neuro-oncological
-               applications.},
-  publisher = {Springer International Publishing},
-  pages     = {212--220},
-  year      = 2016,
-  doi       = {10.1007/978-3-319-46723-8\_25}
-}
 
-@article{Wen2018-xm,
-  title    = {{Neural Encoding and Decoding with Deep Learning for Dynamic
-              Natural Vision}},
-  author   = {Wen, Haiguang and Shi, Junxing and Zhang, Yizhen and Lu, Kun-Han
-              and Cao, Jiayue and Liu, Zhongming},
-  abstract = {Convolutional neural network (CNN) driven by image recognition
-              has been shown to be able to explain cortical responses to static
-              pictures at ventral-stream areas. Here, we further showed that
-              such CNN could reliably predict and decode functional magnetic
-              resonance imaging data from humans watching natural movies,
-              despite its lack of any mechanism to account for temporal
-              dynamics or feedback processing. Using separate data, encoding
-              and decoding models were developed and evaluated for describing
-              the bi-directional relationships between the CNN and the brain.
-              Through the encoding models, the CNN-predicted areas covered not
-              only the ventral stream, but also the dorsal stream, albeit to a
-              lesser degree; single-voxel response was visualized as the
-              specific pixel pattern that drove the response, revealing the
-              distinct representation of individual cortical location; cortical
-              activation was synthesized from natural images with
-              high-throughput to map category representation, contrast, and
-              selectivity. Through the decoding models, fMRI signals were
-              directly decoded to estimate the feature representations in both
-              visual and semantic spaces, for direct visual reconstruction and
-              semantic categorization, respectively. These results corroborate,
-              generalize, and extend previous findings, and highlight the value
-              of using deep learning, as an all-in-one model of the visual
-              cortex, to understand and decode natural vision.},
-  journal  = {Cereb. Cortex},
-  volume   = 28,
-  number   = 12,
-  pages    = {4136--4160},
-  month    = dec,
-  year     = 2018,
-  language = {en},
-  issn     = {1047-3211, 1460-2199},
-  pmid     = {29059288},
-  doi      = {10.1093/cercor/bhx268},
-  pmc      = {PMC6215471}
-}
-
-@article{Zou2017-hd,
-  title    = {{3D CNN Based Automatic Diagnosis of Attention Deficit
-              Hyperactivity Disorder Using Functional and Structural MRI}},
-  author   = {Zou, Liang and Zheng, Jiannan and Miao, Chunyan and Mckeown,
-              Martin J and Wang, Z Jane},
-  abstract = {Attention deficit hyperactivity disorder (ADHD) is one of the
-              most common mental health disorders. As a neuro development
-              disorder, neuroimaging technologies, such as magnetic resonance
-              imaging (MRI), coupled with machine learning algorithms, are
-              being increasingly explored as biomarkers in ADHD. Among various
-              machine learning methods, deep learning has demonstrated
-              excellent performance on many imaging tasks. With the
-              availability of publically-available, large neuroimaging data
-              sets for training purposes, deep learning-based automatic
-              diagnosis of psychiatric disorders can become feasible. In this
-              paper, we develop a deep learning-based ADHD classification
-              method via 3-D convolutional neural networks (CNNs) applied to
-              MRI scans. Since deep neural networks may utilize millions of
-              parameters, even the large number of MRI samples in pooled data
-              sets is still relatively limited if one is to learn
-              discriminative features from the raw data. Instead, here we
-              propose to first extract meaningful 3-D low-level features from
-              functional MRI (fMRI) and structural MRI (sMRI) data.
-              Furthermore, inspired by radiologists' typical approach for
-              examining brain images, we design a 3-D CNN model to investigate
-              the local spatial patterns of MRI features. Finally, we discover
-              that brain functional and structural information are
-              complementary, and design a multi-modality CNN architecture to
-              combine fMRI and sMRI features. Evaluations on the hold-out
-              testing data of the ADHD-200 global competition shows that the
-              proposed multi-modality 3-D CNN approach achieves the
-              state-of-the-art accuracy of 69.15\% and outperforms reported
-              classifiers in the literature, even with fewer training samples.
-              We suggest that multi-modality classification will be a promising
-              direction to find potential neuroimaging biomarkers of neuro
-              development disorders.},
-  journal  = {IEEE Access},
-  volume   = 5,
-  pages    = {23626--23636},
-  year     = 2017,
-  keywords = {Feature extraction;Three-dimensional
-              displays;Testing;Training;Neuroimaging;Biological neural
-              networks;Attention deficit hyperactive disorder;3D CNN;magnetic
-              resonance imaging;multi-modality analysis},
-  issn     = {2169-3536},
-  doi      = {10.1109/ACCESS.2017.2762703}
-}
-
-% The entry below contains non-ASCII chars that could not be converted
-% to a LaTeX equivalent.
 @article{Henschel2020-vq,
   title    = {{FastSurfer - A fast and accurate deep learning based neuroimaging
               pipeline}},
@@ -1549,252 +539,123 @@
   pmc      = {PMC7898243}
 }
 
-@article{Geissler2005-gi,
-  title    = {{Influence of fMRI smoothing procedures on replicability of fine
-              scale motor localization}},
-  author   = {Geissler, Alexander and Lanzenberger, Rupert and Barth, Markus
-              and Tahamtan, Amir Reza and Milakara, Denny and Gartus, Andreas
-              and Beisteiner, Roland},
-  abstract = {Recent publications analyzing the influence of spatial smoothing
-              on fMRI brain activation results demonstrated that smoothing may
-              artificially combine activations from adjacent though
-              functionally and anatomically distinct brain regions and that
-              activation from large draining vessels may be smoothed into
-              neighboring neuronal tissue. To investigate whether functional
-              localizations may be artificially shifted by the smoothing
-              procedure we performed replicability measurements. Localization
-              centers of motor hand activations achieved during different
-              conditions (isolated hand movements and simultaneous hand and
-              chin movements) were compared with respect to smoothing effects.
-              The voxel with the highest probability to represent a true
-              positive activation was localized with a non-smoothed and a
-              standard 4 x 4 x 6 mm smoothed correlational data analysis
-              technique. Results show an increase of motor center aberrations
-              between measurements by about 100\% due to data smoothing
-              indicating a statistically significant decrease in localization
-              replicability.},
-  journal  = {Neuroimage},
-  volume   = 24,
-  number   = 2,
-  pages    = {323--331},
-  month    = jan,
-  year     = 2005,
-  language = {en},
-  issn     = {1053-8119},
-  pmid     = {15627575},
-  doi      = {10.1016/j.neuroimage.2004.08.042}
+
+@article{Higham2019-yd,
+  title     = {{Simulating Low Precision Floating-Point Arithmetic}},
+  author    = {Higham, Nicholas J and Pranesh, Srikara},
+  abstract  = {The half-precision (fp16) floating-point format, defined in the
+               2008 revision of the IEEE standard for floating-point
+               arithmetic, and a more recently proposed half-precision format
+               bfloat16, are increasingly available in GPUs and other
+               accelerators. While the support for low precision arithmetic is
+               mainly motivated by machine learning applications, general
+               purpose numerical algorithms can benefit from it, too, gaining
+               in speed, energy usage, and reduced communication costs. Since
+               the appropriate hardware is not always available, and one may
+               wish to experiment with new arithmetics not yet implemented in
+               hardware, software simulations of low precision arithmetic are
+               needed. We discuss how to simulate low precision arithmetic
+               using arithmetic of higher precision. We examine the correctness
+               of such simulations and explain via rounding error analysis why
+               a natural method of simulation can provide results that are more
+               accurate than actual computations at low precision. We provide a
+               MATLAB function, chop, that can be used to efficiently simulate
+               fp16, bfloat16, and other low precision arithmetics, with or
+               without the representation of subnormal numbers and with the
+               options of round to nearest, directed rounding, stochastic
+               rounding, and random bit flips in the significand. We
+               demonstrate the advantages of this approach over defining a new
+               MATLAB class and overloading operators.},
+  journal   = {SIAM J. Sci. Comput.},
+  publisher = {Society for Industrial and Applied Mathematics},
+  volume    = 41,
+  number    = 5,
+  pages     = {C585--C602},
+  month     = jan,
+  year      = 2019,
+  issn      = {1064-8275},
+  doi       = {10.1137/19M1251308}
 }
 
-@article{Molloy2014-oc,
-  title    = {{The influence of spatial resolution and smoothing on the
-              detectability of resting-state and task fMRI}},
-  author   = {Molloy, Erin K and Meyerand, Mary E and Birn, Rasmus M},
-  abstract = {Functional MRI blood oxygen level-dependent (BOLD) signal changes
-              can be subtle, motivating the use of imaging parameters and
-              processing strategies that maximize the temporal signal-to-noise
-              ratio (tSNR) and thus the detection power of neuronal
-              activity-induced fluctuations. Previous studies have shown that
-              acquiring data at higher spatial resolutions results in greater
-              percent BOLD signal changes, and furthermore that spatially
-              smoothing higher resolution fMRI data improves tSNR beyond that
-              of data originally acquired at a lower resolution. However,
-              higher resolution images come at the cost of increased
-              acquisition time, and the number of image volumes also influences
-              detectability. The goal of our study is to determine how the
-              detection power of neuronally induced BOLD fluctuations acquired
-              at higher spatial resolutions and then spatially smoothed
-              compares to data acquired at the lower resolutions with the same
-              imaging duration. The number of time points acquired during a
-              given amount of imaging time is a practical consideration given
-              the limited ability of certain populations to lie still in the
-              MRI scanner. We compare acquisitions at three different in-plane
-              spatial resolutions (3.50$\times$3.50mm(2),
-              2.33$\times$2.33mm(2), 1.75$\times$1.75mm(2)) in terms of their
-              tSNR, contrast-to-noise ratio, and the power to detect both
-              task-related activation and resting-state functional
-              connectivity. The impact of SENSE acceleration, which speeds up
-              acquisition time increasing the number of images collected, is
-              also evaluated. Our results show that after spatially smoothing
-              the data to the same intrinsic resolution, lower resolution
-              acquisitions have a slightly higher detection power of
-              task-activation in some, but not all, brain areas. There were no
-              significant differences in functional connectivity as a function
-              of resolution after smoothing. Similarly, the reduced tSNR of
-              fMRI data acquired with a SENSE factor of 2 is offset by the
-              greater number of images acquired, resulting in few significant
-              differences in detection power of either functional activation or
-              connectivity after spatial smoothing.},
-  journal  = {Neuroimage},
-  volume   = 86,
-  pages    = {221--230},
-  month    = feb,
-  year     = 2014,
-  keywords = {Detection power; Functional MRI; Functional connectivity;
-              Resolution; SENSE; Spatial smoothing},
-  language = {en},
-  issn     = {1053-8119, 1095-9572},
-  pmid     = {24021836},
-  doi      = {10.1016/j.neuroimage.2013.09.001},
-  pmc      = {PMC5736131}
+@misc{intel-BF16-2018,
+  title        = {{BFLOAT16 - Hardware Numerics Definition}},
+  url          = {https://www.intel.com/content/dam/develop/external/us/en/documents/bf16-hardware-numerics-definition-white-paper.pdf},
+  howpublished = {\url{https://www.intel.com/content/dam/develop/external/us/en/documents/bf16-hardware-numerics-definition-white-paper.pdf}},
+  journal      = {Intel},
+  publisher    = {Intel},
+  author       = {Intel},
+  year         = {2018},
+  month        = {Nov}
 }
 
-@article{Scheinost2014-ds,
-  title    = {{The impact of image smoothness on intrinsic functional
-              connectivity and head motion confounds}},
-  author   = {Scheinost, Dustin and Papademetris, Xenophon and Constable, R
-              Todd},
-  abstract = {We present a novel method for controlling the effects of group
-              differences in motion on functional connectivity studies.
-              Resting-state functional magnetic resonance imaging (rs-fMRI) is
-              a powerful tool that allows for the assessment of whole-brain
-              functional organization across a wide range of clinical
-              populations. However, as highlighted by recent studies, many
-              measures commonly used in rs-fMRI are highly correlated with
-              subject head movement. A source of this problem is that motion
-              itself, and motion correction algorithms, lead to spatial
-              smoothing, which is then variable across the brain and across
-              subjects or groups dependent upon the amount of motion present
-              during scanning. Studies aimed at elucidating differences between
-              populations that have different head-motion characteristics
-              (e.g., patients often move more in the scanner than healthy
-              control subjects) are significantly confounded by these effects.
-              In this work, we propose a solution to this problem, uniform
-              smoothing, which ensures that all subject images in a study have
-              equal effective spatial resolution. We establish that differences
-              in the intrinsic smoothness of images across a group can confound
-              connectivity results and link these differences in smoothness to
-              motion. We demonstrate that eliminating these smoothness
-              differences via our uniform smoothing solution is successful in
-              reducing confounds related to the differences in head motion
-              between subjects.},
-  journal  = {Neuroimage},
-  volume   = 95,
-  pages    = {13--21},
-  month    = jul,
-  year     = 2014,
-  keywords = {Connectivity; Head movement; Image smoothness; Motion;
-              Resting-state fMRI},
-  language = {en},
-  issn     = {1053-8119, 1095-9572},
-  pmid     = {24657356},
-  doi      = {10.1016/j.neuroimage.2014.03.035},
-  pmc      = {PMC4076413}
+@article{Johnson2018-up,
+  title         = {{Rethinking floating point for deep learning}},
+  author        = {Johnson, Jeff},
+  abstract      = {Reducing hardware overhead of neural networks for faster or
+                   lower power inference and training is an active area of
+                   research. Uniform quantization using integer multiply-add
+                   has been thoroughly investigated, which requires learning
+                   many quantization parameters, fine-tuning training or other
+                   prerequisites. Little effort is made to improve floating
+                   point relative to this baseline; it remains energy
+                   inefficient, and word size reduction yields drastic loss in
+                   needed dynamic range. We improve floating point to be more
+                   energy efficient than equivalent bit width integer hardware
+                   on a 28 nm ASIC process while retaining accuracy in 8 bits
+                   with a novel hybrid log multiply/linear add, Kulisch
+                   accumulation and tapered encodings from Gustafson's posit
+                   format. With no network retraining, and drop-in replacement
+                   of all math and float32 parameters via round-to-nearest-even
+                   only, this open-sourced 8-bit log float is within 0.9\%
+                   top-1 and 0.2\% top-5 accuracy of the original float32
+                   ResNet-50 CNN model on ImageNet. Unlike int8 quantization,
+                   it is still a general purpose floating point arithmetic,
+                   interpretable out-of-the-box. Our 8/38-bit log float
+                   multiply-add is synthesized and power profiled at 28 nm at
+                   0.96x the power and 1.12x the area of 8/32-bit integer
+                   multiply-add. In 16 bits, our log float multiply-add is
+                   0.59x the power and 0.68x the area of IEEE 754 float16 fused
+                   multiply-add, maintaining the same signficand precision and
+                   dynamic range, proving useful for training ASICs as well.},
+  month         = nov,
+  year          = 2018,
+  archiveprefix = {arXiv},
+  eprint        = {1811.01721},
+  primaryclass  = {cs.NA},
+  arxivid       = {1811.01721},
+  journal       = {arXiv}
 }
 
-@article{Li2021-rv,
-  title    = {{Whole brain segmentation with full volume neural network}},
-  author   = {Li, Yeshu and Cui, Jonathan and Sheng, Yilun and Liang, Xiao and
-              Wang, Jingdong and Chang, Eric I-Chao and Xu, Yan},
-  abstract = {Whole brain segmentation is an important neuroimaging task that
-              segments the whole brain volume into anatomically labeled
-              regions-of-interest. Convolutional neural networks have
-              demonstrated good performance in this task. Existing solutions,
-              usually segment the brain image by classifying the voxels, or
-              labeling the slices or the sub-volumes separately. Their
-              representation learning is based on parts of the whole volume
-              whereas their labeling result is produced by aggregation of
-              partial segmentation. Learning and inference with incomplete
-              information could lead to sub-optimal final segmentation result.
-              To address these issues, we propose to adopt a full volume
-              framework, which feeds the full volume brain image into the
-              segmentation network and directly outputs the segmentation result
-              for the whole brain volume. The framework makes use of complete
-              information in each volume and can be implemented easily. An
-              effective instance in this framework is given subsequently. We
-              adopt the 3D high-resolution network (HRNet) for learning
-              spatially fine-grained representations and the mixed precision
-              training scheme for memory-efficient training. Extensive
-              experiment results on a publicly available 3D MRI brain dataset
-              show that our proposed model advances the state-of-the-art
-              methods in terms of segmentation performance.},
-  journal  = {Comput. Med. Imaging Graph.},
-  volume   = 93,
-  pages    = {101991},
-  month    = oct,
-  year     = 2021,
-  keywords = {Brain; Deep learning; Neural networks; Segmentation},
-  language = {en},
-  issn     = {0895-6111, 1879-0771},
-  pmid     = {34634548},
-  doi      = {10.1016/j.compmedimag.2021.101991}
-}
-
-@article{Brunn2021-zj,
-  title    = {{Fast GPU 3D diffeomorphic image registration}},
-  author   = {Brunn, Malte and Himthani, Naveen and Biros, George and Mehl,
-              Miriam and Mang, Andreas},
-  abstract = {3D image registration is one of the most fundamental and
-              computationally expensive operations in medical image analysis.
-              Here, we present a mixed-precision, Gauss-Newton-Krylov solver
-              for diffeomorphic registration of two images. Our work extends
-              the publicly available CLAIRE library to GPU architectures.
-              Despite the importance of image registration, only a few
-              implementations of large deformation diffeomorphic registration
-              packages support GPUs. Our contributions are new algorithms to
-              significantly reduce the run time of the two main computational
-              kernels in CLAIRE: calculation of derivatives and scattered-data
-              interpolation. We deploy (i) highly-optimized, mixed-precision
-              GPU-kernels for the evaluation of scattered-data interpolation,
-              (ii) replace Fast-Fourier-Transform (FFT)-based first-order
-              derivatives with optimized 8th-order finite differences, and
-              (iii) compare with state-of-the-art CPU and GPU implementations.
-              As a highlight, we demonstrate that we can register 2563 clinical
-              images in less than 6 seconds on a single NVIDIA Tesla V100. This
-              amounts to over 20$\times$ speed-up over the current version of
-              CLAIRE and over 30$\times$ speed-up over existing GPU
-              implementations.},
-  journal  = {J. Parallel Distrib. Comput.},
-  volume   = 149,
-  pages    = {149--162},
-  month    = mar,
-  year     = 2021,
-  keywords = {Diffeomorphic Image Registration; GPU computing;
-              Gauss--Newton--Krylov Method; Mixed-Precision Solver; Parallel
-              Optimization},
-  language = {en},
-  issn     = {0743-7315},
-  pmid     = {33380769},
-  doi      = {10.1016/j.jpdc.2020.11.006},
-  pmc      = {PMC7769216}
-}
-
-@unpublished{Li2021-om,
-  title    = {{Moving Beyond Processing and Analysis-Related Variation in
-              Neuroscience}},
-  author   = {Li, Xinhui and Ai, Lei and Giavasis, Steve and Jin, Hecheng and
-              Feczko, Eric and Xu, Ting and Clucas, Jon and Franco, Alexandre
-              and Heinsfeld, Anibal S{\'o}lon and Adebimpe, Azeez and
-              Vogelstein, Joshua T and Yan, Chao-Gan and Esteban, Oscar and
-              Poldrack, Russell A and Craddock, Cameron and Fair, Damien and
-              Satterthwaite, Theodore and Kiar, Gregory and Milham, Michael P},
-  abstract = {When fields lack consensus standards and ground truths for their
-              analytic methods, reproducibility tends to be more of an ideal
-              than a reality. Such has been the case for functional
-              neuroimaging, where there exists a sprawling space of tools from
-              which scientists can construct processing pipelines and draw
-              interpretations. We provide a critical evaluation of the impact
-              of differences observed in results across five independently
-              developed functional MRI minimal preprocessing pipelines. We show
-              that even when handling the same exact data, inter-pipeline
-              agreement was only moderate, with the specific steps that
-              contribute to the lack of agreement varying across pipeline
-              comparisons. Using a densely sampled test-retest dataset, we show
-              that the limitations imposed by inter-pipeline agreement mainly
-              become appreciable when the reliability of the underlying data is
-              high. We highlight the importance of comparison among analytic
-              tools and parameters, as both widely debated (e.g., global signal
-              regression) and commonly overlooked (e.g., MNI template version)
-              decisions were each found to lead to marked variation. We provide
-              recommendations for incorporating tool-based variability in
-              functional neuroimaging analyses and a supporting infrastructure.
-              \#\#\# Competing Interest Statement The authors have declared no
-              competing interest.},
-  journal  = {bioRxiv},
-  pages    = {2021.12.01.470790},
-  month    = dec,
-  year     = 2021,
-  language = {en},
-  doi      = {10.1101/2021.12.01.470790}
+@article{Judd2015-kw,
+  title         = {{Reduced-Precision Strategies for Bounded Memory in Deep
+                   Neural Nets}},
+  author        = {Judd, Patrick and Albericio, Jorge and Hetherington, Tayler
+                   and Aamodt, Tor and Jerger, Natalie Enright and Urtasun,
+                   Raquel and Moshovos, Andreas},
+  abstract      = {This work investigates how using reduced precision data in
+                   Convolutional Neural Networks (CNNs) affects network
+                   accuracy during classification. More specifically, this
+                   study considers networks where each layer may use different
+                   precision data. Our key result is the observation that the
+                   tolerance of CNNs to reduced precision data not only varies
+                   across networks, a well established observation, but also
+                   within networks. Tuning precision per layer is appealing as
+                   it could enable energy and performance improvements. In this
+                   paper we study how error tolerance across layers varies and
+                   propose a method for finding a low precision configuration
+                   for a network while maintaining high accuracy. A diverse set
+                   of CNNs is analyzed showing that compared to a conventional
+                   implementation using a 32-bit floating-point representation
+                   for all layers, and with less than 1\% loss in relative
+                   accuracy, the data footprint required by these networks can
+                   be reduced by an average of 74\% and up to 92\%.},
+  month         = nov,
+  year          = 2015,
+  archiveprefix = {arXiv},
+  eprint        = {1511.05236},
+  primaryclass  = {cs.LG},
+  arxivid       = {1511.05236},
+  journal       = {arXiv}
 }
 
 @article{Kiar2020-uv,
@@ -1854,133 +715,142 @@
   pmc      = {PMC7418878}
 }
 
-@unpublished{Kiar2021-uq,
-  title    = {{Numerical Uncertainty in Analytical Pipelines Lead to Impactful
-              Variability in Brain Networks}},
-  author   = {Kiar, Gregory and Chatelain, Yohan and De, Oliveira Castro Pablo
-              and Petit, Eric and Rokem, Ariel and Varoquaux, Ga{\"e}l and
-              Misic, Bratislav and Evans, Alan C and Glatard, Tristan},
-  abstract = {The analysis of brain-imaging data requires complex processing
-              pipelines to support findings on brain function or pathologies.
-              Recent work has shown that variability in analytical decisions,
-              small amounts of noise, or computational environments can lead to
-              substantial differences in the results, endangering the trust in
-              conclusions1-7. We explored the instability of results by
-              instrumenting a connectome estimation pipeline with Monte Carlo
-              Arithmetic8,9 to introduce random noise throughout. We evaluated
-              the reliability of the connectomes, their features10,11, and the
-              impact on analysis12,13. The stability of results was found to
-              range from perfectly stable to highly unstable. This paper
-              highlights the potential of leveraging induced variance in
-              estimates of brain connectivity to reduce the bias in networks
-              alongside increasing the robustness of their applications in the
-              classification of individual differences. We demonstrate that
-              stability evaluations are necessary for understanding error
-              inherent to brain imaging experiments, and how numerical analysis
-              can be applied to typical analytical workflows both in brain
-              imaging and other domains of computational science. Overall,
-              while the extreme variability in results due to analytical
-              instabilities could severely hamper our understanding of brain
-              organization, it also leads to an increase in the reliability of
-              datasets. \#\#\# Competing Interest Statement The authors have
-              declared no competing interest.},
-  journal  = {bioRxiv},
-  pages    = {2020.10.15.341495},
-  month    = mar,
-  year     = 2021,
-  language = {en},
-  doi      = {10.1101/2020.10.15.341495}
+@article{Kingsbury1971-kx,
+  title     = {{Digital filtering using logarithmic arithmetic}},
+  author    = {Kingsbury, Nick G and Rayner, Peter J W},
+  abstract  = {A method of computation is described in which all signals are
+               encoded logarithmically, giving a great improvement in dynamic
+               range compared with fixed-point linearly encoded arithmetic. Two
+               ways of adding or subtracting logarithmically encoded numbers
+               are suggested, together with a logarithmic digital-analogue
+               convertor.},
+  journal   = {Electron. Lett.},
+  publisher = {IET},
+  volume    = 7,
+  number    = 2,
+  pages     = {56--58},
+  year      = 1971,
+  issn      = {0013-5194}
 }
 
-@unpublished{Kiar2021-cj,
-  title    = {{Data Augmentation Through Monte Carlo Arithmetic Leads to More
-              Generalizable Classification in Connectomics}},
-  author   = {Kiar, Gregory and Chatelain, Yohan and Salari, Ali and Evans,
-              Alan C and Glatard, Tristan},
-  abstract = {Machine learning models are commonly applied to human brain
-              imaging datasets in an effort to associate function or structure
-              with behaviour, health, or other individual phenotypes. Such
-              models often rely on low-dimensional maps generated by complex
-              processing pipelines. However, the numerical instabilities
-              inherent to pipelines limit the fidelity of these maps and
-              introduce computational bias. Monte Carlo Arithmetic, a technique
-              for introducing controlled amounts of numerical noise, was used
-              to perturb a structural connectome estimation pipeline,
-              ultimately producing a range of plausible networks for each
-              sample. The variability in the perturbed networks was captured in
-              an augmented dataset, which was then used for an age
-              classification task. We found that resampling brain networks
-              across a series of such numerically perturbed outcomes led to
-              improved performance in all tested classifiers, preprocessing
-              strategies, and dimensionality reduction techniques. Importantly,
-              we find that this benefit does not hinge on a large number of
-              perturbations, suggesting that even minimally perturbing a
-              dataset adds meaningful variance which can be captured in the
-              subsequently designed models. ![Figure][1] This paper
-              demonstrates how Monte Carlo Arithmetic, a dataagnostic
-              perturbation technique, can be used for dataset augmentation
-              during the generation of structural connectomes and improve
-              downstream phenotypic prediction. \#\#\# Competing Interest
-              Statement The authors have declared no competing interest. [1]:
-              pending:yes},
-  journal  = {bioRxiv},
-  pages    = {2020.12.16.423084},
+@article{Le_Bihan2015-vp,
+  title    = {{Diffusion Magnetic Resonance Imaging: What Water Tells Us about
+              Biological Tissues}},
+  author   = {Le Bihan, Denis and Iima, Mami},
+  abstract = {Since its introduction in the mid-1980s, diffusion magnetic
+              resonance imaging (MRI), which measures the random motion of
+              water molecules in tissues, revealing their microarchitecture,
+              has become a pillar of modern neuroimaging. Its main clinical
+              domain has been the diagnosis of acute brain stroke and
+              neurogical disorders, but it is also used in the body for the
+              detection and management of cancer lesions. It can also produce
+              stunning maps of white matter tracks in the brain, with the
+              potential to aid in the understanding of some psychiatric
+              disorders. However, in order to exploit fully the potential of
+              this method, a deeper understanding of the mechanisms that govern
+              the diffusion of water in tissues is needed.},
+  journal  = {PLoS Biol.},
+  volume   = 13,
+  number   = 7,
+  pages    = {e1002203},
   month    = jul,
-  year     = 2021,
+  year     = 2015,
   language = {en},
-  doi      = {10.1101/2020.12.16.423084}
+  issn     = {1544-9173, 1545-7885},
+  pmid     = {26204162},
+  doi      = {10.1371/journal.pbio.1002203},
+  pmc      = {PMC4512706}
+} 
+
+@article{Lesser2011-mn,
+  title     = {{Effects of Reduced Precision on Floating-Point SVM
+               Classification Accuracy}},
+  author    = {Lesser, Bernd and M{\"u}cke, Manfred and Gansterer, Wilfried N},
+  abstract  = {There is growing interest in performing ever more complex
+               classification tasks on mobile and embedded devices in
+               real-time, which results in the need for e\_cient
+               implementations of the respective algorithms. Support vector
+               machines (SVMs) represent a powerful class of nonlinear
+               classifiers, and reducing the working precision represents a
+               promising approach to achieving e\_cient implementations of the
+               SVM classification phase. However, the relationship between SVM
+               classification accuracy and the arithmetic precision used is not
+               yet su\_ciently understood. We investigate this relationship in
+               floating-point arithmetic and illustrate that often a large
+               reduction in the working precision of the classification process
+               is possible without loss in classification accuracy. Moreover,
+               we investigate the adaptation of bounds on allowable SVM
+               parameter perturbations in order to estimate the lowest possible
+               working precision in floating-point arithmetic. Among the three
+               representative data sets considered in this paper, none requires
+               a precision higher than 15 bit, which is a considerable
+               reduction from the 53 bit used in double precision
+               floating-point arithmetic. Furthermore, we demonstrate analytic
+               bounds on the working precision for SVMs with Gaussian kernel
+               providing good predictions of possible reductions in the working
+               precision without sacrificing classification accuracy.},
+  journal   = {Procedia Comput. Sci.},
+  publisher = {Elsevier},
+  volume    = 4,
+  pages     = {508--517},
+  month     = jan,
+  year      = 2011,
+  keywords  = {SVM; machine learning; reduced precision floating-point
+               arithmetic; perturbation analysis; quantization effects},
+  issn      = {1877-0509},
+  doi       = {10.1016/j.procs.2011.04.053}
+} 
+
+@article{Li2021-rv,
+  title    = {{Whole brain segmentation with full volume neural network}},
+  author   = {Li, Yeshu and Cui, Jonathan and Sheng, Yilun and Liang, Xiao and
+              Wang, Jingdong and Chang, Eric I-Chao and Xu, Yan},
+  abstract = {Whole brain segmentation is an important neuroimaging task that
+              segments the whole brain volume into anatomically labeled
+              regions-of-interest. Convolutional neural networks have
+              demonstrated good performance in this task. Existing solutions,
+              usually segment the brain image by classifying the voxels, or
+              labeling the slices or the sub-volumes separately. Their
+              representation learning is based on parts of the whole volume
+              whereas their labeling result is produced by aggregation of
+              partial segmentation. Learning and inference with incomplete
+              information could lead to sub-optimal final segmentation result.
+              To address these issues, we propose to adopt a full volume
+              framework, which feeds the full volume brain image into the
+              segmentation network and directly outputs the segmentation result
+              for the whole brain volume. The framework makes use of complete
+              information in each volume and can be implemented easily. An
+              effective instance in this framework is given subsequently. We
+              adopt the 3D high-resolution network (HRNet) for learning
+              spatially fine-grained representations and the mixed precision
+              training scheme for memory-efficient training. Extensive
+              experiment results on a publicly available 3D MRI brain dataset
+              show that our proposed model advances the state-of-the-art
+              methods in terms of segmentation performance.},
+  journal  = {Comput. Med. Imaging Graph.},
+  volume   = 93,
+  pages    = {101991},
+  month    = oct,
+  year     = 2021,
+  keywords = {Brain; Deep learning; Neural networks; Segmentation},
+  language = {en},
+  issn     = {0895-6111, 1879-0771},
+  pmid     = {34634548},
+  doi      = {10.1016/j.compmedimag.2021.101991}
 }
 
-@article{ieee754_2008-ev,
-  title    = {{IEEE Standard for Floating-Point Arithmetic}},
-  abstract = {This standard specifies interchange and arithmetic formats and
-              methods for binary and decimal floating-point arithmetic in
-              computer programming environments. This standard specifies
-              exception conditions and their default handling. An
-              implementation of a floating-point system conforming to this
-              standard may be realized entirely in software, entirely in
-              hardware, or in any combination of software and hardware. For
-              operations specified in the normative part of this standard,
-              numerical results and exceptions are uniquely determined by the
-              values of the input data, sequence of operations, and destination
-              formats, all under user control.},
-  journal  = {IEEE Std 754-2008},
-  pages    = {1--70},
-  month    = aug,
-  year     = 2008,
-  keywords = {IEEE Standards;Floating-point
-              arithmetic;Microprocessors;Software;Hardware;Trademarks;754-2008;arithmetic;binary;computer;decimal;exponent;floating-point;format;interchange;NaN;number;rounding;significand;subnormal},
-  doi      = {10.1109/IEEESTD.2008.4610935}
-}
 
-
-@inproceedings{Ronneberger2015-wy,
-  title     = {{U-Net: Convolutional Networks for Biomedical Image Segmentation}},
-  booktitle = {{Medical Image Computing and Computer-Assisted Intervention --
-               MICCAI 2015}},
-  author    = {Ronneberger, Olaf and Fischer, Philipp and Brox, Thomas},
-  abstract  = {There is large consent that successful training of deep networks
-               requires many thousand annotated training samples. In this
-               paper, we present a network and training strategy that relies on
-               the strong use of data augmentation to use the available
-               annotated samples more efficiently. The architecture consists of
-               a contracting path to capture context and a symmetric expanding
-               path that enables precise localization. We show that such a
-               network can be trained end-to-end from very few images and
-               outperforms the prior best method (a sliding-window
-               convolutional network) on the ISBI challenge for segmentation of
-               neuronal structures in electron microscopic stacks. Using the
-               same network trained on transmitted light microscopy images
-               (phase contrast and DIC) we won the ISBI cell tracking challenge
-               2015 in these categories by a large margin. Moreover, the
-               network is fast. Segmentation of a 512x512 image takes less than
-               a second on a recent GPU. The full implementation (based on
-               Caffe) and the trained networks are available at
-               http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net.},
-  publisher = {Springer International Publishing},
-  pages     = {234--241},
-  year      = 2015,
-  doi       = {10.1007/978-3-319-24574-4\_28}
+@article{Li2021.12.01.470790,
+  author       = {Li, Xinhui and Ai, Lei and Giavasis, Steve and Jin, Hecheng and Feczko, Eric and Xu, Ting and Clucas, Jon and Franco, Alexandre and S{\'o}lon Heinsfeld, Anibal and Adebimpe, Azeez and Vogelstein, Joshua T. and Yan, Chao-Gan and Esteban, Oscar and Poldrack, Russell A. and Craddock, Cameron and Fair, Damien and Satterthwaite, Theodore and Kiar, Gregory and Milham, Michael P.},
+  title        = {Moving Beyond Processing and Analysis-Related Variation in Neuroscience},
+  elocation-id = {2021.12.01.470790},
+  year         = {2021},
+  doi          = {10.1101/2021.12.01.470790},
+  publisher    = {Cold Spring Harbor Laboratory},
+  abstract     = {When fields lack consensus standards and ground truths for their analytic methods, reproducibility tends to be more of an ideal than a reality. Such has been the case for functional neuroimaging, where there exists a sprawling space of tools from which scientists can construct processing pipelines and draw interpretations. We provide a critical evaluation of the impact of differences observed in results across five independently developed functional MRI minimal preprocessing pipelines. We show that even when handling the same exact data, inter-pipeline agreement was only moderate, with the specific steps that contribute to the lack of agreement varying across pipeline comparisons. Using a densely sampled test-retest dataset, we show that the limitations imposed by inter-pipeline agreement mainly become appreciable when the reliability of the underlying data is high. We highlight the importance of comparison among analytic tools and parameters, as both widely debated (e.g., global signal regression) and commonly overlooked (e.g., MNI template version) decisions were each found to lead to marked variation. We provide recommendations for incorporating tool-based variability in functional neuroimaging analyses and a supporting infrastructure.Competing Interest StatementThe authors have declared no competing interest.},
+  url          = {https://www.biorxiv.org/content/early/2021/12/03/2021.12.01.470790},
+  eprint       = {https://www.biorxiv.org/content/early/2021/12/03/2021.12.01.470790.full.pdf},
+  journal      = {bioRxiv}
 }
 
 @inproceedings{Long2015-qr,
@@ -2018,79 +888,90 @@
   doi       = {10.1109/CVPR.2015.7298965}
 }
 
-
-@article{Mang2019-nu,
-  title    = {{CLAIRE: A DISTRIBUTED-MEMORY SOLVER FOR CONSTRAINED LARGE
-              DEFORMATION DIFFEOMORPHIC IMAGE REGISTRATION}},
-  author   = {Mang, Andreas and Gholami, Amir and Davatzikos, Christos and
-              Biros, George},
-  abstract = {With this work we release CLAIRE, a distributed-memory
-              implementation of an effective solver for constrained large
-              deformation diifeomorphic image registration problems in three
-              dimensions. We consider an optimal control formulation. We invert
-              for a stationary velocity field that parameterizes the
-              deformation map. Our solver is based on a globalized,
-              preconditioned, inexact reduced space Gauss-Newton-Krylov scheme.
-              We exploit state-of-the-art techniques in scientific computing to
-              develop an eifective solver that scales to thousands of
-              distributed memory nodes on high-end clusters. We present the
-              formulation, discuss algorithmic features, describe the software
-              package, and introduce an improved preconditioner for the reduced
-              space Hessian to speed up the convergence of our solver. We test
-              registration performance on synthetic and real data. We
-              Demonstrate registration accuracy on several neuroimaging
-              datasets. We compare the performance of our scheme against
-              diiferent flavors of the Demons algorithm for diifeomorphic image
-              registration. We study convergence of our preconditioner and our
-              overall algorithm. We report scalability results on
-              state-of-the-art supercomputing platforms. We Demonstrate that we
-              can solve registration problems for clinically relevant data
-              sizes in two to four minutes on a standard compute node with 20
-              cores, attaining excellent data fidelity. With the present work
-              we achieve a speedup of (on average) 5$\times$ with a peak
-              performance of up to 17$\times$ compared to our former work.},
-  journal  = {SIAM J. Sci. Comput.},
-  volume   = 41,
-  number   = 5,
-  pages    = {C548--C584},
-  month    = oct,
-  year     = 2019,
-  keywords = {35Q93; 49J20; 65F08; 65K10; 68U10; 76D55; KKT preconditioner;
-              LDDMM; Newton--Krylov method; PDE-constrained optimization;
-              diifeomorphic image registration; distributed-memory algorithm;
-              optimal control},
+@article{Mateos-Perez2018-wx,
+  title    = {{Structural neuroimaging as clinical predictor: A review of
+              machine learning applications}},
+  author   = {Mateos-P{\'e}rez, Jos{\'e} Mar{\'\i}a and Dadar, Mahsa and
+              Lacalle-Aurioles, Mar{\'\i}a and Iturria-Medina, Yasser and
+              Zeighami, Yashar and Evans, Alan C},
+  abstract = {In this paper, we provide an extensive overview of machine
+              learning techniques applied to structural magnetic resonance
+              imaging (MRI) data to obtain clinical classifiers. We
+              specifically address practical problems commonly encountered in
+              the literature, with the aim of helping researchers improve the
+              application of these techniques in future works. Additionally, we
+              survey how these algorithms are applied to a wide range of
+              diseases and disorders (e.g. Alzheimer's disease (AD),
+              Parkinson's disease (PD), autism, multiple sclerosis, traumatic
+              brain injury, etc.) in order to provide a comprehensive view of
+              the state of the art in different fields.},
+  journal  = {Neuroimage Clin},
+  volume   = 20,
+  pages    = {506--522},
+  month    = aug,
+  year     = 2018,
+  keywords = {Alzheimer; Autism; Cross-validation; Ensembling; Machine
+              learning; Multiple sclerosis; Neuroimaging; Parkinson; Predictive
+              modeling; SVMs; Structural magnetic resonance imaging},
   language = {en},
-  issn     = {1064-8275},
-  pmid     = {34650324},
-  doi      = {10.1137/18m1207818},
-  pmc      = {PMC8513530}
-}
-
-@misc{SwampCancel,
-  title  = {{Cancellation and Swamping}},
-  url    = {https://arnold.hosted.uark.edu/NLA/Pages/SwampCancel.pdf},
-  author = {Mark Arnold},
-  year   = {2022},
-  month  = {May}
+  issn     = {2213-1582},
+  pmid     = {30167371},
+  doi      = {10.1016/j.nicl.2018.08.019},
+  pmc      = {PMC6108077}
 }
 
 
-@article{Kingsbury1971-kx,
-  title     = {{Digital filtering using logarithmic arithmetic}},
-  author    = {Kingsbury, Nick G and Rayner, Peter J W},
-  abstract  = {A method of computation is described in which all signals are
-               encoded logarithmically, giving a great improvement in dynamic
-               range compared with fixed-point linearly encoded arithmetic. Two
-               ways of adding or subtracting logarithmically encoded numbers
-               are suggested, together with a logarithmic digital-analogue
-               convertor.},
-  journal   = {Electron. Lett.},
-  publisher = {IET},
-  volume    = 7,
-  number    = 2,
-  pages     = {56--58},
-  year      = 1971,
-  issn      = {0013-5194}
+@article{Molloy2014-oc,
+  title    = {{The influence of spatial resolution and smoothing on the
+              detectability of resting-state and task fMRI}},
+  author   = {Molloy, Erin K and Meyerand, Mary E and Birn, Rasmus M},
+  abstract = {Functional MRI blood oxygen level-dependent (BOLD) signal changes
+              can be subtle, motivating the use of imaging parameters and
+              processing strategies that maximize the temporal signal-to-noise
+              ratio (tSNR) and thus the detection power of neuronal
+              activity-induced fluctuations. Previous studies have shown that
+              acquiring data at higher spatial resolutions results in greater
+              percent BOLD signal changes, and furthermore that spatially
+              smoothing higher resolution fMRI data improves tSNR beyond that
+              of data originally acquired at a lower resolution. However,
+              higher resolution images come at the cost of increased
+              acquisition time, and the number of image volumes also influences
+              detectability. The goal of our study is to determine how the
+              detection power of neuronally induced BOLD fluctuations acquired
+              at higher spatial resolutions and then spatially smoothed
+              compares to data acquired at the lower resolutions with the same
+              imaging duration. The number of time points acquired during a
+              given amount of imaging time is a practical consideration given
+              the limited ability of certain populations to lie still in the
+              MRI scanner. We compare acquisitions at three different in-plane
+              spatial resolutions (3.50$\times$3.50mm(2),
+              2.33$\times$2.33mm(2), 1.75$\times$1.75mm(2)) in terms of their
+              tSNR, contrast-to-noise ratio, and the power to detect both
+              task-related activation and resting-state functional
+              connectivity. The impact of SENSE acceleration, which speeds up
+              acquisition time increasing the number of images collected, is
+              also evaluated. Our results show that after spatially smoothing
+              the data to the same intrinsic resolution, lower resolution
+              acquisitions have a slightly higher detection power of
+              task-activation in some, but not all, brain areas. There were no
+              significant differences in functional connectivity as a function
+              of resolution after smoothing. Similarly, the reduced tSNR of
+              fMRI data acquired with a SENSE factor of 2 is offset by the
+              greater number of images acquired, resulting in few significant
+              differences in detection power of either functional activation or
+              connectivity after spatial smoothing.},
+  journal  = {Neuroimage},
+  volume   = 86,
+  pages    = {221--230},
+  month    = feb,
+  year     = 2014,
+  keywords = {Detection power; Functional MRI; Functional connectivity;
+              Resolution; SENSE; Spatial smoothing},
+  language = {en},
+  issn     = {1053-8119, 1095-9572},
+  pmid     = {24021836},
+  doi      = {10.1016/j.neuroimage.2013.09.001},
+  pmc      = {PMC5736131}
 }
 
 @article{Morris1971-qg,
@@ -2111,4 +992,631 @@
   keywords = {Acuracy, exponent range, floating point, number representation.},
   issn     = {0018-9340, 1557-9956},
   doi      = {10.1109/T-C.1971.223174}
+}
+
+@book{Muller2018-zm,
+  title     = {{Handbook of Floating-Point Arithmetic}},
+  author    = {Muller, Jean-Michel and Brunie, Nicolas and de Dinechin, Florent
+               and Jeannerod, Claude-Pierre and Joldes, Mioara and Lef{\`e}vre,
+               Vincent and Melquiond, Guillaume and Revol, Nathalie and Torres,
+               Serge},
+  publisher = {Birkh{\"a}user, Cham},
+  year      = 2018,
+  isbn      = {9783319765259, 9783319765266},
+  doi       = {10.1007/978-3-319-76526-6}
+}
+
+@article{Nguyen2018-lo,
+  title         = {{False discovery rate control under reduced precision
+                   computation for analysis of neuroimaging data}},
+  author        = {Nguyen, Hien D and Yee, Yohan and McLachlan, Geoffrey J and
+                   Lerch, Jason P},
+  abstract      = {The mitigation of false positives is an important issue when
+                   conducting multiple hypothesis testing. The most popular
+                   paradigm for false positives mitigation in high-dimensional
+                   applications is via the control of the false discovery rate
+                   (FDR). Multiple testing data from neuroimaging experiments
+                   can be very large, and reduced precision storage of such
+                   data is often required. Reduced precision computation is
+                   often a problem in the analysis of legacy data and data
+                   arising from legacy pipelines. We present a method for FDR
+                   control that is applicable in cases where only
+                   p\textbackslashtext\{-values\} or test statistics (with
+                   common and known null distribution) are available, and when
+                   those p\textbackslashtext\{-values\} or test statistics are
+                   encoded in a reduced precision format. Our method is based
+                   on an empirical-Bayes paradigm where the probit
+                   transformation of the p\textbackslashtext\{-values\} (called
+                   the z\textbackslashtext\{-scores\}) are modeled as a
+                   two-component mixture of normal distributions. Due to the
+                   reduced precision of the p\textbackslashtext\{-values\} or
+                   test statistics, the usual approach for fitting mixture
+                   models may not be feasible. We instead use a binned-data
+                   technique, which can be proved to consistently estimate the
+                   z\textbackslashtext\{-score\} distribution parameters under
+                   mild correlation assumptions, as is often the case in
+                   neuroimaging data. A simulation study shows that our
+                   methodology is competitive when compared with popular
+                   alternatives, especially with data in the presence of
+                   misspecification. We demonstrate the applicability of our
+                   methodology in practice via a brain imaging study of mice.},
+  month         = may,
+  year          = 2018,
+  archiveprefix = {arXiv},
+  eprint        = {1805.04394},
+  primaryclass  = {stat.ME},
+  arxivid       = {1805.04394},
+  journal       = {arXiv}
+}
+
+@inproceedings{Nie2016-sw,
+  title     = {{3D Deep Learning for Multi-modal Imaging-Guided Survival Time
+               Prediction of Brain Tumor Patients}},
+  booktitle = {{Medical Image Computing and Computer-Assisted Intervention --
+               MICCAI 2016}},
+  author    = {Nie, Dong and Zhang, Han and Adeli, Ehsan and Liu, Luyan and
+               Shen, Dinggang},
+  abstract  = {High-grade glioma is the most aggressive and severe brain tumor
+               that leads to death of almost 50 \% patients in 1--2 years.
+               Thus, accurate prognosis for glioma patients would provide
+               essential guidelines for their treatment planning. Conventional
+               survival prediction generally utilizes clinical information and
+               limited handcrafted features from magnetic resonance images
+               (MRI), which is often time consuming, laborious and subjective.
+               In this paper, we propose using deep learning frameworks to
+               automatically extract features from multi-modal preoperative
+               brain images (i.e., T1 MRI, fMRI and DTI) of high-grade glioma
+               patients. Specifically, we adopt 3D convolutional neural
+               networks (CNNs) and also propose a new network architecture for
+               using multi-channel data and learning supervised features. Along
+               with the pivotal clinical features, we finally train a support
+               vector machine to predict if the patient has a long or short
+               overall survival (OS) time. Experimental results demonstrate
+               that our methods can achieve an accuracy as high as 89.9 \% We
+               also find that the learned features from fMRI and DTI play more
+               important roles in accurately predicting the OS time, which
+               provides valuable insights into functional neuro-oncological
+               applications.},
+  publisher = {Springer International Publishing},
+  pages     = {212--220},
+  year      = 2016,
+  doi       = {10.1007/978-3-319-46723-8\_25}
+}
+
+@article{Paszke2019-sm,
+  title         = {{PyTorch: An imperative style, high-performance deep learning
+                   library}},
+  author        = {Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer,
+                   Adam and Bradbury, James and Chanan, Gregory and Killeen,
+                   Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga,
+                   Luca and Desmaison, Alban and K{\"o}pf, Andreas and Yang,
+                   Edward and DeVito, Zach and Raison, Martin and Tejani,
+                   Alykhan and Chilamkurthy, Sasank and Steiner, Benoit and
+                   Fang, Lu and Bai, Junjie and Chintala, Soumith},
+  abstract      = {Deep learning frameworks have often focused on either
+                   usability or speed, but not both. PyTorch is a machine
+                   learning library that shows that these two goals are in fact
+                   compatible: it provides an imperative and Pythonic
+                   programming style that supports code as a model, makes
+                   debugging easy and is consistent with other popular
+                   scientific computing libraries, while remaining efficient
+                   and supporting hardware accelerators such as GPUs. In this
+                   paper, we detail the principles that drove the
+                   implementation of PyTorch and how they are reflected in its
+                   architecture. We emphasize that every aspect of PyTorch is a
+                   regular Python program under the full control of its user.
+                   We also explain how the careful and pragmatic implementation
+                   of the key components of its runtime enables them to work
+                   together to achieve compelling performance. We demonstrate
+                   the efficiency of individual subsystems, as well as the
+                   overall speed of PyTorch on several common benchmarks.},
+  month         = dec,
+  year          = 2019,
+  copyright     = {http://arxiv.org/licenses/nonexclusive-distrib/1.0/},
+  archiveprefix = {arXiv},
+  eprint        = {1912.01703},
+  primaryclass  = {cs.LG},
+  arxivid       = {1912.01703},
+  journal       = {arXiv}
+}
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@inproceedings{Ronneberger2015-wy,
+  title     = {{U-Net: Convolutional Networks for Biomedical Image Segmentation}},
+  booktitle = {{Medical Image Computing and Computer-Assisted Intervention --
+               MICCAI 2015}},
+  author    = {Ronneberger, Olaf and Fischer, Philipp and Brox, Thomas},
+  abstract  = {There is large consent that successful training of deep networks
+               requires many thousand annotated training samples. In this
+               paper, we present a network and training strategy that relies on
+               the strong use of data augmentation to use the available
+               annotated samples more efficiently. The architecture consists of
+               a contracting path to capture context and a symmetric expanding
+               path that enables precise localization. We show that such a
+               network can be trained end-to-end from very few images and
+               outperforms the prior best method (a sliding-window
+               convolutional network) on the ISBI challenge for segmentation of
+               neuronal structures in electron microscopic stacks. Using the
+               same network trained on transmitted light microscopy images
+               (phase contrast and DIC) we won the ISBI cell tracking challenge
+               2015 in these categories by a large margin. Moreover, the
+               network is fast. Segmentation of a 512x512 image takes less than
+               a second on a recent GPU. The full implementation (based on
+               Caffe) and the trained networks are available at
+               http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net.},
+  publisher = {Springer International Publishing},
+  pages     = {234--241},
+  year      = 2015,
+  doi       = {10.1007/978-3-319-24574-4\_28}
+}
+
+@article{Salari2021-kd,
+  title         = {{Accurate simulation of operating system updates in
+                   neuroimaging using Monte-Carlo arithmetic}},
+  author        = {Salari, Ali and Chatelain, Yohan and Kiar, Gregory and
+                   Glatard, Tristan},
+  abstract      = {Operating system (OS) updates introduce numerical
+                   perturbations that impact the reproducibility of
+                   computational pipelines. In neuroimaging, this has important
+                   practical implications on the validity of computational
+                   results, particularly when obtained in systems such as
+                   high-performance computing clusters where the experimenter
+                   does not control software updates. We present a framework to
+                   reproduce the variability induced by OS updates in
+                   controlled conditions. We hypothesize that OS updates impact
+                   computational pipelines mainly through numerical
+                   perturbations originating in mathematical libraries, which
+                   we simulate using Monte-Carlo arithmetic in a framework
+                   called ``fuzzy libmath'' (FL). We applied this methodology
+                   to pre-processing pipelines of the Human Connectome Project,
+                   a flagship open-data project in neuroimaging. We found that
+                   FL-perturbed pipelines accurately reproduce the variability
+                   induced by OS updates and that this similarity is only
+                   mildly dependent on simulation parameters. Importantly, we
+                   also found between-subject differences were preserved in
+                   both cases, though the between-run variability was of
+                   comparable magnitude for both FL and OS perturbations. We
+                   found the numerical precision in the HCP pre-processed
+                   images to be relatively low, with less than 8 significant
+                   bits among the 24 available, which motivates further
+                   investigation of the numerical stability of components in
+                   the tested pipeline. Overall, our results establish that FL
+                   accurately simulates results variability due to OS updates,
+                   and is a practical framework to quantify numerical
+                   uncertainty in neuroimaging.},
+  month         = aug,
+  year          = 2021,
+  archiveprefix = {arXiv},
+  eprint        = {2108.03129},
+  primaryclass  = {q-bio.NC},
+  arxivid       = {2108.03129},
+  journal       = {arXiv}
+}
+
+@article{Scheinost2014-ds,
+  title    = {{The impact of image smoothness on intrinsic functional
+              connectivity and head motion confounds}},
+  author   = {Scheinost, Dustin and Papademetris, Xenophon and Constable, R
+              Todd},
+  abstract = {We present a novel method for controlling the effects of group
+              differences in motion on functional connectivity studies.
+              Resting-state functional magnetic resonance imaging (rs-fMRI) is
+              a powerful tool that allows for the assessment of whole-brain
+              functional organization across a wide range of clinical
+              populations. However, as highlighted by recent studies, many
+              measures commonly used in rs-fMRI are highly correlated with
+              subject head movement. A source of this problem is that motion
+              itself, and motion correction algorithms, lead to spatial
+              smoothing, which is then variable across the brain and across
+              subjects or groups dependent upon the amount of motion present
+              during scanning. Studies aimed at elucidating differences between
+              populations that have different head-motion characteristics
+              (e.g., patients often move more in the scanner than healthy
+              control subjects) are significantly confounded by these effects.
+              In this work, we propose a solution to this problem, uniform
+              smoothing, which ensures that all subject images in a study have
+              equal effective spatial resolution. We establish that differences
+              in the intrinsic smoothness of images across a group can confound
+              connectivity results and link these differences in smoothness to
+              motion. We demonstrate that eliminating these smoothness
+              differences via our uniform smoothing solution is successful in
+              reducing confounds related to the differences in head motion
+              between subjects.},
+  journal  = {Neuroimage},
+  volume   = 95,
+  pages    = {13--21},
+  month    = jul,
+  year     = 2014,
+  keywords = {Connectivity; Head movement; Image smoothness; Motion;
+              Resting-state fMRI},
+  language = {en},
+  issn     = {1053-8119, 1095-9572},
+  pmid     = {24657356},
+  doi      = {10.1016/j.neuroimage.2014.03.035},
+  pmc      = {PMC4076413}
+}
+
+@article{Soares2013-hw,
+  title     = {{A hitchhiker's guide to diffusion tensor imaging}},
+  author    = {Soares, Jos{\'e} M and Marques, Paulo and Alves, Victor and
+               Sousa, Nuno},
+  abstract  = {Diffusion Tensor Imaging (DTI) studies are increasingly popular
+               among clinicians and researchers as they provide unique insights
+               into brain network connectivity. However, in order to optimize
+               the use of DTI, several technical and methodological aspects
+               must be factored in. These include decisions on: acquisition
+               protocol, artifact handling, data quality control,
+               reconstruction algorithm, and visualization approaches, and
+               quantitative analysis methodology. Furthermore, the researcher
+               and/or clinician also needs to take into account and decide on
+               the most suited software tool(s) for each stage of the DTI
+               analysis pipeline. Herein, we provide a straightforward
+               hitchhiker's guide, covering all of the workflow's major stages.
+               Ultimately, this guide will help newcomers navigate the most
+               critical roadblocks in the analysis and further encourage the
+               use of DTI.},
+  journal   = {Front. Neurosci.},
+  publisher = {frontiersin.org},
+  volume    = 7,
+  pages     = {31},
+  month     = mar,
+  year      = 2013,
+  keywords  = {acquisition; analysis; diffusion tensor imaging; hitchhiker's
+               guide; processing},
+  language  = {en},
+  issn      = {1662-4548, 1662-453X},
+  pmid      = {23486659},
+  doi       = {10.3389/fnins.2013.00031},
+  pmc       = {PMC3594764}
+}
+
+@article{Soares2016-tz,
+  title    = {{A Hitchhiker's Guide to Functional Magnetic Resonance Imaging}},
+  author   = {Soares, Jos{\'e} M and Magalh{\~a}es, Ricardo and Moreira, Pedro
+              S and Sousa, Alexandre and Ganz, Edward and Sampaio, Adriana and
+              Alves, Victor and Marques, Paulo and Sousa, Nuno},
+  abstract = {Functional Magnetic Resonance Imaging (fMRI) studies have become
+              increasingly popular both with clinicians and researchers as they
+              are capable of providing unique insights into brain functions.
+              However, multiple technical considerations (ranging from
+              specifics of paradigm design to imaging artifacts, complex
+              protocol definition, and multitude of processing and methods of
+              analysis, as well as intrinsic methodological limitations) must
+              be considered and addressed in order to optimize fMRI analysis
+              and to arrive at the most accurate and grounded interpretation of
+              the data. In practice, the researcher/clinician must choose, from
+              many available options, the most suitable software tool for each
+              stage of the fMRI analysis pipeline. Herein we provide a
+              straightforward guide designed to address, for each of the major
+              stages, the techniques, and tools involved in the process. We
+              have developed this guide both to help those new to the technique
+              to overcome the most critical difficulties in its use, as well as
+              to serve as a resource for the neuroimaging community.},
+  journal  = {Front. Neurosci.},
+  volume   = 10,
+  pages    = {515},
+  month    = nov,
+  year     = 2016,
+  keywords = {acquisition; analysis; fMRI; hitchhiker's guide; preprocessing},
+  language = {en},
+  issn     = {1662-4548, 1662-453X},
+  pmid     = {27891073},
+  doi      = {10.3389/fnins.2016.00515},
+  pmc      = {PMC5102908}
+}
+
+@misc{SwampCancel,
+  title        = {{Cancellation and Swamping}},
+  url          = {https://arnold.hosted.uark.edu/NLA/Pages/SwampCancel.pdf},
+  howpublished = {\url{https://arnold.hosted.uark.edu/NLA/Pages/SwampCancel.pdf}},
+  author       = {Mark Arnold},
+  year         = {2022},
+  month        = {May}
+}
+
+@article{Symms2004-xj,
+  title    = {{A review of structural magnetic resonance neuroimaging}},
+  author   = {Symms, M and J{\"a}ger, H R and Schmierer, K and Yousry, T A},
+  abstract = {Magnetic resonance imaging (MRI) is often divided into structural
+              MRI and functional MRI (fMRI). The former is a widely used
+              imaging technique in research as well as in clinical practice.
+              This review describes the more important developments in
+              structural MRI in recent years, including high resolution
+              imaging, T2 relaxation measurement, T2*-weighted imaging, T1
+              relaxation measurement, magnetisation transfer imaging, and
+              diffusion imaging. The principles underlying these techniques, as
+              well as their use in research and in clinical practice, will be
+              discussed.},
+  journal  = {J. Neurol. Neurosurg. Psychiatry},
+  volume   = 75,
+  number   = 9,
+  pages    = {1235--1244},
+  month    = sep,
+  year     = 2004,
+  language = {en},
+  issn     = {0022-3050},
+  pmid     = {15314108},
+  doi      = {10.1136/jnnp.2003.032714},
+  pmc      = {PMC1739217}
+}
+
+@misc{tensorflow2015-whitepaper,
+  title  = {{TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems}},
+  url    = {http://tensorflow.org/},
+  note   = {Software available from \url{http://tensorflow.org/}},
+  author = {
+            Mart\'{\i}n~Abadi and
+            Ashish~Agarwal and
+            Paul~Barham and
+            Eugene~Brevdo and
+            Zhifeng~Chen and
+            Craig~Citro and
+            Greg~S.~Corrado and
+            Andy~Davis and
+            Jeffrey~Dean and
+            Matthieu~Devin and
+            Sanjay~Ghemawat and
+            Ian~Goodfellow and
+            Andrew~Harp and
+            Geoffrey~Irving and
+            Michael~Isard and
+            Yangqing Jia and
+            Rafal~Jozefowicz and
+            Lukasz~Kaiser and
+            Manjunath~Kudlur and
+            Josh~Levenberg and
+            Dan~Man\'{e} and
+            Rajat~Monga and
+            Sherry~Moore and
+            Derek~Murray and
+            Chris~Olah and
+            Mike~Schuster and
+            Jonathon~Shlens and
+            Benoit~Steiner and
+            Ilya~Sutskever and
+            Kunal~Talwar and
+            Paul~Tucker and
+            Vincent~Vanhoucke and
+            Vijay~Vasudevan and
+            Fernanda~Vi\'{e}gas and
+            Oriol~Vinyals and
+            Pete~Warden and
+            Martin~Wattenberg and
+            Martin~Wicke and
+            Yuan~Yu and
+            Xiaoqiang~Zheng},
+  year   = {2015}
+}
+
+@misc{tpu,
+  title        = {{Cloud Tensor Processing Units (TPUs)}},
+  url          = {https://cloud.google.com/tpu/docs/tpus},
+  howpublished = {\url{https://cloud.google.com/tpu/docs/tpus}},
+  journal      = {Google},
+  publisher    = {Google},
+  author       = {Google},
+  year         = {2021},
+  month        = {Nov}
+}
+
+@article{Vicuna2021-mw,
+  title         = {{Reducing numerical precision preserves classification
+                   accuracy in Mondrian Forests}},
+  author        = {Vicuna, Marc and Khannouz, Martin and Kiar, Gregory and
+                   Chatelain, Yohan and Glatard, Tristan},
+  abstract      = {Mondrian Forests are a powerful data stream classification
+                   method, but their large memory footprint makes them
+                   ill-suited for low-resource platforms such as connected
+                   objects. We explored using reduced-precision floating-point
+                   representations to lower memory consumption and evaluated
+                   its effect on classification performance. We applied the
+                   Mondrian Forest implementation provided by OrpailleCC, a C++
+                   collection of data stream algorithms, to two canonical
+                   datasets in human activity recognition: Recofit and Banos
+                   \textbackslashemph\{et al\}. Results show that the precision
+                   of floating-point values used by tree nodes can be reduced
+                   from 64 bits to 8 bits with no significant difference in F1
+                   score. In some cases, reduced precision was shown to improve
+                   classification performance, presumably due to its
+                   regularization effect. We conclude that numerical precision
+                   is a relevant hyperparameter in the Mondrian Forest, and
+                   that commonly-used double precision values may not be
+                   necessary for optimal performance. Future work will evaluate
+                   the generalizability of these findings to other data stream
+                   classifiers.},
+  month         = jun,
+  year          = 2021,
+  archiveprefix = {arXiv},
+  eprint        = {2106.14340},
+  primaryclass  = {cs.LG},
+  arxivid       = {2106.14340},
+  journal       = {arXiv}
+}
+
+@article{Wang2018-oo,
+  title         = {{Training Deep Neural Networks with 8-bit floating point
+                   numbers}},
+  author        = {Wang, Naigang and Choi, Jungwook and Brand, Daniel and Chen,
+                   Chia-Yu and Gopalakrishnan, Kailash},
+  abstract      = {The state-of-the-art hardware platforms for training Deep
+                   Neural Networks (DNNs) are moving from traditional single
+                   precision (32-bit) computations towards 16 bits of precision
+                   -- in large part due to the high energy efficiency and
+                   smaller bit storage associated with using reduced-precision
+                   representations. However, unlike inference, training with
+                   numbers represented with less than 16 bits has been
+                   challenging due to the need to maintain fidelity of the
+                   gradient computations during back-propagation. Here we
+                   demonstrate, for the first time, the successful training of
+                   DNNs using 8-bit floating point numbers while fully
+                   maintaining the accuracy on a spectrum of Deep Learning
+                   models and datasets. In addition to reducing the data and
+                   computation precision to 8 bits, we also successfully reduce
+                   the arithmetic precision for additions (used in partial
+                   product accumulation and weight updates) from 32 bits to 16
+                   bits through the introduction of a number of key ideas
+                   including chunk-based accumulation and floating point
+                   stochastic rounding. The use of these novel techniques lays
+                   the foundation for a new generation of hardware training
+                   platforms with the potential for 2-4x improved throughput
+                   over today's systems.},
+  month         = dec,
+  year          = 2018,
+  copyright     = {http://arxiv.org/licenses/nonexclusive-distrib/1.0/},
+  archiveprefix = {arXiv},
+  eprint        = {1812.08011},
+  primaryclass  = {cs.LG},
+  arxivid       = {1812.08011},
+  journal       = {arXiv}
+}
+
+@article{Wen2018-to,
+  title    = {{Deep Learning Methods to Process fMRI Data and Their Application
+              in the Diagnosis of Cognitive Impairment: A Brief Overview and
+              Our Opinion}},
+  author   = {Wen, Dong and Wei, Zhenhao and Zhou, Yanhong and Li, Guolin and
+              Zhang, Xu and Han, Wei},
+  journal  = {Front. Neuroinform.},
+  volume   = 12,
+  pages    = {23},
+  month    = apr,
+  year     = 2018,
+  keywords = {cognitive impairment; convolutional neural network; deep
+              learning; deep neural network; fMRI; radial basis function
+              network},
+  language = {en},
+  issn     = {1662-5196},
+  pmid     = {29755334},
+  doi      = {10.3389/fninf.2018.00023},
+  pmc      = {PMC5932168}
+}
+
+
+@article{Wen2018-xm,
+  title    = {{Neural Encoding and Decoding with Deep Learning for Dynamic
+              Natural Vision}},
+  author   = {Wen, Haiguang and Shi, Junxing and Zhang, Yizhen and Lu, Kun-Han
+              and Cao, Jiayue and Liu, Zhongming},
+  abstract = {Convolutional neural network (CNN) driven by image recognition
+              has been shown to be able to explain cortical responses to static
+              pictures at ventral-stream areas. Here, we further showed that
+              such CNN could reliably predict and decode functional magnetic
+              resonance imaging data from humans watching natural movies,
+              despite its lack of any mechanism to account for temporal
+              dynamics or feedback processing. Using separate data, encoding
+              and decoding models were developed and evaluated for describing
+              the bi-directional relationships between the CNN and the brain.
+              Through the encoding models, the CNN-predicted areas covered not
+              only the ventral stream, but also the dorsal stream, albeit to a
+              lesser degree; single-voxel response was visualized as the
+              specific pixel pattern that drove the response, revealing the
+              distinct representation of individual cortical location; cortical
+              activation was synthesized from natural images with
+              high-throughput to map category representation, contrast, and
+              selectivity. Through the decoding models, fMRI signals were
+              directly decoded to estimate the feature representations in both
+              visual and semantic spaces, for direct visual reconstruction and
+              semantic categorization, respectively. These results corroborate,
+              generalize, and extend previous findings, and highlight the value
+              of using deep learning, as an all-in-one model of the visual
+              cortex, to understand and decode natural vision.},
+  journal  = {Cereb. Cortex},
+  volume   = 28,
+  number   = 12,
+  pages    = {4136--4160},
+  month    = dec,
+  year     = 2018,
+  language = {en},
+  issn     = {1047-3211, 1460-2199},
+  pmid     = {29059288},
+  doi      = {10.1093/cercor/bhx268},
+  pmc      = {PMC6215471}
+}
+
+@article{Zhang2019-xv,
+  title         = {{QPyTorch: A Low-Precision Arithmetic Simulation Framework}},
+  author        = {Zhang, Tianyi and Lin, Zhiqiu and Yang, Guandao and De Sa,
+                   Christopher},
+  abstract      = {Low-precision training reduces computational cost and
+                   produces efficient models. Recent research in developing new
+                   low-precision training algorithms often relies on simulation
+                   to empirically evaluate the statistical effects of
+                   quantization while avoiding the substantial overhead of
+                   building specific hardware. To support this empirical
+                   research, we introduce QPyTorch, a low-precision arithmetic
+                   simulation framework. Built natively in PyTorch, QPyTorch
+                   provides a convenient interface that minimizes the efforts
+                   needed to reliably convert existing codes to study
+                   low-precision training. QPyTorch is general, and supports a
+                   variety of combinations of precisions, number formats, and
+                   rounding options. Additionally, it leverages an efficient
+                   fused-kernel approach to reduce simulator overhead, which
+                   enables simulation of large-scale, realistic problems.
+                   QPyTorch is publicly available at
+                   https://github.com/Tiiiger/QPyTorch.},
+  month         = oct,
+  year          = 2019,
+  archiveprefix = {arXiv},
+  eprint        = {1910.04540},
+  primaryclass  = {cs.LG},
+  arxivid       = {1910.04540},
+  journal       = {arXiv}
+}
+
+
+@article{Zou2017-hd,
+  title    = {{3D CNN Based Automatic Diagnosis of Attention Deficit
+              Hyperactivity Disorder Using Functional and Structural MRI}},
+  author   = {Zou, Liang and Zheng, Jiannan and Miao, Chunyan and Mckeown,
+              Martin J and Wang, Z Jane},
+  abstract = {Attention deficit hyperactivity disorder (ADHD) is one of the
+              most common mental health disorders. As a neuro development
+              disorder, neuroimaging technologies, such as magnetic resonance
+              imaging (MRI), coupled with machine learning algorithms, are
+              being increasingly explored as biomarkers in ADHD. Among various
+              machine learning methods, deep learning has demonstrated
+              excellent performance on many imaging tasks. With the
+              availability of publically-available, large neuroimaging data
+              sets for training purposes, deep learning-based automatic
+              diagnosis of psychiatric disorders can become feasible. In this
+              paper, we develop a deep learning-based ADHD classification
+              method via 3-D convolutional neural networks (CNNs) applied to
+              MRI scans. Since deep neural networks may utilize millions of
+              parameters, even the large number of MRI samples in pooled data
+              sets is still relatively limited if one is to learn
+              discriminative features from the raw data. Instead, here we
+              propose to first extract meaningful 3-D low-level features from
+              functional MRI (fMRI) and structural MRI (sMRI) data.
+              Furthermore, inspired by radiologists' typical approach for
+              examining brain images, we design a 3-D CNN model to investigate
+              the local spatial patterns of MRI features. Finally, we discover
+              that brain functional and structural information are
+              complementary, and design a multi-modality CNN architecture to
+              combine fMRI and sMRI features. Evaluations on the hold-out
+              testing data of the ADHD-200 global competition shows that the
+              proposed multi-modality 3-D CNN approach achieves the
+              state-of-the-art accuracy of 69.15\% and outperforms reported
+              classifiers in the literature, even with fewer training samples.
+              We suggest that multi-modality classification will be a promising
+              direction to find potential neuroimaging biomarkers of neuro
+              development disorders.},
+  journal  = {IEEE Access},
+  volume   = 5,
+  pages    = {23626--23636},
+  year     = 2017,
+  keywords = {Feature extraction;Three-dimensional
+              displays;Testing;Training;Neuroimaging;Biological neural
+              networks;Attention deficit hyperactive disorder;3D CNN;magnetic
+              resonance imaging;multi-modality analysis},
+  issn     = {2169-3536},
+  doi      = {10.1109/ACCESS.2017.2762703}
+}
+
+@book{Zucker1994-rg,
+  title     = {{Reuse of high precision arithmetic hardware to perform multiple
+               concurrent low precision calculations}},
+  author    = {Zucker, Daniel F and Lee, Ruby B},
+  publisher = {Computer Systems Laboratory, Stanford University},
+  year      = 1994
 }

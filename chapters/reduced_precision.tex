@@ -47,14 +47,14 @@ architectures is an open issue~\cite{Cherubin2020-tt}.
 Although Chapter~\ref{ch:background} focused primarily on the IEEE~754 binary data format, many other data formats exist.
 This section introduces other data types used in reduced precision studies.
 
-Common Deep Learning frameworks such as Tensorflow~\cite{tensorflow2015-whitepaper} and Pytorch~\cite{PyTorch_2019} support mixed-precision through their API.
+Common Deep Learning frameworks such as Tensorflow~\cite{tensorflow2015-whitepaper} and Pytorch~\cite{Paszke2019-sm} support mixed-precision through their API.
 Both frameworks support the classical IEEE float32 and float16 with the addition to the \textit{bfloat16} introduced by Google Brain~\cite{bfloat16}.
 As shown in Figure~\ref{fig:bfloat16}, the bfloat16 is a 16-bit floating-point format that uses
 the same number of bits as the IEEE float32 for its exponent while having shorter bit width for its mantissa.
 \begin{figure}[b]
 	\centering
 	\includegraphics[width=\textwidth]{bfloat16.png}
-	\caption{Representation of the bfloat16 format. (Taken from~\cite{bfloat16})}
+	\caption{Representation of the bfloat16 format. (Taken from~\cite{bfloat16-png})}
 	\label{fig:bfloat16}
 \end{figure}
 With the same exponent length as float32, bfloat16 allows for quick data type
@@ -111,7 +111,7 @@ On the other hand, software design can be more portable across architecture than
 As an alternative to hardware or software implementation, a common approach to
 prototype or study new data formats is through simulation.
 The work in~\cite{Chatelain2019-fu} explores reduced precision to lower the communication costs of iterative methods.
-They use the VPREC backend in Verificarlo to simulate reduced precision combined
+They use the VPREC backend in Verificarlo~\cite{Denis2016-ws} to simulate reduced precision combined
 with a heuristic to determine a minimum precision for the different iterations.
 They consider both temporal and spatial changes in the precision of applications.
 Other studies~\cite{Higham2019-yd,Zhang2019-xv} propose simulation methods for reduced

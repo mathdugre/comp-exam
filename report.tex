@@ -12,11 +12,11 @@
     linkcolor=black,
     urlcolor=black
 }
+\usepackage{breakcites}
 \usepackage{graphicx}
 \graphicspath{ {./figures/} }
 \usepackage{xspace}
 \usepackage{color, soul}
-\newcommand{\HL}[1]{#1}
 
 % Format for the Chapter title.
 \titleformat
@@ -29,6 +29,7 @@
 
 \newcommand{\tristan}[1]{\color{blue}\textbf{From Tristan:} #1\color{black}\xspace}
 \newcommand{\MD}[1]{\color{magenta}\textbf{From Mathieu:} #1\color{black}\xspace}
+\newcommand{\HL}[1]{#1}
 
 \begin{document}
 \pagenumbering{roman}
@@ -38,23 +39,23 @@
 	\drop=0.1\textheight
 	\centering
 	\vspace*{\baselineskip}
-					
+												
 	\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
 	\rule{\textwidth}{0.4pt}\\[\baselineskip]
 	{\LARGE A Review of Reduced Precision Floating-Point Techniques for Neuroimaging}\\[0.2\baselineskip]
 	\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
 	\rule{\textwidth}{1.6pt}\\[\baselineskip]
-				
+											
 	{\scshape Report for Comprehensive Examination (ENCS 8501)}\\
 	{\itshape Submitted in partial fulfillment of the requirements \\ for the Comprehensive Exam\par}
 	\vspace*{2\baselineskip}
-						
+													
 	{\Large Mathieu Dugré \par}
 	{40061248}\\[2\baselineskip]
 	{\scshape Supervised by}\\[0.2\baselineskip]
 	{\Large Dr. Tristan Glatard \par}
 	{\itshape Concordia University \\  Department of \\ Computer-Science and Software Engineering\par}
-						    
+													    
 	\vfill
 	{\scshape May 17, 2022} \\
 	{\large Concordia University}\par
@@ -70,7 +71,7 @@
 \input{chapters/neuroimaging.tex}
 \input{chapters/conclusion.tex}
 
-\bibliographystyle{ieeetr}
+\bibliographystyle{apalike}
 \bibliography{report}
 
 \end{document}

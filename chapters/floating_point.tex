@@ -3,7 +3,7 @@
 Among the different methods to represent the set of real numbers in computers,
 floating-point is a commonly adopted format.
 This chapter discusses some fundamental definitions and basic notions on floating-point
-and briefly describes the IEEE~754~\cite{ieee754_2008-ev} data format.
+and briefly describes the IEEE~754~\cite{4610935} data format.
 We based the content in this chapter on~\cite{Muller2018-zm}.
 
 \section{Definitions and basic notions}
@@ -174,7 +174,7 @@ Representing the set of real numbers in a finite space is impossible; instead, i
 	addition, subtraction, multiplication, division, and fused multiply-add (FMA).
 	Moreover, the square root function and conversion between supported formats must be correctly rounded.
 }
-Additionally, the standard recommends a list of functions to be correctly rounded~\cite{ieee754_2008-ev}.
+Additionally, the standard recommends a list of functions to be correctly rounded~\cite{4610935}.
 There are three directed rounding attributes:
 \begin{itemize}
 	\item \textit{roundTowardPositive} $RD(x)$ rounds to the largest floating-point less than or equal to $x$.
